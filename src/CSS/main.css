@@ -1,4 +1,4 @@
-
+/* ヘッダー */
 .header_logo{
   width: 250px;
 }
@@ -6,6 +6,8 @@
 .header_logo_container{
   width: 1020px;
   margin: 0 auto;
+  align-items: center;
+  display: flex;
 }
 
 .header_logo > img {
@@ -13,9 +15,17 @@
   object-fit: cover;
 }
 
+.login_name {
+  text-align: end;
+  width: 300px;
+  height: 20px;
+  margin-left: auto;
+}
+
 .header_button{
   background-color: #2285d0;
 }
+
 .header_button_container{
   width: 1020px;
   margin: 0 auto;
@@ -25,8 +35,59 @@
   margin-left: 70%;
 }
 
+/* メイン */
+.main_container{
+  width: 1020px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.main_right{
+  width: 750px;
+  margin-left: auto;
+  margin-top: 20px;
+}
+
+.main_left{
+  margin-top: 20px;
+
+}
+
+.search_container{
+  width: 750px;
+}
+
+.new_container{
+  width: 750px;
+  margin-top: 40px;
+}
+
+.new_result{
+  margin-top: 20px;
+  padding-bottom: 20px;
+  width: 750px;
+  border-bottom: 1px solid rgb(150, 150, 150);
+}
+
+.new_p {
+  margin-top: 10px;
+}
+
+.new_title{
+  font-size: 20px;
+}
+
+.new_userview{
+  display: flex;
+}
+
+.new_person, .new_review{
+  width: 200px;
+}
+
+/* フッター */
 .footer{
-  margin: 500px auto;
+  margin: 30px auto;
   text-align: center;
   background-color: #2285d0;
   height: 100px;
