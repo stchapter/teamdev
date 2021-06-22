@@ -7,8 +7,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
   <link rel="icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="../../src/css/main.css">
+  <link rel="stylesheet" href="../../src/CSS/main.css">
   <title>GEEKBOOK</title>
 </head>
 <body>
-ç</body>
+  <footer>
+    <div class="footer">
+      <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
+    </div>
+  </footer>
+</body>
+</html>
