@@ -3,7 +3,7 @@
 //session_start();
 //sschk();
 include("funcs.php");
-include("db_conn.php");
+include("db.php");
 
 
 //1. POSTデータ取得
@@ -14,7 +14,7 @@ $url      = $_POST["url"];
 $cost     = $_POST["cost"];
 $post     = $_POST["post"];
 $star     = $_POST["star"];
-$fpass    = fileUpload("upfile","../../img/");
+$fpass    = fileUpload("upfile","../../upload/");
 $fname    = $_FILES["upfile"]["name"];
 $err_msgs = array();
 
@@ -51,11 +51,10 @@ if(count($err_msgs) === 0) {
     $stmt->bindValue(':post', $post, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
     $stmt->bindValue(':fpass', $fpass, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
     $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':star', $star, PDO::PARAM_INT);      //Integer（数値の場合 PDO::PARAM_INT)
+    $stmt->bindValue(':star', $star, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
     $status = $stmt->execute(); //実行
-
     echo '登録が完了しました<br><br><br><br>';
-    echo '<a href="../public/newpage.php">登録画面に戻る</a>';
+    echo '<a href="../../public/newpage.php">登録画面に戻る</a>';
     /* ------------------------------------------------
     //////DBにデータを保存 end
     ------------------------------------------------ */
@@ -66,7 +65,7 @@ if(count($err_msgs) === 0) {
     echo '<br>';
   }
   echo '<br>';
-  echo '<a href="../public/newpage.php">登録画面に戻る</a><br><br>';
+  echo '<a href="../../public/newpage.php">登録画面に戻る</a><br><br>';
 }
 
 ?>

@@ -3,7 +3,7 @@
 // session_start();
 // sschk();
 include("../src/php/funcs.php");
-include("../src/php/db_conn.php");
+include("../src/php/db.php");
 
 
 /*-------------------------------------------------------------------------
