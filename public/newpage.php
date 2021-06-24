@@ -74,11 +74,11 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
             </p>
             <p>おすすめ度
                 <select name="star">
-                    <option value ="5">★★★★★</option>
-                    <option value ="4">★★★★☆</option>
-                    <option value ="3">★★★☆☆</option>
-                    <option value ="2">★★☆☆☆</option>
-                    <option value ="1">★☆☆☆☆</option>
+                    <option value ="★★★★★">★★★★★</option>
+                    <option value ="★★★★☆">★★★★☆</option>
+                    <option value ="★★★☆☆">★★★☆☆</option>
+                    <option value ="★★☆☆☆">★★☆☆☆</option>
+                    <option value ="★☆☆☆☆">★☆☆☆☆</option>
                 </select>
             </p>
             <p>添付ファイル
