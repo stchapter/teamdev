@@ -35,16 +35,29 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
 include("./instance/header.php");
 ?>
 
+<style>
+.error input , 
+.error textarea {
+    background-color: #F8DFDF;
+}
+p.error{
+    margin:0;
+    color:red;
+    font-weight:bold;
+    margin-bottom:1em;
+}
+</style>
+
     <div class="editor_container">
 
         <h2 class="editor_title">新規投稿</h2>
-        <form method="POST" action="newpage_insert.php" enctype="multipart/form-data">
+        <form method="POST" action="../src/php/newpage_insert.php" enctype="multipart/form-data">
 
             <div class="contents">
             <p>言語
             <div class="select">
-                <select name="lang">
-                    <option value = "選択してください" placeholder="選択してください"></option>
+                <select name="lang" class="validate not0">
+                    <option placeholder="選択してください"></option>
                     <?=$view?>
                 </select>
             </div>
@@ -54,14 +67,16 @@ include("./instance/header.php");
             <div class="contents">
             <p>タイトル(機能):
                 <div class="ui input text_input">
-                <input type="text" name="title" placeholder="64文字以内で入力してください">
+                <input type="text" name="title" class="validate required" placeholder="64文字以内で入力してください">
                 </div>
             </p>
             </div>
 
             <div class="contents">
             <p>おすすめ内容:
-                <textarea name="cont" rows="4" clos="50"></textarea>
+                <div>
+                <textarea name="cont" rows="4" clos="50" class="validate required"></textarea>
+                </div>
             </p>
             </div>
 
@@ -125,3 +140,54 @@ include("./instance/header.php");
 <?php
 include("./instance/footer.php");
 ?>
+
+<script src="../src/JS/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+  //エラーを表示する関数の定義
+    function show_error(message, this$) {
+        text = this$.parent().find('p').text() + message;
+        this$.parent().append("<p class='error'>" + text + "</p>")
+    }
+
+    $("form").submit(function(){  
+        //エラー表示の初期化
+        $("p.error").remove();
+        $("div").removeClass("error");
+        var text = "";
+    
+        //1行テキスト入力フォームとテキストエリアの検証
+        $(":text,textarea").filter(".validate").each(function(){
+        
+        //必須項目の検証
+        $(this).filter(".required").each(function(){
+            if($(this).val()==""){
+            show_error("※必ず入力してください。", $(this));
+            }
+            })
+
+            $(this).filter(".max100").each(function(){
+                if($(this).val().length > 100){
+                show_error("は100文字以内です。", $(this));
+                }
+            })
+        })
+    
+        //セレクトメニューの検証
+        $("select").filter(".validate").each(function(){
+            $(this).filter(".not0").each(function(){
+                if($(this).val() == 0 ) {
+                show_error("※必ず選択してください。", $(this));
+                }      
+            }); 
+        });
+
+        //error クラスの追加の処理
+        if($("p.error").size() > 0){
+            $("p.error").parent().addClass("error");
+            return false;
+        }
+    }) 
+
+});
+</script>
