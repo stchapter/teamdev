@@ -2,8 +2,8 @@
 //session check//
 //session_start();
 //sschk();
-include("funcs.php");
-include("db.php");
+include("../src/php/funcs.php");
+include("../src/php/db.php");
 
 
 //1. POSTデータ取得
@@ -14,7 +14,7 @@ $url      = $_POST["url"];
 $cost     = $_POST["cost"];
 $post     = $_POST["post"];
 $star     = $_POST["star"];
-$fpass    = fileUpload("upfile","../../upload/");
+$fpass    = fileUpload("upfile","../upload/");
 $fname    = $_FILES["upfile"]["name"];
 $err_msgs = array();
 
@@ -53,8 +53,8 @@ if(count($err_msgs) === 0) {
     $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
     $stmt->bindValue(':star', $star, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
     $status = $stmt->execute(); //実行
-    echo '登録が完了しました<br><br><br><br>';
-    echo '<a href="../../public/newpage.php">登録画面に戻る</a>';
+    echo '<p>登録が完了しました</p>';
+    echo '<a href="newpage.php">登録画面に戻る</a>';
     /* ------------------------------------------------
     //////DBにデータを保存 end
     ------------------------------------------------ */
@@ -64,8 +64,7 @@ if(count($err_msgs) === 0) {
     echo $msg;
     echo '<br>';
   }
-  echo '<br>';
-  echo '<a href="../../public/newpage.php">登録画面に戻る</a><br><br>';
+  echo '<a href="newpage.php">登録画面に戻る</a><br><br>';
 }
 
 ?>
@@ -74,15 +73,9 @@ if(count($err_msgs) === 0) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <head><link rel="icon" type="image/x-icon" href="img/favicon.svg"></head>
-        <link href="css/reset.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
-        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.1.0/css/line-awesome.min.css">
-        <title>エラー画面</title>
+        <title>新規投稿</title>
     </head>
-<body class="err_body">
+<body">
 
 </body>
 </html>

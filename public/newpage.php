@@ -39,12 +39,11 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <head><link rel="icon" type="image/x-icon" href="img/favicon.svg"></head>
-        <title>newpage</title>
+        <title>新規投稿</title>
     </head>
     <body>
         <p>新規投稿</p>
-        <form method="POST" action="../src/php/newpage_insert.php" enctype="multipart/form-data">
+        <form method="POST" action="newpage_insert.php" enctype="multipart/form-data">
             <p>言語:
                 <select name="lang">
                     <option value = "選択してください" placeholder="選択してください"></option>
@@ -84,7 +83,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
             <p>添付ファイル
                 <input type="file" accept="image/*, .pdf, .jpg, .jpeg, .png" name="upfile">
             </p>
-            <input class="cost_submit" type="submit" value="投稿">    
+            <input type="submit" value="投稿">    
         </form>
     </body>
 </html>
