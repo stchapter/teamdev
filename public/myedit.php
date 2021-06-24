@@ -6,8 +6,8 @@ include("../src/php/funcs.php");
 include("../src/php/db.php");
 
 
-// $id = $_GET["id"];
-$id = 1;          //test用にidを20に固定
+// $id = $_POST["id"];
+$id  = 2;          //test用にidを1に固定
 $pdo = db_conn();
 
 //２．データ登録SQL作成
@@ -57,6 +57,18 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
   <link rel="icon" href="../img/favicon.ico">
   <link rel="stylesheet" href="../src/css/main.css">
+  <style>
+    .error input , 
+    .error textarea {
+        background-color: #F8DFDF;
+    }
+    p.error{
+        margin:0;
+        color:red;
+        font-weight:bold;
+        margin-bottom:1em;
+    }
+  </style>
   <title>GEEKBOOK</title>
 </head>
 <body>
@@ -94,10 +106,12 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
         <h2 class="editor_title">投稿の修正</h2>
         <form method="POST" action="../src/php/myedit_update.php" enctype="multipart/form-data">
 
+            <input type="hidden" name="myedit_id" value=<?=$id?>>
+
             <div class="contents">
             <p>タイトル
                 <div class="ui input text_input">
-                <input type="text" name="title" placeholder="64文字以内で入力してください" value=<?=$row["title"]?>>
+                <input type="text" name="title"  class="validate required" placeholder="64文字以内で入力してください" value=<?=$row["title"]?>>
                 </div>
             </p>
             </div>
@@ -116,7 +130,9 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
 
             <div class="contents">
             <p>おすすめ内容
-                <textarea name="cont" rows="4" clos="50"><?=$row["cont"]?></textarea>
+                <div>
+                <textarea name="cont" rows="4" clos="50" class="validate required"><?=$row["cont"]?></textarea>
+                </div>
             </p>
             </div>
 
@@ -184,26 +200,60 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     </div>
 
 
-        <!-- <form enctype="multipart/form-data" method="POST" action="update.php">
-            <div class="jumbotron">
-                <fieldset>
-                    <legend></legend>
-                    <div id="polaroid">
-                        <img id="preview" src="<?=$row["file_path"]?>">
-                        <label><textArea class="textarea" placeholder="コメント(50字以内)" name="comment" rows="3" cols="35"><?=$row["comment"]?></textArea></label><br>
-                    </div>
-                    <div class="container">
-                        <input class="submit" type="submit" value="送信">
-                    </div>
-                </fieldset>
-            </div>
-        </form> -->
-
-        <!-- Main[End] -->
   <footer>
     <div class="footer">
       <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
     </div>
   </footer>
+
+<script src="../src/JS/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+  //エラーを表示する関数の定義
+    function show_error(message, this$) {
+        text = this$.parent().find('p').text() + message;
+        this$.parent().append("<p class='error'>" + text + "</p>")
+    }
+
+    $("form").submit(function(){  
+        //エラー表示の初期化
+        $("p.error").remove();
+        $("div").removeClass("error");
+        var text = "";
+    
+        //1行テキスト入力フォームとテキストエリアの検証
+        $(":text,textarea").filter(".validate").each(function(){
+        
+        //必須項目の検証
+        $(this).filter(".required").each(function(){
+            if($(this).val()==""){
+            show_error("※必ず入力してください。", $(this));
+            }
+            })
+
+            $(this).filter(".max100").each(function(){
+                if($(this).val().length > 100){
+                show_error("は100文字以内です。", $(this));
+                }
+            })
+        })
+    
+        //セレクトメニューの検証
+        $("select").filter(".validate").each(function(){
+            $(this).filter(".not0").each(function(){
+                if($(this).val() == 0 ) {
+                show_error("※必ず選択してください。", $(this));
+                }      
+            }); 
+        });
+
+        //error クラスの追加の処理
+        if($("p.error").size() > 0){
+            $("p.error").parent().addClass("error");
+            return false;
+        }
+    }) 
+});
+</script>
     </body>
 </html>
