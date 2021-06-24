@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
-  <link rel="icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="../../src/css/main.css">
+  <link rel="icon" href="../img/favicon.ico">
+  <link rel="stylesheet" href="../src/css/main.css">
   <title>GEEKBOOK</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
   <div class="header_container">
     <div class="header_logo_container">
       <div class="header_logo">
-        <img src="../../img/topImg.png">
+        <img src="../img/topImg.png">
       </div>
   </div>
     </div>
@@ -35,5 +35,3 @@
     </div>
   </div>
   </header>
-</body>
-</html>
