@@ -53,6 +53,22 @@
 
 }
 
+.out_container{
+  width: 750px;
+}
+
+.r_out{
+  width: 750px;
+  display: flex;
+}
+
+.r_out > div{
+  /* width: 200px; */
+  margin-left: 8px;
+  font-size: 16px;
+  color: rgb(150, 150, 150);
+}
+
 .search_container{
   width: 750px;
 }
