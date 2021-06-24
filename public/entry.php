@@ -19,7 +19,6 @@ $course_list=course_list();
 $kw_c=kw_c();
 ?>
 
-
   <form method="POST" action="entry_chk.php">
 
     <div>
