@@ -17,7 +17,7 @@ function valc($postname,$min,$max){
 
   }elseif ($n < $min) {
     $n = $min - $n;
-    $result = $n."文字少ない。<br>";
+    $result = $n."文字少ないです。<br>";
     return $result;
   }
 }
@@ -41,13 +41,22 @@ function passvc($postname){
   }
 }
 
+// パリーデーション(半角英数記号)
+function passvc2($postname){
+  $val = filter_input(INPUT_POST, $postname);
+
+  if (!preg_match("/^[[:graph:]|[:space:]]+$/i", $val)){
+    return '<div class="alert alert-danger" role="alert">【半角英数字記号の入力でお願いします】';
+  }
+}
+
 // 入力確認用
 function inputconf($postname,$postname2){
   $val1 = filter_input(INPUT_POST, $postname);
   $val2 = filter_input(INPUT_POST, $postname2);
 
   if ($val1 !== $val2){
-    return '<div class="alert alert-danger" role="alert">【入力に差異がありますか】';
+    return '<div class="alert alert-danger" role="alert">【入力に差異があります】';
   }
 }
 

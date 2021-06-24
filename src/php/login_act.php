@@ -40,6 +40,7 @@ if(password_verify($pw, $val['pw'])){
     if( $val["id"] != "" ){
       //Login成功時
       $_SESSION["chk_ssid"]  = session_id();
+      $_SESSION["id"] = $val['id'];
       $_SESSION["name"] = $val['name'];
       $_SESSION["camp"] = $val['camp'];
       $_SESSION["course"] = $val['course'];
@@ -50,10 +51,11 @@ if(password_verify($pw, $val['pw'])){
       $_SESSION["life"] = $val['life'];
       $_SESSION["udate"] = $val['udate'];
 
-      echo "成功";
-      v($_SESSION["name"]);
+      // echo "成功";
+      // v($_SESSION["name"]);
 
       // redirect("main.php");
+      redirect("../../public/userEdit.php");
 
     }else{
       //Login失敗時
