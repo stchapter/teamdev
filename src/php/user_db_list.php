@@ -65,6 +65,21 @@ function kw_c(){
 }
 
 
+// potstable投稿の抽出
+function post_naiyou($id){
+
+  $pdo = db_conn();
+  $stmt = $pdo->prepare("SELECT * FROM post_table WHERE uid = $id ORDER BY pdate DESC");
+  $status = $stmt->execute();
+
+  if($status==false) {
+    $error = $stmt->errorInfo();
+    exit("SQLエラー:".$error[2]);
+  }else{
+    $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+}
 
 
 ?>
