@@ -1,3 +1,100 @@
+<?php
+//session check//
+// session_start();
+// sschk();
+include("../src/php/funcs.php");
+include("../src/php/db.php");
+require_once("../src/php/OpenGraph.php");  
+
+// $kensaku = $_POST['kensaku'];
+// 直接kensakuページを叩いた時用に「HTML」をデフォルト設定
+if(isset($_POST["kensaku"])){
+  $kensaku = $_POST["kensaku"];
+}else{
+  $kensaku = "HTML"; 
+}
+$pcount = 0; // $pcountの初期化
+
+
+/*-------------------------------------------------------------------------
+DB接続（検索結果一覧作成用）
+-------------------------------------------------------------------------*/
+//0. 事前準備：検索文言をSQL用に組み立てる
+if(strlen($kensaku)>0){
+  $kensaku2 = str_replace("　", " ", $kensaku);  //全角スペースを半角スペースに置換
+  $array = explode(" ",$kensaku2);               //検索文言を半角スペースで分割
+  $where = "WHERE";
+  for($i=0; $i<count($array); $i++){
+    $where .="(concat(title,cont,name,lang) LIKE '%$array[$i]%')";
+    if($i <count($array) -1){
+      $where .= "AND";
+    }
+  }
+}
+
+//1.  DB接続
+$pdo = db_conn();
+
+//２．データ登録SQL作成
+$stmt = $pdo->prepare("SELECT * FROM post_table JOIN user_table ON post_table.uid = user_table.id $where ORDER BY pdate DESC");
+$status = $stmt->execute();
+
+//３．データ表示
+$view="";  //HTML文字作成を入れる変数
+if($status==false) {
+    //execute（SQL実行時にエラーがある場合）
+    $error = $stmt->errorInfo();
+    exit("SQLError:".$error[2]);
+}else{
+  //Selectデータの数だけ自動でループしてくれる
+  //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+}
+while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+    $view .='<div class="new_result">';
+    $view .='<a href="'.h($res["url"]).'" class="new_title">'.h($res["title"]).'</a>';
+    $view .='<p class="new_p">'.h($res["cont"]).'</p>';
+    $view .='<div class="new_userview">';
+    $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
+    $view .='<p class="new_review">評価：'.h($res["star"]).'</p>';
+    $view .='</div>';
+    $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
+    $graph = OpenGraph::fetch(''.h($res["url"]).'');
+    if(isset($graph->image) == true){
+      $view .='<img src="'.$graph->image.'" />';
+    }else{
+      //OGP画像がない場合に仮imageを差し込む場合はココに記入
+    };
+    $view .='</div>';
+    $pcount ++;
+}
+
+
+/*-------------------------------------------------------------------------
+DB接続（人気の言語一覧作成用）
+-------------------------------------------------------------------------*/
+//1.  DB接続(省略)
+//２．データ登録SQL作成
+$stmt = $pdo->prepare("SELECT lang, count(*) AS COUNT FROM post_table GROUP BY lang ORDER BY COUNT DESC LIMIT 3");
+$status = $stmt->execute();
+
+//３．データ表示
+$view2="";  //HTML文字作成を入れる変数
+if($status==false) {
+    //execute（SQL実行時にエラーがある場合）
+    $error = $stmt->errorInfo();
+    exit("SQLError:".$error[2]);
+}else{
+  //Selectデータの数だけ自動でループしてくれる
+  //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+}
+while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+    $view2 .='<form method="POST" action="kensaku.php">';
+    $view2 .='<input class="item" type="submit" style="border:none; outline: none;" name="kensaku" value='.h($res["lang"]).'>';
+    $view2 .='</form>';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -48,12 +145,10 @@
       <div class="item">
         <div class="header"><font style="vertical-align: inherit;">人気の言語</font></div>
         <div class="menu">
-          <a class="item"><font style="vertical-align: inherit;">JavaScript</font></a>
-          <a class="item"><font style="vertical-align: inherit;">PHP</font></a>
-          <a class="item"><font style="vertical-align: inherit;">Python</font></a>
+          <?=$view2?>
         </div>
       </div>
-   </div>
+  </div>
 
   </div>
 
@@ -61,8 +156,8 @@
 
     <div class="out_container">
       <div class="r_out">
-        <div>「検索した単語」の検索結果:</div>
-        <div>〇〇件</div>
+        <div>「<?=$kensaku?>」の検索結果:</div>
+        <div><?=$pcount?>件</div>
       </div>
     </div>
   <!-- ↑ search_container -->
@@ -70,35 +165,7 @@
 
     <div class="new_container">
 
-      <div class="new_result">
-      <a href="#" class="new_title">【JS】ガチで学びたい人のためのJavaScriptメカニズム</a>
-      <p class="new_p">JavaScriptでの開発が苦手ですか？JSのメカニズムを学べば「これまでとは全く違うJSの世界」が見えてきます。React、Vue、JQuery、Firebaseを勉強したいと思っている人は、是非メカニズムから始めてみてください。</p>
-      <div class="new_userview">
-        <p class="new_person">投稿者：〇〇さん</p>
-        <p class="new_review">評価：☆☆☆★★</p>
-      </div>
-      <div class="ui label"><font style="vertical-align: inherit;">JavaScript</font></div>
-      </div>
-      <div class="new_result">
-      <a href="#" class="new_title">PHP+MySQL（MariaDB） Webサーバーサイドプログラミング入門</a>
-      <p class="new_p">本格的なWebシステム開発に欠かせない、サーバーサイドプログラミングをPHP+MySQLで学ぼう。</p>
-      <div class="new_userview">
-        <p class="new_person">投稿者：〇〇さん</p>
-        <p class="new_review">評価：☆☆★★★</p>
-      </div>
-      <div class="ui label"><font style="vertical-align: inherit;">PHP</font></div>
-      <div class="ui label"><font style="vertical-align: inherit;">MySQL</font></div>
-      </div>
-      <div class="new_result">
-      <a href="#" class="new_title">モダンJavaSciptの基礎から始める挫折しないためのReact入門</a>
-      <p class="new_p">Reactの習得に苦戦する理由は「JavaScript」への理解不足です。このコースではスムーズにReact開発のスタート地点に立てるように、モダンJavaScriptの動作の仕組みや概念、機能から解説します。</p>
-      <div class="new_userview">
-        <p class="new_person">投稿者：〇〇さん</p>
-        <p class="new_review">評価：☆★★★★</p>
-      </div>
-      <div class="ui label"><font style="vertical-align: inherit;">JavaScript</font></div>
-      <div class="ui label"><font style="vertical-align: inherit;">React</font></div>
-      </div>
+      <?=$view?>
 
     </div>
   <!-- ↑　new_container -->
