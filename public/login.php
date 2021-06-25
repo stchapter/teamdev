@@ -88,3 +88,7 @@ session_destroy();
 
 </body>
 </html>
+
+<?php
+include("./instance/footer.php");
+?>
