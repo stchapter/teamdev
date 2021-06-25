@@ -36,10 +36,6 @@ include("./instance/header.php");
 ?>
 
 <style>
-.error input , 
-.error textarea {
-    background-color: #F8DFDF;
-}
 p.error{
     margin:0;
     color:red;
@@ -54,30 +50,28 @@ p.error{
         <form method="POST" action="../src/php/newpage_insert.php" enctype="multipart/form-data">
 
             <div class="contents">
-            <p>言語
+            <p>言語</p>
             <div class="select">
                 <select name="lang" class="validate not0">
                     <option placeholder="選択してください"></option>
                     <?=$view?>
                 </select>
             </div>
-            </p>
+            
             </div>
 
             <div class="contents">
-            <p>タイトル(機能):
+            <p>タイトル:</p>
                 <div class="ui input text_input">
-                <input type="text" name="title" class="validate required" placeholder="64文字以内で入力してください">
+                <input type="text" name="title" class="validate required max64" placeholder="64文字以内で入力してください">
                 </div>
-            </p>
             </div>
 
             <div class="contents">
-            <p>おすすめ内容:
+            <p>おすすめ内容:</p>
                 <div>
                 <textarea name="cont" rows="4" clos="50" class="validate required"></textarea>
                 </div>
-            </p>
             </div>
 
             <div class="contents_fix">
@@ -146,8 +140,7 @@ include("./instance/footer.php");
 jQuery(function($){
   //エラーを表示する関数の定義
     function show_error(message, this$) {
-        text = this$.parent().find('p').text() + message;
-        this$.parent().append("<p class='error'>" + text + "</p>")
+        this$.parent().parent().append("<p class='error'>" + message + "</p>")
     }
 
     $("form").submit(function(){  
@@ -166,9 +159,9 @@ jQuery(function($){
             }
             })
 
-            $(this).filter(".max100").each(function(){
-                if($(this).val().length > 100){
-                show_error("は100文字以内です。", $(this));
+            $(this).filter(".max64").each(function(){
+                if($(this).val().length > 64){
+                show_error("※タイトルは64文字以内で入力してください。", $(this));
                 }
             })
         })
