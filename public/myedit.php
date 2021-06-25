@@ -58,10 +58,6 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <link rel="icon" href="../img/favicon.ico">
   <link rel="stylesheet" href="../src/css/main.css">
   <style>
-    .error input , 
-    .error textarea {
-        background-color: #F8DFDF;
-    }
     p.error{
         margin:0;
         color:red;
@@ -109,38 +105,35 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
             <input type="hidden" name="myedit_id" value=<?=$id?>>
 
             <div class="contents">
-            <p>タイトル
+            <p>タイトル</p>
                 <div class="ui input text_input">
-                <input type="text" name="title"  class="validate required" placeholder="64文字以内で入力してください" value=<?=$row["title"]?>>
+                <input type="text" name="title"  class="validate required max64" placeholder="64文字以内で入力してください" value=<?=h($row["title"])?>>
                 </div>
-            </p>
             </div>
 
 
             <div class="contents">
-            <p>言語
+            <p>言語</p>
             <div class="select">
                 <select name="lang">
                     <option value ="<?=$row["lang"]?>" selected><?=$row["lang"]?>(変更なし)</option>
                     <?=$view?>
                 </select>
             </div>
-            </p>
             </div>
 
             <div class="contents">
-            <p>おすすめ内容
+            <p>おすすめ内容</p>
                 <div>
-                <textarea name="cont" rows="4" clos="50" class="validate required"><?=$row["cont"]?></textarea>
+                <textarea name="cont" rows="4" clos="50" class="validate required"><?=h($row["cont"])?></textarea>
                 </div>
-            </p>
             </div>
 
             <div class="contents_fix">
             <div class="contents">
             <p>URL
                 <div class="ui input text_input">
-                <input type="url" name="url" value=<?=$row["url"]?>>
+                <input type="url" name="url" value=<?=h($row["url"])?>>
                 </div>
             </p>
                 </div>
@@ -212,7 +205,7 @@ jQuery(function($){
   //エラーを表示する関数の定義
     function show_error(message, this$) {
         text = this$.parent().find('p').text() + message;
-        this$.parent().append("<p class='error'>" + text + "</p>")
+        this$.parent().parent().append("<p class='error'>" + text + "</p>")
     }
 
     $("form").submit(function(){  
@@ -231,9 +224,9 @@ jQuery(function($){
             }
             })
 
-            $(this).filter(".max100").each(function(){
-                if($(this).val().length > 100){
-                show_error("は100文字以内です。", $(this));
+            $(this).filter(".max64").each(function(){
+                if($(this).val().length > 64){
+                show_error("※タイトルは64文字以内で入力してください。", $(this));
                 }
             })
         })
