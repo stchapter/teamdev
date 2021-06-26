@@ -45,7 +45,7 @@ if ($kw !== $kw_c[0]) {
   $err[0] = "認証コード違います";
 }
 
-$err[1] = valc(name,1,12);
+$err[1] = valc(name,1,24);
 $err[4] = valc(cls,1,3);
 $err[5] = valc(student,1,3);
 $err[6] = mailvc(mail);
