@@ -5,7 +5,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
   <link rel="icon" href="../img/favicon.ico">
-  <link rel="stylesheet" href="../src/css/login.css">
+  <link rel="stylesheet" href="../src/css/entrychk.css">
   <title>GEEKBOOK</title>
 </head>
 <body>
@@ -76,13 +76,13 @@ if (count($cerr) === 0 ) {
 
 }else{
     $doc0 ="登録修正";
-    $doc1 ='<input type="password" class="" name="kw">';
-    $doc2 ='<input type="text" class="" name="name" value="'.h($name).'">';
-    $doc5 ='<input type="number" class="" name="cls" value="'.h($cls).'">';
-    $doc6 ='<input type="number" class="" name="student" value="'.h($student).'">';
-    $doc7 ='<input type="text" class="" name="mail" value="'.h($mail).'"><br>';
-    $doc8 ='<input type="password"  class="" name="pw" value=""><br>';
-    $doc9 ='<input type="password"  class="" name="pw_c" value=""><br>';
+    $doc1 ='<div class="ui input text_input"><input type="password" class="" name="kw"></div>';
+    $doc2 ='<div class="ui input text_input"><input type="text" class="" name="name" value="'.h($name).'"></div>';
+    $doc5 ='<div class="ui input text_input"><input type="number" class="" name="cls" value="'.h($cls).'"></div>';
+    $doc6 ='<div class="ui input text_input"><input type="number" class="" name="student" value="'.h($student).'"></div>';
+    $doc7 ='<div class="ui input text_input"><input type="text" class="" name="mail" value="'.h($mail).'"></div>';
+    $doc8 ='<div class="ui input text_input"><input type="password"  class="" name="pw" value=""></div>';
+    $doc9 ='<div class="ui input text_input"><input type="password"  class="" name="pw_c" value=""></div>';
     $doc10 ='';
 }
 
@@ -117,7 +117,6 @@ if(isset($_POST['entry'])) {
 
 <div class="e_container">
 
-  <div class="">
 
   <legend><?php echo $doc0; ?></legend>
 
@@ -140,7 +139,7 @@ if(isset($_POST['entry'])) {
         <?php if (count($cerr) === 0 ):?>
               <?php echo $doc3; ?>
         <?php else : ?>
-                      <select type="text" name="camp" class="" id="camp" value="<?php h($camp);?>">
+                <select type="text" name="camp" class="" id="camp" value="<?php h($camp);?>">
               <?php foreach($camp_list as $value): ?>
                 <option value="<?php echo h($value); ?>"><?php echo h($value); ?></option>
               <?php endforeach; ?>
@@ -196,12 +195,12 @@ if(isset($_POST['entry'])) {
             <input type="hidden" name="course_list" class="" value="$course_list">
             <input type="hidden" name="kw_c" class="" value="$kw_c">
 
-    <input type="submit" name="edit" value="修正" class="ui button">
+    <input type="submit" name="edit" value="修正" class="ui button" style="margin-top: 30px;">
     <?php echo $doc10; ?>
   </form>
 
 
-  </div>
+</div>
 </div>
 
 <?php
