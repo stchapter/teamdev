@@ -31,7 +31,7 @@ $kw_c=kw_c();
             </div> -->
 
     <!-- <div> -->
-      <div class="contents" style="margin: 70px auto 0 auto;">
+      <div class="contents" style="margin: 30px auto 0 auto;">
         <lable for="kw">認証コード</label><br/>
         <small>学校発行の認証コードを入力してください</small><br/>
         <div class="ui input text_input">
@@ -126,9 +126,6 @@ $kw_c=kw_c();
 
   </form>
 </div>
-
-</body>
-</html>
 
 <?php
 include("./instance/footer.php");
