@@ -82,4 +82,61 @@ function post_naiyou($id){
 }
 
 
+// テーブル結合でpostデータを呼び出す
+function bookmark_naiyou($id){
+  $pdo = db_conn();
+  $stmt = $pdo->prepare("
+    SELECT
+    bookmark_table.id,
+    post_table.lang,
+    post_table.title,
+    post_table.url,
+    post_table.fpass,
+    post_table.fname,
+    user_table.name,
+    bookmark_table.adddate
+    FROM bookmark_table
+    JOIN post_table
+    ON (bookmark_table.pid = post_table.id)
+    JOIN user_table
+    ON (post_table.uid = user_table.id)
+    AND bookmark_table.uid=$id
+    AND post_table.life = 0
+    AND user_table.life = 0
+    ORDER BY adddate DESC
+  ");
+  $status = $stmt->execute();
+
+  if($status==false) {
+    $error = $stmt->errorInfo();
+    exit("SQLエラー:".$error[2]);
+  }else{
+    $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+}
+
+
+// テーブル結合でpostデータを呼び出す
+function bookmark_del($id){
+  $pdo = db_conn();
+
+  $sql = 'DELETE FROM bookmark_table WHERE id = :id';
+  $stmt = $pdo->prepare($sql);
+
+  $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+  $status = $stmt->execute();
+
+  if($status==false) {
+    $error = $stmt->errorInfo();
+    exit("SQLエラー:".$error[2]);
+  }else{
+    redirect("../../public/bookmark.php");
+  }
+
+
+}
+
+
+
 ?>
