@@ -1,20 +1,19 @@
 <?php
 //session check//
-// session_start();
-// sschk();
+session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
-
+sschk();
 
 /*-------------------------------------------------------------------------
 DB接続（langのプルダウン作成）
 -------------------------------------------------------------------------*/
 //1.  DB接続します
 $pdo = db_conn();
-// $uid = $_SESSION["uid"];
+$uid = $_SESSION["id"];
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM lang_table");
+$stmt = $pdo->prepare("SELECT * FROM lang_table ORDER BY lang ASC");
 $status = $stmt->execute();
 
 //３．データ表示

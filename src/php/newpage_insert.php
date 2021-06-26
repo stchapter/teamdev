@@ -1,10 +1,9 @@
 <?php
 //session check//
-//session_start();
-//sschk();
+session_start();
 include("funcs.php");
 include("db.php");
-
+sschk();
 
 //1. POSTデータ取得
 $lang     = $_POST["lang"];
@@ -24,8 +23,8 @@ $fname    = $_FILES["upfile"]["name"];
 
     // 2. DB接続します
     $pdo = db_conn();
-    // $uid = $_SESSION["uid"];
-    $uid = 1;
+    $uid = $_SESSION["id"];
+    // $uid = 1;
 
 
     //３．データ登録SQL作成
