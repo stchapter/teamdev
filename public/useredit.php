@@ -157,7 +157,7 @@ include("./instance/header.php");
       <input type="checkbox" name="life" value="1">
     </div>
 
-    <input type="submit" value="更新" class="ui primary button" style="margin-top: 20px;">
+    <input type="submit" value="更新" class="ui primary button" style="margin-top: 30px;">
 
   </form>
 

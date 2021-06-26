@@ -122,7 +122,7 @@ $kw_c=kw_c();
     type="submit"
     value="登録"
     class="cost_submit big ui primary button"
-    style="margin-top: 20px;">
+    style="margin-top: 15px;">
 
   </form>
 </div>
