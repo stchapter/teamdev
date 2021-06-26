@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+  <link rel="icon" href="../img/favicon.ico">
+  <link rel="stylesheet" href="../src/css/login.css">
+  <title>GEEKBOOK</title>
 </head>
 <body>
 
@@ -70,7 +72,7 @@ if (count($cerr) === 0 ) {
     $doc7 =$mail.'<input type="hidden" class="" name="mail" value="'.h($mail).'">';
     $doc8 ='*******<input type="hidden"  class="" name="pw" value="'.h($pw).'">';
     $doc9 ='*******';
-    $doc10 ='<input type="submit" name="entry" value="登録" class="">';
+    $doc10 ='<input type="submit" name="entry" value="登録" class="ui primary button">';
 
 }else{
     $doc0 ="登録修正";
@@ -113,25 +115,28 @@ if(isset($_POST['entry'])) {
 
 ?>
 
+<div class="e_container">
+
+  <div class="">
 
   <legend><?php echo $doc0; ?></legend>
 
   <form method="POST" action="entry_chk.php">
 
-    <div>
-      <lable for="kw">認証コード</label>
+    <div class="e_contents">
+      <lable class="label" for="kw">認証コード　</label>
           <?php echo $doc1; ?>
           <?php echo $err[0]; ?>
     </div>
 
-    <div>
-      <lable for="name">お名前</label>
+    <div class="e_contents">
+      <lable class="label" for="name">お名前　</label>
           <?php echo $doc2; ?>
           <?php echo $err[1]; ?>
     </div>
 
-    <div>
-      <lable for="camp">校舎</label>
+    <div class="e_contents">
+      <lable class="label" for="camp">校舎　</label>
         <?php if (count($cerr) === 0 ):?>
               <?php echo $doc3; ?>
         <?php else : ?>
@@ -143,8 +148,8 @@ if(isset($_POST['entry'])) {
         <?php endif; ?>
     </div>
 
-    <div>
-      <lable for="course">受講コース</label>
+    <div class="e_contents">
+      <lable class="label" for="course">受講コース　</label>
         <?php if (count($cerr) === 0 ):?>
               <?php echo $doc4; ?>
         <?php else : ?>
@@ -156,33 +161,33 @@ if(isset($_POST['entry'])) {
         <?php endif; ?>
     </div>
 
-    <div>
-      <lable for="class">学期</label>
+    <div class="e_contents">
+      <lable class="label" for="class">学期　</label>
           <?php echo $doc5; ?>
           <?php echo $err[4]; ?>
     </div>
 
-    <div>
-      <lable for="student">学籍番号</label>
+    <div class="e_contents">
+      <lable class="label" for="student">学籍番号　</label>
           <?php echo $doc6; ?>
           <?php echo $err[5]; ?>
     </div>
 
-    <div>
-      <lable for="mail">メールアドレス</label>
+    <div class="e_contents">
+      <lable class="label" for="mail">メールアドレス　</label>
           <?php echo $doc7; ?>
           <?php echo $err[9]; ?>
           <?php echo $err[6]; ?>
     </div>
 
-    <div>
-      <lable for="pw">パスワード</label>
+    <div class="e_contents">
+      <lable class="label" for="pw">パスワード　</label>
           <?php echo $doc8; ?>
           <?php echo $err[7]; ?>
     </div>
 
-    <div>
-      <lable for="cpw">パスワード確認</label>
+    <div class="e_contents">
+      <lable class="label" for="cpw">パスワード確認　</label>
           <?php echo $doc9; ?>
           <?php echo $err[8]; ?>
     </div>
@@ -191,10 +196,14 @@ if(isset($_POST['entry'])) {
             <input type="hidden" name="course_list" class="" value="$course_list">
             <input type="hidden" name="kw_c" class="" value="$kw_c">
 
-    <input type="submit" name="edit" value="修正" class="">
+    <input type="submit" name="edit" value="修正" class="ui button">
     <?php echo $doc10; ?>
   </form>
 
 
-</body>
-</html>
+  </div>
+</div>
+
+<?php
+include("./instance/footer.php");
+?>

@@ -228,7 +228,7 @@ textarea{
 
 .k_content{
   width: 320px;
-  height: 300px;
+  height: 400px;
   background-color: white;
   border-radius: 10px;
   text-align: center;
@@ -258,7 +258,7 @@ textarea{
 
 
 .hide{
-  height: 200px;
+  height: 290px;
   padding: 8px;
   /* display: none; */
   overflow: scroll;
@@ -392,8 +392,8 @@ table tr:nth-child(odd){
   text-align: center;
   background-color: #2285d0;
   height: 100px;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
 }
 
 .s_footer{
@@ -402,8 +402,8 @@ table tr:nth-child(odd){
   text-align: center;
   background-color: #2285d0;
   height: 100px;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
 }
 
 .footer > p{
