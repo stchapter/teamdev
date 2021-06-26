@@ -69,11 +69,11 @@ function fileUpload($fname,$path){
                 chmod( $file_dir_path, 0644 );
                 return $file_name; //成功時：ファイル名を返す
             } else {
-                return 1; //失敗時：ファイル移動に失敗
+                return ""; //失敗時：ファイル移動に失敗
             }
         }
     }else{
-         return 2; //失敗時：ファイル取得エラー
+         return ""; //失敗時：ファイル取得エラー
     }
 }
 
