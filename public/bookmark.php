@@ -18,41 +18,44 @@ session_start();
 // 認証下
 sschk();
 
+
 $id = $_SESSION["id"];
 
+// v($id);
+
+
 // DBから取得
-$val = post_naiyou($id);
+$val = bookmark_naiyou($id);
+
 
 include("./instance/header.php");
+
 ?>
 
 <table>
   <tr>
     <th>言語</th>
     <th>タイトル</th>
+    <th>評価</th>
     <th>URL</th>
     <th>参照ファイル</th>
-    <th>コスト</th>
-    <th>状態</th>
-    <th>更新日</th>
-    <th>修正</th>
-    <!-- 削除は編集機能であるからいかな-->
+    <th>投稿者</th>
+    <th>登録日</th>
+    <th>削除</th>
   </tr>
 
   <?php foreach($val as $doc): ?>
   <tr>
     <td><?php echo h($doc[lang]); ?></td>
     <td><a href="result.php?id=<?php echo h($doc[id]); ?>"><?php echo h($doc[title]); ?></a></td>
-    <td><a href="<?php echo h($doc[url]); ?>" target="">参照URL</a></td>
-    <td><a href="../upload/<?php echo h($doc[fpass]); ?>" taeget="new"><?php echo h($doc[fname]); ?></a></td>
-    <td><?php echo h($doc[cost]); ?></td>
-      <?php if($doc[life]==0):?>
-          <td>表示</td>
-      <?php else :?>
-          <td>非表示（下書き）</td>
-      <?php endif; ?>
-    <td><?php echo h($doc[pdate]); ?></td>
-    <td><button class="" type="button" onclick=location.href='myedit.php?id=<?php echo h($doc[id]); ?>'>修正</button></td>
+    <td><?php echo h($doc[star]); ?></td>
+    <td><a href="<?php echo h($doc[url]); ?>" target="new">参照URL</a></td>
+    <td><a href="../upload/<?php echo h($doc[fpass]); ?>"><?php echo h($doc[fname]); ?></a></td>
+    <td><?php echo h($doc[name]); ?></td>
+    <td><?php echo h($doc[adddate]); ?></td>
+    <td><a href="../src/php/bookdel.php?id=<?php echo h($doc[id]); ?>">
+    <button class="" type="button">削除</button></a>
+    </td>
   </tr>
   <?php endforeach; ?>
 
