@@ -20,9 +20,10 @@ sschk();
 
 $id = $_SESSION["id"];
 
-
+// DBから取得
 $val = post_naiyou($id);
 
+include("./instance/header.php");
 ?>
 
 <table>
@@ -43,7 +44,7 @@ $val = post_naiyou($id);
     <td><?php echo h($doc[lang]); ?></td>
     <td><a href="result.php?id=<?php echo h($doc[id]); ?>"><?php echo h($doc[title]); ?></a></td>
     <td><a href="<?php echo h($doc[url]); ?>">参照URL</a></td>
-    <td><a href="<?php echo h($doc[fpass]); ?>">参照ファイル</a></td>
+    <td><a href="../upload/<?php echo h($doc[fpass]); ?>">参照ファイル</a></td>
     <td><?php echo h($doc[cost]); ?></td>
       <?php if($doc[life]==0):?>
           <td>表示</td>
@@ -65,6 +66,9 @@ $val = post_naiyou($id);
 
 
 
+<?php
+include("./instance/footer.php");
+?>
 
 
 
