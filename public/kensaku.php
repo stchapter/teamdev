@@ -57,6 +57,9 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
     $view .='<p class="new_review">評価：'.h($res["star"]).'</p>';
     $view .='</div>';
+    $view .='<div class="new_postdate">';
+    $view .='<p class="new_date">投稿日：'.$res["pdate"].'</p>';
+    $view .='</div>';
     $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
     $graph = OpenGraph::fetch(''.h($res["url"]).'');
     if(isset($graph->image) == true){

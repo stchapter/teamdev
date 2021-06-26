@@ -13,7 +13,7 @@ DB接続（一覧作成用）
 $pdo = db_conn();
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT post_table.title, user_table.name, post_table.cont, post_table.url, post_table.star, post_table.lang FROM post_table JOIN user_table ON post_table.uid = user_table.id ORDER BY pdate DESC");
+$stmt = $pdo->prepare("SELECT post_table.title, user_table.name, post_table.cont, post_table.url, post_table.star, post_table.lang, post_table.pdate FROM post_table JOIN user_table ON post_table.uid = user_table.id ORDER BY pdate DESC");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -32,7 +32,10 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .='<p class="new_p">'.h($res["cont"]).'</p>';
     $view .='<div class="new_userview">';
     $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
-    $view .='<p class="new_review">評価：'.h($res["star"]).'</p>';
+    $view .='<p class="new_review">評価：'.($res["star"]).'</p>';
+    $view .='</div>';
+    $view .='<div class="new_postdate">';
+    $view .='<p class="new_date">投稿日：'.$res["pdate"].'</p>';
     $view .='</div>';
     $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
     $graph = OpenGraph::fetch(''.h($res["url"]).'');

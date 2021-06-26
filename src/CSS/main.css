@@ -101,6 +101,11 @@
   width: 200px;
 }
 
+.new_postdate{
+  color: rgb(150, 150, 150);
+  margin-bottom: 14px;
+}
+
 /* myエディター */
 .editor_container{
   width: 1020px;
