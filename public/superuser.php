@@ -1,7 +1,15 @@
 <?php
 
 // session ID
+session_start();
+// var_dump($_SESSION['name']);exit();
 // sschk();
+
+// $id = 1;
+
+// $_SESSION['name'] = ['管理者'];
+//セッションで[name]とってくる。
+$name = '管理者';
 
 // データベースに接続
 include("../src/php/funcs.php");
@@ -22,7 +30,7 @@ if ($_POST) {
         // echo '<pre>';
         // var_dump($_POST);exit;
         // echo '</pre>';
-    
+
         if ($status) {
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         };
@@ -35,7 +43,7 @@ if ($_POST) {
         $stmt->bindValue(':camp', $camp, PDO::PARAM_STR);
         $result = $stmt->execute();
         // var_dump($result);exit;
-        
+
         if ($result) {
             $stmt = $pdo->prepare('SELECT * FROM camp_table ORDER BY id DESC');
             $stmt->execute();
@@ -53,7 +61,7 @@ if ($_POST) {
         $stmt->bindValue(':course', $course, PDO::PARAM_STR);
         $result = $stmt->execute();
         // var_dump($result);exit;
-        
+
         if ($result) {
             $stmt = $pdo->prepare('SELECT * FROM course_table ORDER BY id DESC');
             $stmt->execute();
@@ -77,7 +85,7 @@ if ($status == false) {
 }else{
     $user_lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 };
- 
+
 
 // camp
 //1.camp(データ表示SQL作成）
@@ -115,31 +123,31 @@ if($status==false) {
   $key = $stmt->fetch(PDO::FETCH_ASSOC);
 };
 
+include("./instance/header.php");
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiユーザー-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理者画面</title>
-</head>
-<body>
-    <h1>管理者画面</h1>
 
+
+
+<h1 class="k_title"><i class="cat icon"></i> <?= $name ?>さん、こんにちは</h1>
+
+<div class="editor_container">
         <!-- ユーザー検索 始まり -->
-        <div>
-            <p>ユーザー検索</p>
+            <p class="k_title_mini">ユーザー　検索</p>
             <form action="" method="POST">
                 <div>
-                    <label for="name">名前</label>
-                    <input type="text" name="name" id="name">
-                    <input type="submit" name="user_search" value="検索">
+                    <!-- <label for="name">名前</label> -->
+                  <div class="ui action input text_input">
+                    <input type="text" name="name" id="name" placeholder="ユーザー名">
+                    <button type="submit" name="user_search" value="検索" class="ui button" id="k_click">検索</button>
+                    <!-- <i class="search icon"></i> -->
+                  </div>
                 </div>
             </form>
             <form action="" method="POST">
-                <thead>
+            <table class="">
+                <thead id="k_thead">
                     <tr>
                         <th>ユーザー名</th>
                         <th>校舎</th>
@@ -148,26 +156,28 @@ if($status==false) {
                         <th>学籍番号</th>
                         <th>管理</th>
                         <th>在籍</th>
-                        <th>編集</th><br>
+                        <th>編集</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($users as $user): ?>
-                    <tr>
-                        <td><?= $user['name'] ?></td>
-                        <td><?= $user['camp'] ?></td>
-                        <td><?= $user['course'] ?></td>
-                        <td><?= $user['cls'] ?></td>
-                        <td><?= $user['student'] ?></td>
-                        <td><?= $user['kanri'] ?></td>
-                        <td><?= $user['life'] ?></td>
-                        <td><a href="update_usearch.php?user_id=<?= $user['id'] ?>">edit</a></td><br>
+                    <tr class="k_tr">
+                        <td class="k_td"><?= $user['name'] ?></td>
+                        <td class="k_td"><?= $user['camp'] ?></td>
+                        <td class="k_td"><?= $user['course'] ?></td>
+                        <td class="k_td"><?= $user['cls'] ?></td>
+                        <td class="k_td"><?= $user['student'] ?></td>
+                        <td class="k_td"><?= $user['kanri'] ?></td>
+                        <td class="k_td"><?= $user['life'] ?></td>
+                        <td class="k_td"><a href="update_usearch.php?user_id=<?= $user['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
+                </table>
             </form>
 
-            <p>ユーザー一覧</p>
+            <p class="k_title_mini">ユーザー　一覧</p>
             <form action="" method="POST">
+            <table class="">
                 <thead>
                     <tr>
                         <th>ユーザー名</th>
@@ -177,93 +187,126 @@ if($status==false) {
                         <th>学籍番号</th>
                         <th>管理</th>
                         <th>在籍</th>
-                        <th>編集</th><br>
+                        <th>編集</th>
                     </tr>
-                </thead>
                 <tbody>
                 <?php foreach ($user_lists as $u): ?>
                     <tr>
-                        <td><?= $u['name'] ?></td>
-                        <td><?= $u['camp'] ?></td>
-                        <td><?= $u['course'] ?></td>
-                        <td><?= $u['cls'] ?></td>
-                        <td><?= $u['student'] ?></td>
-                        <td><?= $u['kanri'] ?></td>
-                        <td><?= $u['life'] ?></td>
-                        <td><a href="update_usearch.php?user_id=<?= $user['id'] ?>">edit</a></td><br>
+                        <td class="k_td"><?= $u['name'] ?></td>
+                        <td class="k_td"><?= $u['camp'] ?></td>
+                        <td class="k_td"><?= $u['course'] ?></td>
+                        <td class="k_td"><?= $u['cls'] ?></td>
+                        <td class="k_td"><?= $u['student'] ?></td>
+                        <td class="k_td"><?= $u['kanri'] ?></td>
+                        <td class="k_td"><?= $u['life'] ?></td>
+                        <td class="k_td"><a href="update_usearch.php?user_id=<?= $u['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
+                </table>
             </form>
         </div>
         <!-- ユーザー検索 終わり -->
 
+</div>
+
+<div class="k_top_container">
+
+<div class="k_top_contents">
+
         <!-- 校舎 始まり -->
-        <div>
-            <p>校舎一覧</p>
+        <div class="k_content">
+            <p class="k_head" id="a_head"><i class="huge primary school icon"></i>　校舎一覧</p>
+            <div class="hide">
             <form action="" method="POST">
+            <table class="">
                 <thead>
                     <tr>
                         <th>校舎名</th>
-                        <th>編集</th><br>
+                        <th>編集</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($camp_lists as $camp): ?>
                     <tr>
-                        <td><?= $camp['camp'] ?></td>
-                        <td><a href="update_camp.php?id=<?= $camp['id'] ?>">edit</a></td><br>
+                        <td class="k_td"><?= $camp['camp'] ?></td>
+                        <td class="k_td"><a href="update_camp.php?id=<?= $camp['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
+                </table>
             </form>
-            <p>新規登録</p>
+            <p class="k_title_mini">　新規登録</p>
             <form action="" method="POST">
-                <label for="camp">名称（校舎）:</label>
-                <input type="text" name="camp" id="camp">
-                <input type="submit" name="camp_create" value="登録">
+        <div class="ui action left icon input">
+                <input type="text" name="camp" id="camp" placeholder="新校舎">
+                <button type="submit" name="camp_create" value="登録" class="ui button">登録</button>
+                <i class="school icon"></i>
             </form>
+        </div>
+        </div>
         </div>
         <!-- 校舎 終わり -->
 
         <!-- コース 始まり -->
-        <div>
-            <p>コース一覧</p>
+        <div class="k_content">
+            <p class="k_head" id="b_head"><i class="huge primary file alternate icon"></i>コース一覧</p>
+            <div class="hide">
             <form action="" method="POST">
+            <table class="">
                 <thead>
                     <tr>
                         <th>コース名</th>
-                        <th>編集</th><br>
+                        <th>編集</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($course_lists as $course): ?>
                     <tr>
-                        <td><?= $course['course'] ?></td>
-                        <td><a href="update_course.php?id=<?= $course['id'] ?>">edit</a></td><br>
+                        <td class="k_td"><?= $course['course'] ?></td>
+                        <td class="k_td"><a href="update_course.php?id=<?= $course['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
+                </table>
             </form>
-            <p>新規登録</p>
+            <p class="k_title_mini">　新規登録</p>
             <form action="" method="POST">
-                <label for="course">名称（コース名称）:</label>
-                <input type="text" name="course" id="course">
-                <input type="submit" name="course_create" value="登録">
+                <div class="ui action left icon input">
+                <input type="text" name="course" placeholder="新規コース">
+                <button type="submit" name="course_create" value="登録" class="ui button">登録</button>
+                      <i class="file alternate icon"></i>
+                </div>
             </form>
+        </div>
         </div>
         <!-- コース 終わり -->
 
         <!-- コード始まり -->
-        <div>
-        <p>現在のコード</p>
-        <div><?= $key['kw'] ?></div>
+        <div class="k_content">
+        <p class="k_head" id="c_head"><i class="huge primary address card icon"></i>現在のコード</p>
+        <div class="hide">
+        <div class="k_keyword"><?= $key['kw'] ?></div>
         <form action="../src/php/update_code.php" method="POST">
-            <p>コードの更新</p>
-            <label for="kw">新コード：</label>
-            <input type="text" name="kw" id="kw">
-            <input type="submit" value="更新">
+            <p class="k_title_mini">　コードの更新</p>
+        <div class="ui action left icon input">
+            <input type="text" name="kw" id="kw" placeholder="新しいコード">
+            <button type="submit" value="更新" class="ui button"><font style="vertical-align: inherit;">更新</font></button>
+            <i class="address card icon"></i>
+        </div>
         </form>
+        </div>
         </div>
         <!-- コード 終わり -->
 
-   
-</body>
+</div>
+
+</div>
+
+  <footer>
+    <div class="s_footer">
+      <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
+    </div>
+  </footer>
+
+    <script src="../src/JS/jquery-2.1.3.min.js"></script>
+    <script src="../src/JS/main.js"></script>
+    </body>
 </html>
