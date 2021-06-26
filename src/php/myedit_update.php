@@ -1,9 +1,9 @@
 <?php
 //session check//
-//session_start();
-//sschk();
+session_start();
 include("funcs.php");
 include("db.php");
+sschk();
 
 //1. POSTデータ取得
 $id       = $_POST["myedit_id"];

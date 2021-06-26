@@ -1,9 +1,9 @@
 <?php
 //session check//
-// session_start();
-// sschk();
+session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
+sschk();
 require_once("../src/php/OpenGraph.php");  
 
 /*-------------------------------------------------------------------------
