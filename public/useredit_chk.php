@@ -48,7 +48,7 @@ $err = [];
 $cerr =[];
 
 // バリーテーション関数へ、エラーがあったらエラー内容を配列に戻す。formのnmaeを入れる。
-$err[1] = valc(name,1,12);
+$err[1] = valc(name,1,24);
 $err[4] = valc(cls,1,3);
 $err[5] = valc(student,1,3);
 $err[7] = passvc(pw);
