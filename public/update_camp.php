@@ -58,12 +58,12 @@ if ($_POST) {
 </head>
 <body>
     <form action="" method="POST">
-        <label>校舎：<input type="text" name="camp" value="<?=$campC["camp"]?>"></label><br>
+        <label>校舎：<input type="text" name="camp" value="<?=h($campC["camp"])?>"></label><br>
         <label>
             表示：
             <select name="life" id="life">
-                <option value="0" <?= $campC['life'] === '0' ? 'selected' : '' ?>>表示</option>
-                <option value="1" <?= $campC['life'] === '1' ? 'selected' : '' ?>>非表示</option>
+                <option value="0" <?= h($campC['life']) === '0' ? 'selected' : '' ?>>表示</option>
+                <option value="1" <?= h($campC['life']) === '1' ? 'selected' : '' ?>>非表示</option>
             </select>
         </label><br>
         <input type="submit" value="更新">

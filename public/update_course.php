@@ -53,12 +53,12 @@ if ($_POST) {
 </head>
 <body>
     <form action="" method="POST">
-        <label>コース：<input type="text" name="course" value="<?=$courseS["course"]?>"></label><br>
+        <label>コース：<input type="text" name="course" value="<?=h($courseS["course"])?>"></label><br>
         <label>
             表示：
             <select name="life" id="life">
-                <option value="0" <?= $courseS['life'] === '0' ? 'selected' : '' ?>>表示</option>
-                <option value="1" <?= $courseS['life'] === '1' ? 'selected' : '' ?>>非表示</option>
+                <option value="0" <?= h($courseS['life']) === '0' ? 'selected' : '' ?>>表示</option>
+                <option value="1" <?= h($courseS['life']) === '1' ? 'selected' : '' ?>>非表示</option>
             </select>
         </label><br>
         <input type="submit" value="更新">
