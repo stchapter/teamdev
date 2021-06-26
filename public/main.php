@@ -13,7 +13,7 @@ DB接続（一覧作成用）
 $pdo = db_conn();
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT post_table.title, user_table.name, post_table.cont, post_table.url, post_table.star, post_table.lang FROM post_table JOIN user_table ON post_table.uid = user_table.id");
+$stmt = $pdo->prepare("SELECT post_table.title, user_table.name, post_table.cont, post_table.url, post_table.star, post_table.lang, post_table.pdate FROM post_table JOIN user_table ON post_table.uid = user_table.id ORDER BY pdate DESC");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -32,7 +32,10 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .='<p class="new_p">'.h($res["cont"]).'</p>';
     $view .='<div class="new_userview">';
     $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
-    $view .='<p class="new_review">評価：'.h($res["star"]).'</p>';
+    $view .='<p class="new_review">評価：'.($res["star"]).'</p>';
+    $view .='</div>';
+    $view .='<div class="new_postdate">';
+    $view .='<p class="new_date">投稿日：'.$res["pdate"].'</p>';
     $view .='</div>';
     $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
     $graph = OpenGraph::fetch(''.h($res["url"]).'');
@@ -44,6 +47,29 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .='</div>';
 }
 
+/*-------------------------------------------------------------------------
+DB接続（人気の言語一覧作成用）
+-------------------------------------------------------------------------*/
+//1.  DB接続(省略)
+//２．データ登録SQL作成
+$stmt = $pdo->prepare("SELECT lang, count(*) AS COUNT FROM post_table GROUP BY lang ORDER BY COUNT DESC LIMIT 3");
+$status = $stmt->execute();
+
+//３．データ表示
+$view2="";  //HTML文字作成を入れる変数
+if($status==false) {
+    //execute（SQL実行時にエラーがある場合）
+    $error = $stmt->errorInfo();
+    exit("SQLError:".$error[2]);
+}else{
+  //Selectデータの数だけ自動でループしてくれる
+  //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+}
+while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+    $view2 .='<form method="POST" action="kensaku.php">';
+    $view2 .='<input class="item" type="submit" style="border:none; outline: none;" name="kensaku" value='.h($res["lang"]).'>';
+    $view2 .='</form>';
+}
 
 ?>
 
@@ -97,9 +123,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
       <div class="item">
         <div class="header"><font style="vertical-align: inherit;">人気の言語</font></div>
         <div class="menu">
-          <a class="item"><font style="vertical-align: inherit;">JavaScript</font></a>
-          <a class="item"><font style="vertical-align: inherit;">PHP</font></a>
-          <a class="item"><font style="vertical-align: inherit;">Python</font></a>
+          <?=$view2?>
         </div>
       </div>
   </div>
