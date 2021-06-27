@@ -98,7 +98,6 @@ if ($status == false) {
     $camp_lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 };
 
-
 // course
 //1.course(データ表示SQL作成）
 $stmt = $pdo->prepare("SELECT * FROM course_table ORDER BY id ASC");
@@ -167,8 +166,16 @@ include("./instance/header.php");
                         <td class="k_td"><?= $user['course'] ?></td>
                         <td class="k_td"><?= $user['cls'] ?></td>
                         <td class="k_td"><?= $user['student'] ?></td>
-                        <td class="k_td"><?= $user['kanri'] ?></td>
-                        <td class="k_td"><?= $user['life'] ?></td>
+                        <?php if ($user["kanri"] == 0): ?>
+                            <td class="k_td">一般</td>
+                        <?php else:?>
+                            <td class="k_td">管理者</td>
+                        <?php endif;?>                        
+                        <?php if ($user["life"] == 0): ?>
+                            <td class="k_td">在籍</td>
+                        <?php else:?>
+                            <td class="k_td">離籍</td>
+                        <?php endif;?>
                         <td class="k_td"><a href="update_usearch.php?user_id=<?= $user['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
@@ -197,8 +204,16 @@ include("./instance/header.php");
                         <td class="k_td"><?= $u['course'] ?></td>
                         <td class="k_td"><?= $u['cls'] ?></td>
                         <td class="k_td"><?= $u['student'] ?></td>
-                        <td class="k_td"><?= $u['kanri'] ?></td>
-                        <td class="k_td"><?= $u['life'] ?></td>
+                        <?php if ($u["kanri"] == 0): ?>
+                            <td class="k_td">一般</td>
+                        <?php else:?>
+                            <td class="k_td">管理者</td>
+                        <?php endif;?> 
+                        <?php if ($u["life"] == 0): ?>
+                            <td class="k_td">在籍</td>
+                        <?php else:?>
+                            <td class="k_td">離籍</td>
+                        <?php endif;?>
                         <td class="k_td"><a href="update_usearch.php?user_id=<?= $u['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
@@ -228,7 +243,7 @@ include("./instance/header.php");
                 <tbody>
                 <?php foreach ($camp_lists as $camp): ?>
                     <tr>
-                        <td class="k_td"><?= $camp['camp'] ?></td>
+                        <td class="k_td" id="camp_color"><?= $camp['camp'] ?></td>
                         <td class="k_td"><a href="update_camp.php?id=<?= $camp['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
@@ -237,7 +252,7 @@ include("./instance/header.php");
             <p class="k_title_mini">　新規登録</p>
             <form action="" method="POST">
         <div class="ui action left icon input">
-                <input type="text" name="camp" id="camp" placeholder="新校舎">
+                <input type="text" name="camp" placeholder="新校舎">
                 <button type="submit" name="camp_create" value="登録" class="ui button">登録</button>
                 <i class="school icon"></i>
             </form>
