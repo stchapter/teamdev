@@ -93,6 +93,7 @@ function bookmark_naiyou($id){
     post_table.url,
     post_table.fpass,
     post_table.fname,
+    post_table.star,
     user_table.name,
     bookmark_table.adddate
     FROM bookmark_table
