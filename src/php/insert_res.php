@@ -8,6 +8,8 @@ include("db.php");
 
 //DBに接続
 $pdo = db_conn();
+$uid = $_SESSION['id'];
+// var_dump($uid);
 
 // ダミーのログインユーザーIDセット
 // $_SESSION['uid'] = 2;
@@ -19,7 +21,7 @@ if ($_POST) {
     $pid = $_POST['pid'];
     $sql = "INSERT INTO res_table(uid,pid,res,life,rdate)VALUES(:uid, :pid, :res, 0, sysdate()) ";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':uid', $_SESSION['uid'], PDO::PARAM_INT);
+    $stmt->bindValue(':uid', $_SESSION['id'], PDO::PARAM_INT);
     $stmt->bindValue(':pid', $pid, PDO::PARAM_INT);
     $stmt->bindValue(':res', $res, PDO::PARAM_STR);
     $status = $stmt->execute();
