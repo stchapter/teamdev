@@ -76,7 +76,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
       <div class="header_logo">
         <img src="../img/topImg.png">
       </div>
-      <p class="login_name">ログインしている人の名前　さん</p>
+      <p class="login_name"><?=$_SESSION["name"]?>　さん</p>
     </div>
 
 
