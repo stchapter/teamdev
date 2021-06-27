@@ -1,10 +1,10 @@
 <?php
 //session check//
-// session_start();
-// sschk();
+session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
 require_once("../src/php/OpenGraph.php");  
+sschk();
 
 // $kensaku = $_POST['kensaku'];
 // 直接kensakuページを叩いた時用に「HTML」をデフォルト設定
