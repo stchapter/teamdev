@@ -14,7 +14,6 @@ if (isset($_COOKIE[session_name()])) { //session_name()は、セッションID�
 session_destroy();
 
 //処理後、リダイレクト
-redirect("../../pubilc/login.php");
-exit();
+header("Location: ../../public/login.php");
 
 ?>
