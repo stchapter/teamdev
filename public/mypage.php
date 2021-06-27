@@ -52,14 +52,10 @@ $val = post_naiyou($id);
       <td><?php echo h($doc[lang]); ?></td>
       <td><a href="result.php?id=<?php echo h($doc[id]); ?>"><?php echo h($doc[title]); ?></a></td>
       <td><a href="<?php echo h($doc[url]); ?>" target="">参照URL</a></td>
-      <td><a href="../upload/<?php echo h($doc[fpass]); ?>" taeget="new"><?php echo h($doc[fname]); ?></a></td>
+      <td><a href="../upload/<?php echo h($doc[fpass]); ?>" download><?php echo h($doc[fname]); ?></a></td>
       <td><?php echo h($doc[cost]); ?></td>
-        <?php if($doc[life]==0):?>
-            <td>表示</td>
-        <?php else :?>
-            <td>非表示（下書き）</td>
-        <?php endif; ?>
-      <td><?php echo h($doc[pdate]); ?></td>
+      <td><?php echo h($doc[post]); ?></td>
+       <td><?php echo h($doc[pdate]); ?></td>
       <td><button class="" type="button" onclick=location.href='myedit.php?id=<?php echo h($doc[id]); ?>'>修正</button></td>
     </tr>
     <?php endforeach; ?>
