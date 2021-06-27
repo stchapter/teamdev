@@ -3,8 +3,8 @@
 session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
-sschk();
 require_once("../src/php/OpenGraph.php");  
+sschk();
 
 /*-------------------------------------------------------------------------
 DB接続（一覧作成用）
@@ -132,12 +132,14 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
 
   <div class="main_right">
 
+  <form method="POST" action="../public/kensaku.php">
     <div class="search_container">
       <div class="ui fluid action input">
-        <input type="text" placeholder="検索する">
-        <div class="ui button">Search</div>
+        <input type="text" name="kensaku" placeholder="検索する">
+        <button class="ui button" type="submit">Search</buttom>
       </div>
     </div>
+  </form>  
   <!-- ↑ search_container -->
 
     <div class="new_container">
