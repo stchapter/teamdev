@@ -31,8 +31,8 @@ $val = bookmark_naiyou($id);
 
 
 
-<div class="mytable">
-  <table class="">
+<div class="">
+  <table class="mytable">
       <th>言語</th>
       <th>タイトル</th>
       <th>評価</th>
@@ -64,7 +64,7 @@ include("./instance/footer.php");
 
 <script>
 $(".mytable").paginate({
-            rows: 3,          // Set number of rows per page. Default: 5
+            rows: 10,          // Set number of rows per page. Default: 5
             position: "bottom",   // Set position of pager. Default: "bottom"
             jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
             showIfLess: false  // Don't show pager if table has only one page. Default: true
