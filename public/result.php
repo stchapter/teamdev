@@ -8,10 +8,10 @@ include("../src/php/db.php");
 
 //DBに接続
 $pdo = db_conn();
-$suid = $_SESSION["uid"];
+$suid = $_SESSION["id"];
 
 // ダミーのログインユーザーIDセット
-// $_SESSION['uid'] = 2;
+// $_SESSION['id'] = 2;
 
 // 投稿内容一覧(表示SQL)
 $pos = [];
@@ -51,125 +51,132 @@ if ($status) {
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $users = array_column($users, 'name', 'id');
 };
-// var_dump( $user['ipass']);
+// var_dump($users[$res['uid']]);
+include("./instance/header.php");
+
 ?>
-
-<!DOCTYPE html>
-<html lang="ja">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>新規投稿</title>
-    </head>
-
-    <body>
+<div class="editor_container">
 
         <!-- 投稿内容 start -->
-        <p>投稿内容</p>
+        <p class="editor_title">投稿内容</p>
         <div>
-            <p>言語:
-                <p><?= $pos['lang'] ?></p>
-            </p>
-            <p>タイトル(機能):
-                <p><?= $pos['title'] ?></p>
-            </p>
-            <p>おすすめ内容:
-                <p><?= $post['cont'] ?></p>
-            </p>
-            <p>URL:
-                <a href="<?= $pos['url'] ?>"><?= $pos['url'] ?></a>
-            </p>
-            <p>有料・無料:
-                <div><?= $pos['cost'] ?></div>
-            </p>
-            <p>おすすめ度:
-                <div><?= $pos['star'] ?></div>
-            </p>
-            <p>添付ファイル:
-                <button><a href="../upload/<?= $pos['fname'] ?>" download> ダウンロード</a></button>
-            </p>
+            <p class="r_title"><?= $pos['title'] ?></p>
+            <!-- <p class="r_title">jQueryでvideoやaudioを再生したい時はオブジェクト取得方法に注意が必要</p> -->
+            <!-- <p class="r_comment">言語</p> -->
+            <div class="r_fix">
+            <p class="r_comment">投稿者コメント</p>
+            <div class="r_comment"><?= $pos['star'] ?></div>
+            </div>
+            <p class="r_text"><?= $post['cont'] ?></p>
+            <!-- <p class="r_text">jQueryオブジェクトに対してplay()やgetContext(“2d”)を使用する場合、jQueryオブジェクトは配列のような形で取得されるため、get(0)などを使用して、「一番最初の要素」を取得した上で命令をしないといけない</p> -->
+
+            <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>"><?= $pos['url'] ?></a></p>
+            <div class="r_fix">
+            </div>
         </div>
         <!-- 投稿内容 end -->
-
+        <div class="r_fix">
+            <div class="ui large label"><?= $pos['lang'] ?></div>
+            <div class="ui large label"><?= $pos['cost'] ?></div>
         <!-- bookmark start -->
-        <form action="../src/php/insert_bm.php" method="POST">
-            <button type="submit" value="send_bm">記事のBookMark"</button>
-            <input type="hidden" name="id" value="<?=$pos["id"]?>">
-            <input type="hidden" name="uid" value="<?= $suid ?>"> 
-        </form>
+            <form action="../src/php/insert_bm.php" method="POST" style="margin-left: auto;">
+                <button class="ui button" type="submit" value="send_bm"><i class="star icon"></i> BookMark</button>
+                <input type="hidden" name="id" value="<?=$pos["id"]?>">
+                <input type="hidden" name="uid" value="<?= $suid ?>">
+            </form>
         <!-- bookmark end -->
+            <?php if(isset($pos['fname'])): ?>
+            <button class="ui button">
+            <i class="cloud download alternate icon"></i>
+                <a href="../upload/<?= $pos['fname'] ?>" download>添付ファイル</a>
+            <?php endif; ?>
+            </button>
+        </div>
+<!-- </div> -->
 
+<div class="r_container">
+    <div class="r_contents_l">
         <!-- comment start -->
-        <p>コメント</p>
+        <p class="editor_title">コメント</p>
         <form action="../src/php/insert_res.php" method="POST">
             <p>
-                <label name="res">コメント:</label>
+                <div class="ui fluid action input">
                 <input type="text" id="res" name="res">
                 <input type="hidden" name="pid" value="<?= $pos["id"] ?>">
-                <button type="submit" value="送信">送信</button>
+                <button class="ui button" type="submit" value="送信">送信</button>
+                </div>
             </p>
         </form>
+            <div class="hide_r">
         <table>
             <thead>
-                <tr>
+                <tr class="k_tr">
                     <th>投稿者</th>
-                    <th>コメント</th>
+                    <th class="k_td_r">コメント</th>
                     <th>日付</th>
-                    <th>編集</th>
-                    <th>削除</th>
+                    <th class="k_td_i">編集</th>
+                    <th class="k_td_i">削除</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach ($responses as $res): ?>
-                <tr>
-                    <td><?= $users[$res['uid']] ?></td>
-                    <td><?= $res['res'] ?></td>
-                    <td><?= $res['rdate'] ?></td>
+                <tr class="k_tr_r">
+                    <td  class="k_td"><?= $users[$res['uid']] ?></td>
+                    <td  class="k_td_r"><?= $res['res'] ?></td>
+                    <td  class="k_td"><?= $res['rdate'] ?></td>
                     <!-- session idのユーザーのみ「edit」ボタン -->
-                    <?php if ($res["uid"] == $_SESSION["uid"]): ?>
-                        <td><a href="update_res.php?res_id=<?= $res['id'] ?>">edit</a></td>
+                    <td class="k_td_i">
+                    <?php if ($res["uid"] == $_SESSION["id"]): ?>
+                        <a href="update_res.php?res_id=<?= $res['id'] ?>"><i class="edit icon"></i></a>
                     <?php endif;?>
+                    </td>
                     <!-- session idのユーザーのみ「delete」ボタン -->
-                    <?php if ($res["uid"] == $_SESSION["uid"]): ?>
-                        <td><a href="../src/php/delete_res.php?res_id=<?= $res['id'] ?>">delete</a></td>
+                    <td class="k_td_i">
+                    <?php if ($res["uid"] == $_SESSION["id"]): ?>
+                        <a href="../src/php/delete_res.php?res_id=<?= $res['id'] ?>"><i class="trash alternate icon"></i></a>
                     <?php endif;?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
-        <!-- comment end -->
-
-        <!-- 投稿者情報 start -->
-        <p>投稿者情報</p>
-            <div>
-                <img src="../prof/<?=$user['ipass']?>" 'alt=""'>
-
-                <p>名前:
-                    <p><?= $user['name'] ?></p>
-                </p>
-                <p>校舎:
-                    <p><?= $user['camp'] ?></p>
-                </p>
-                <p>コース:
-                    <p><?= $user['course'] ?></p>
-                </p>
-                <p>:学期
-                    <div><?= $user['cls'] ?></div>
-                </p>
-                <p>学籍番号:
-                    <div><?= $user['student'] ?></div>
-                </p>
-                <p>facebook:
-                    <a href="<?= $user['fb'] ?>"><?= $user['fb'] ?></a>
-                </p>
-                <p>twitter:
-                    <a href="<?= $user['tw'] ?>"><?= $user['tw'] ?></a>
-                </p>
-                <p>自己紹介:
-                    <div><?= $user['intro'] ?></div>
-                </p>
             </div>
+        <!-- comment end -->
+    </div>
+
+    <div class="r_contents_r">
+        <!-- 投稿者情報 start -->
+        <p class="editor_title">投稿者情報</p>
+
+<div class="ui card">
+  <div class="image">
+    <img src="../prof/<?=$user['ipass']?>" alt="profile img">
+  </div>
+  <div class="content">
+    <a class="header"><p><?= $user['name'] ?></p></a>
+    <div class="meta">
+      <span class="date"><p><?= $user['camp'] ?>　<?= $user['course'] ?><?= $user['cls'] ?>th  -  <?= $user['student'] ?></p></span>
+    </div>
+    <div class="description"><?= $user['intro'] ?>
+    </div>
+  </div>
+  <div class="extra content">
+    <button class="ui facebook button" onclick="location.href='https://www.facebook.com/<?= $user['fb'] ?>'">
+        <i class="facebook icon"></i>
+            Facebook
+    </button>
+    <button class="ui twitter button" onclick="location.href='https://twitter.com/<?= $user['tw'] ?>'">
+        <i class="twitter icon"></i>
+         Twitter
+    </button>
+  </div>
+</div>
         <!-- 投稿者情報 end -->
-    </body>
-</html>
+    </div>
+</div>
+
+</div>
+
+<?php
+include("./instance/footer.php");
+?>
