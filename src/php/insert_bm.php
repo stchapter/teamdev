@@ -19,7 +19,7 @@ if ($_POST) {
     $pid = $_POST['id'];
     $sql = "INSERT INTO bookmark_table(uid,pid,adddate)VALUES(:uid, :pid, sysdate()) ";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':uid',$_SESSION['uid'], PDO::PARAM_INT);
+    $stmt->bindValue(':uid',$_SESSION['id'], PDO::PARAM_INT);
     $stmt->bindValue(':pid', $pid, PDO::PARAM_INT);
     $status = $stmt->execute();
 
