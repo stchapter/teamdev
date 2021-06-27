@@ -41,12 +41,16 @@ function passvc($postname){
   }
 }
 
-// パリーデーション(半角英数記号)
+// パリーデーション(半角英数記号 null許可)
 function passvc2($postname){
   $val = filter_input(INPUT_POST, $postname);
 
-  if (!preg_match("/^[[:graph:]|[:space:]]+$/i", $val)){
-    return '<div class="alert alert-danger" role="alert">【半角英数字記号の入力でお願いします】';
+  if (empty($val)) {
+
+  }else{
+      if (!preg_match("/^[[:graph:]|[:space:]]+$/i", $val)){
+      return '<div class="alert alert-danger" role="alert">【半角英数字記号の入力でお願いします】';
+      }
   }
 }
 
