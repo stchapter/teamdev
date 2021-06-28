@@ -310,9 +310,13 @@ table th:last-child{
   border-radius: 0 5px 0 0;
 }
 
-.mytable {
+.table_height{
   height: 600px;
 }
+
+/* .mytable {
+  /* height: 600px; */
+
 
 .bk_tr{
   display: table-row !important;
@@ -323,10 +327,23 @@ table th:last-child{
   display: table-cell !important;
 }
 
+.bk_th_r{
+  display: table-cell !important;
+  width: 250px;
+}
+
 .bk_td{
   padding: 10px 0;
   text-align: center;
   height: 30px !important;
+}
+
+.bk_td_r{
+  padding: 10px 0;
+  width: 250px;
+  height: 30px !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .k_td{

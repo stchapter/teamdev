@@ -61,7 +61,8 @@ $val = bookmark_naiyou($id);
 <div class="editor_container">
 
   <p class="bm_title">Bookmarks</p>
-
+  
+<div class="table_height">
   <table class="mytable">
     <tr class="bk_tr">
       <th class="bk_th">言語</th>
@@ -88,6 +89,8 @@ $val = bookmark_naiyou($id);
       </tr>
     <?php endforeach; ?>
   </table>
+  </div>
+
 </div>
 
 
