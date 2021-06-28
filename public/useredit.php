@@ -39,19 +39,19 @@ include("./instance/header.php");
 
   <h2 class="editor_title">プロフィール編集</h2>
 
-<div>
-<img src="../prof/noimg.png">
-<!-- ↓正しいコード。　↑差し替え中 -->
-<!-- <img src="../prof/<?php echo h($val[ipass]); ?>"> -->
-</div>
+  <div>
+  <img src="../prof/noimg.png">
+  <!-- ↓正しいコード。　↑差し替え中 -->
+  <!-- <img src="../prof/<?php echo h($val[ipass]); ?>"> -->
+  </div>
 
-<div>
-  <form method="POST" action="../src/php/profup.php" enctype="multipart/form-data" >
-  <lable for="ipass">プロフィール画像</label>
-  <input type="file" name="ipass" id="ipass" >
-  <button type="submit" name="edit" value="画像を更新" class="ui primary button">画像を更新</button>
-  </form>
-</div>
+  <div>
+    <form method="POST" action="../src/php/profup.php" enctype="multipart/form-data" >
+    <lable for="ipass">プロフィール画像</label>
+    <input type="file" name="ipass" id="ipass" >
+    <button type="submit" name="edit" value="画像を更新" class="ui primary button">画像を更新</button>
+    </form>
+  </div>
 
 
 

@@ -118,7 +118,7 @@ function bookmark_naiyou($id){
 }
 
 
-// テーブル結合でpostデータを呼び出す
+// デリート処理
 function bookmark_del($id){
   $pdo = db_conn();
 
@@ -134,9 +134,52 @@ function bookmark_del($id){
   }else{
     redirect("../../public/bookmark.php");
   }
-
-
 }
+
+
+
+// テーブル結合でpostデータを呼び出す
+function kennsaku_naiyou($where,$post_c){
+  $pdo = db_conn();
+  $stmt = $pdo->prepare("
+    SELECT
+    post_table.id,
+    post_table.lang,
+    post_table.title,
+    post_table.url,
+    post_table.fpass,
+    post_table.fname,
+    post_table.star,
+    post_table.uid,
+    post_table.pdate,
+    post_table.post,
+    user_table.name
+    FROM post_table
+    JOIN user_table
+    ON (post_table.uid = user_table.id)
+    AND user_table.life = 0
+    $where
+    ORDER BY pdate DESC
+  ");
+  $status = $stmt->execute();
+
+  if($status==false) {
+    $error = $stmt->errorInfo();
+    exit("SQLエラー:".$error[2]);
+  }else{
+    $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 
