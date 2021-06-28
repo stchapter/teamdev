@@ -310,6 +310,25 @@ table th:last-child{
   border-radius: 0 5px 0 0;
 }
 
+.mytable {
+  height: 600px;
+}
+
+.bk_tr{
+  display: table-row !important;
+  height: 40px !important;
+}
+
+.bk_th{
+  display: table-cell !important;
+}
+
+.bk_td{
+  padding: 10px 0;
+  text-align: center;
+  height: 30px !important;
+}
+
 .k_td{
   padding: 10px 0;
   text-align: center;
@@ -345,7 +364,7 @@ table tr:nth-child(odd){
   height: 68%;
   width: 1020px;
   margin: 0 auto;
-    position: relative;
+  position: relative;
 
 }
 
@@ -420,6 +439,24 @@ table tr:nth-child(odd){
 
 .ke_div{
   margin-top: 30px;
+}
+
+.bm_title{
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
+  padding: 30px;
+}
+
+.pager{
+  font-size: 30px !important;
+  color: #333;
+  margin-top: 16px;
+}
+
+.ui-state-default, .clickable{
+  cursor: pointer;
+  margin-left: 20px;
 }
 
 .m_container{
