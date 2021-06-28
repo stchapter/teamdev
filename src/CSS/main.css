@@ -83,6 +83,14 @@
   padding-bottom: 20px;
   width: 750px;
   border-bottom: 1px solid rgb(150, 150, 150);
+  display:flex;
+  justify-content:space-between;
+}
+
+.ogp_img{
+  width: 200px;
+  max-height: 150px;
+  object-fit: cover;
 }
 
 .new_p {
@@ -264,7 +272,18 @@ textarea{
   overflow: scroll;
 }
 
+.hide_r{
+  height: 510px;
+  padding: 8px;
+  /* display: none; */
+  overflow: scroll;
+}
+
 .hide::-webkit-scrollbar {
+  display:none;
+}
+
+.hide_r::-webkit-scrollbar {
   display:none;
 }
 
@@ -273,6 +292,7 @@ table{
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  table-layout: fixed;
 }
 
 table th{
@@ -290,14 +310,67 @@ table th:last-child{
   border-radius: 0 5px 0 0;
 }
 
+.table_height{
+  height: 600px;
+}
+
+/* .mytable {
+  /* height: 600px; */
+
+
+.bk_tr{
+  display: table-row !important;
+  height: 40px !important;
+}
+
+.bk_th{
+  display: table-cell !important;
+}
+
+.bk_th_r{
+  display: table-cell !important;
+  width: 250px;
+}
+
+.bk_td{
+  padding: 10px 0;
+  text-align: center;
+  height: 30px !important;
+}
+
+.bk_td_r{
+  padding: 10px 0;
+  width: 250px;
+  height: 30px !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
 .k_td{
   padding: 10px 0;
   text-align: center;
 }
 
+.k_td_r{
+  padding: 10px 0 10px 4px;
+  width: 250px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.k_td_i{
+  padding: 10px 0;
+  text-align: center;
+  width: 40px;
+}
+
 table tr:nth-child(odd){
   background-color: #eee
 }
+
+/* .tbody_r{
+  height: 400px;
+} */
 
 .k_keyword{
   text-align: center;
@@ -308,7 +381,7 @@ table tr:nth-child(odd){
   height: 68%;
   width: 1020px;
   margin: 0 auto;
-    position: relative;
+  position: relative;
 
 }
 
@@ -385,6 +458,24 @@ table tr:nth-child(odd){
   margin-top: 30px;
 }
 
+.bm_title{
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
+  padding: 30px;
+}
+
+.pager{
+  font-size: 30px !important;
+  color: #333;
+  margin-top: 16px;
+}
+
+.ui-state-default, .clickable{
+  cursor: pointer;
+  margin-left: 20px;
+}
+
 .m_container{
   width: 1020px;
   margin: 50px auto;
@@ -396,6 +487,56 @@ table tr:nth-child(odd){
   font-size: 18px;
 }
 
+.r_title{
+  font-size: 20px;
+  border-bottom: 2px solid #2285d0;
+  width: 800px;
+  padding-left: 20px;
+  padding-bottom: 4px;
+  padding-right: 10px;
+}
+
+.r_fix{
+  display: flex;
+  padding: 0 10px;
+}
+
+.r_comment{
+  padding: 10px 0 4px 0;
+  margin: 0;
+  width: 120px;
+}
+
+.r_url{
+  padding: 10px 0 26px 12px;
+  margin: 0;
+  font-size: 16px;
+  width: 400px;
+}
+
+.r_answer{
+  width: 200px;
+}
+
+.r_text{
+  width: 600px;
+  font-size: 16px;
+  padding-left: 16px;
+}
+
+.r_container{
+  display: flex;
+  margin-top: 70px;
+}
+
+.r_contents_l{
+  width: 700px;
+}
+
+.r_contents_r{
+  width: 500px;
+  padding-left: 100px;
+}
 
 /* フッター */
 .footer{

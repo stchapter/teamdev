@@ -3,7 +3,7 @@
 session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
-require_once("../src/php/OpenGraph.php");  
+require_once("../src/php/OpenGraph.php");
 sschk();
 
 /*-------------------------------------------------------------------------
@@ -13,7 +13,20 @@ DB接続（一覧作成用）
 $pdo = db_conn();
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT post_table.title, user_table.name, post_table.cont, post_table.url, post_table.star, post_table.lang, post_table.pdate FROM post_table JOIN user_table ON post_table.uid = user_table.id ORDER BY pdate DESC");
+$stmt = $pdo->prepare("SELECT 
+  post_table.title,
+  user_table.name,
+  post_table.cont,
+  post_table.url,
+  post_table.star,
+  post_table.lang,
+  post_table.pdate
+  FROM post_table
+  JOIN user_table
+  ON post_table.uid = user_table.id
+  WHERE post_table.life = 0
+  ORDER BY pdate
+  DESC LIMIT 5");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -26,25 +39,29 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
 }
-while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $view .='<div class="new_result">';
-    $view .='<a href="'.h($res["url"]).'" class="new_title">'.h($res["title"]).'</a>';
-    $view .='<p class="new_p">'.h($res["cont"]).'</p>';
-    $view .='<div class="new_userview">';
-    $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
-    $view .='<p class="new_review">評価：'.($res["star"]).'</p>';
-    $view .='</div>';
-    $view .='<div class="new_postdate">';
-    $view .='<p class="new_date">投稿日：'.$res["pdate"].'</p>';
-    $view .='</div>';
-    $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
-    $graph = OpenGraph::fetch(''.h($res["url"]).'');
-    if(isset($graph->image) == true){
-      $view .='<img src="'.$graph->image.'" />';
-    }else{
-      //OGP画像がない場合にimageを差し込む場所
-    };
-    $view .='</div>';
+while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
+  $view .='<div class="new_result">';
+  $view .='<div class="●●">';
+  $view .='<a href="'.h($res["url"]).'" class="new_title">'.h($res["title"]).'</a>';
+  $view .='<p class="new_p">'.h($res["cont"]).'</p>';
+  $view .='<div class="new_userview">';
+  $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
+  $view .='<p class="new_review">評価：'.($res["star"]).'</p>';
+  $view .='</div>';
+  $view .='<div class="new_postdate">';
+  $view .='<p class="new_date">投稿日：'.$res["pdate"].'</p>';
+  $view .='</div>';
+  $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
+  $view .='</div>';
+  $view .='<div class="●●">';
+  $graph = OpenGraph::fetch(''.h($res["url"]).'');
+  if(isset($graph->image) == true){
+    $view .='<img class="ogp_img" src="'.$graph->image.'"/>';
+  }else{
+    //OGP画像がない場合にimageを差し込む場所
+  };
+  $view .='</div>';
+  $view .='</div>';
 }
 
 /*-------------------------------------------------------------------------
@@ -65,7 +82,7 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
 }
-while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view2 .='<form method="POST" action="kensaku.php">';
     $view2 .='<input class="item" type="submit" style="border:none; outline: none;" name="kensaku" value='.h($res["lang"]).'>';
     $view2 .='</form>';
@@ -94,21 +111,21 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
       <div class="header_logo">
         <img src="../img/topImg.png">
       </div>
-      <p class="login_name">ログインしている人の名前　さん</p>
+      <p class="login_name"><?=$_SESSION["name"]?>　さん</p>
     </div>
 
 
     <div class="header_button">
       <div class="header_button_container">
         <div class="blue ui buttons">
-          <a class="ui button">TOPへ</a>
-          <a class="ui button">登録修正</a>
-          <a class="ui button">新規投稿</a>
-          <a class="ui button">自分の投稿</a>
-          <a class="ui button">Bookmark</a>
-  	  <div class="header_button_R">
-            <a class="ui button">Logout</a>
-	  </div>
+          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+          <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+          <div class="header_button_R">
+            <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+	        </div>
         </div>
       </div>
     </div>
@@ -139,14 +156,16 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
         <button class="ui button" type="submit">Search</buttom>
       </div>
     </div>
-  </form>  
+  </form>
   <!-- ↑ search_container -->
+
 
     <div class="new_container">
 
       <?=$view?>
 
     </div>
+
   <!-- ↑　new_container -->
 
 

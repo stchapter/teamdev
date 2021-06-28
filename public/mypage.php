@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,7 @@
 <script src="../src/js/PaginateMyTable.js"></script>
 
 </head>
-<body>
+<body> -->
 
 <?php
 include("../src/php/funcs.php");
@@ -33,43 +33,46 @@ $val = post_naiyou($id);
 
 ?>
 
-<div class="">
-  <table class="mytable">
-    <tr>
-      <th>言語</th>
-      <th>タイトル</th>
-      <th>URL</th>
-      <th>参照ファイル</th>
-      <th>コスト</th>
-      <th>状態</th>
-      <th>更新日</th>
-      <th>修正</th>
-      <!-- 削除は編集機能であるからいかな-->
-    </tr>
+<div class="editor_container">
 
-    <?php foreach($val as $doc): ?>
-    <tr>
-      <td><?php echo h($doc[lang]); ?></td>
-      <td><a href="result.php?id=<?php echo h($doc[id]); ?>"><?php echo h($doc[title]); ?></a></td>
-      <td><a href="<?php echo h($doc[url]); ?>" target="">参照URL</a></td>
-      <td><a href="../upload/<?php echo h($doc[fpass]); ?>" taeget="new"><?php echo h($doc[fname]); ?></a></td>
-      <td><?php echo h($doc[cost]); ?></td>
-        <?php if($doc[life]==0):?>
-            <td>表示</td>
-        <?php else :?>
-            <td>非表示（下書き）</td>
-        <?php endif; ?>
-      <td><?php echo h($doc[pdate]); ?></td>
-      <td><button class="" type="button" onclick=location.href='myedit.php?id=<?php echo h($doc[id]); ?>'>修正</button></td>
-    </tr>
-    <?php endforeach; ?>
-  <table>
+  <p class="bm_title">自分の投稿一覧</p>
+
+  <div class="table_height">
+    <table class="mytable">
+      <tr class="bk_tr">
+        <th class="bk_th">言語</th>
+        <th class="bk_th_r">タイトル</th>
+        <th class="bk_th">URL</th>
+        <th class="bk_th">参照ファイル</th>
+        <th class="bk_th">コスト</th>
+        <th class="bk_th">状態</th>
+        <th class="bk_th">更新日</th>
+        <th class="bk_th">修正</th>
+      <!-- 削除は編集機能であるからいかな-->
+      </tr>
+
+      <?php foreach($val as $doc): ?>
+      <tr class="k_tr">
+        <td class="bk_td"><?php echo h($doc[lang]); ?></td>
+        <td class="bk_td_r"><a href="result.php?id=<?php echo h($doc[id]); ?>"><?php echo h($doc[title]); ?></a></td>
+        <td class="bk_td"><a href="<?php echo h($doc[url]); ?>" target="">参照URL</a></td>
+        <td class="bk_td"><a href="../upload/<?php echo h($doc[fpass]); ?>" download><?php echo h($doc[fname]); ?></a></td>
+        <td class="bk_td"><?php echo h($doc[cost]); ?></td>
+        <td class="bk_td"><?php echo h($doc[post]); ?></td>
+        <td class="bk_td"><?php echo h($doc[pdate]); ?></td>
+        <td class="bk_td"><button class="ui primary tertiary button" type="button" onclick=location.href='myedit.php?id=<?php echo h($doc[id]); ?>'><i class="large edit icon"></i></button></td>
+      </tr>
+      <?php endforeach; ?>
+    </table>
+  </div>
 </div>
 
 
-<?php
-include("./instance/footer.php");
-?>
+  <footer>
+    <div class="footer">
+      <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
+    </div>
+  </footer>
 
 <script>
 $(".mytable").paginate({
@@ -79,7 +82,5 @@ $(".mytable").paginate({
             showIfLess: false  // Don't show pager if table has only one page. Default: true
         });
 </script>
-
-
 </body>
 </html>

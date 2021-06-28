@@ -98,6 +98,7 @@ if ($status == false) {
     $camp_lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 };
 
+
 // course
 //1.course(データ表示SQL作成）
 $stmt = $pdo->prepare("SELECT * FROM course_table ORDER BY id ASC");
@@ -125,8 +126,6 @@ if($status==false) {
 include("./instance/header.php");
 
 ?>
-
-
 
 
 <h1 class="k_title"><i class="cat icon"></i> <?= $name ?>さん、こんにちは</h1>
@@ -241,12 +240,16 @@ include("./instance/header.php");
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($camp_lists as $camp): ?>
+                <!-- <?php foreach ($camp_lists as $camp): ?> -->
                     <tr>
-                        <td class="k_td" id="camp_color"><?= $camp['camp'] ?></td>
+                        <?php if ($camp["life"] == 0): ?>
+                            <td class="k_td"><span style="color: black;"><?= $camp['camp'] ?></span></td>
+                        <?php else:?>
+                            <td class="k_td"><span style="color: #808080;"><?= $camp['camp'] ?></span></td>
+                        <?php endif;?>                        
                         <td class="k_td"><a href="update_camp.php?id=<?= $camp['id'] ?>">edit</a></td>
                     </tr>
-                <?php endforeach; ?>
+                <!-- <?php endforeach; ?> -->
                 </table>
             </form>
             <p class="k_title_mini">　新規登録</p>
@@ -276,7 +279,13 @@ include("./instance/header.php");
                 <tbody>
                 <?php foreach ($course_lists as $course): ?>
                     <tr>
-                        <td class="k_td"><?= $course['course'] ?></td>
+                        <?php if ($course["life"] == 0): ?>
+                            <td class="k_td"><span style="color: black;"><?= $course['course'] ?></span></td>
+                        <?php else:?>
+                            <td class="k_td"><span style="color: #808080;"><?= $course['course'] ?></span></td>
+                        <?php endif;?>                        
+
+                        <!-- <td class="k_td"><?= $course['course'] ?></td> -->
                         <td class="k_td"><a href="update_course.php?id=<?= $course['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>

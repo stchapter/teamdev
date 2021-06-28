@@ -94,6 +94,7 @@ function bookmark_naiyou($id){
     post_table.fpass,
     post_table.fname,
     post_table.star,
+    post_table.post,
     user_table.name,
     bookmark_table.adddate
     FROM bookmark_table
@@ -110,7 +111,11 @@ function bookmark_naiyou($id){
 
   if($status==false) {
     $error = $stmt->errorInfo();
-    exit("SQLエラー:".$error[2]);
+    if($error="Unknown column 'bookmark_table.adddate' in 'field list'"){
+      exit("現在、Bookmarkの登録はありません");
+    }else{
+      exit("SQLエラー:".$error[2]);
+    }
   }else{
     $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     return $result;
@@ -137,7 +142,6 @@ function bookmark_del($id){
 }
 
 
-
 // テーブル結合でpostデータを呼び出す
 function kennsaku_naiyou($where,$post_c){
   $pdo = db_conn();
@@ -162,6 +166,7 @@ function kennsaku_naiyou($where,$post_c){
     ORDER BY pdate DESC
   ");
   $status = $stmt->execute();
+
 
   if($status==false) {
     $error = $stmt->errorInfo();
