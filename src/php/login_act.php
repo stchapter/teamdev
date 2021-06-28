@@ -57,6 +57,7 @@ if(password_verify($pw, $val['pw'])){
       // redirect("main.php");
       redirect("../../public/main.php");
 
+      
     }else{
       //Login失敗時
       redirect("../../public/login.php");
