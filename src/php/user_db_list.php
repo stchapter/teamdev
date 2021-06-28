@@ -150,6 +150,7 @@ function kennsaku_naiyou($where,$post_c){
     post_table.id,
     post_table.lang,
     post_table.title,
+    post_table.cont,
     post_table.url,
     post_table.fpass,
     post_table.fname,
