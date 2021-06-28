@@ -111,7 +111,11 @@ function bookmark_naiyou($id){
 
   if($status==false) {
     $error = $stmt->errorInfo();
-    exit("SQLエラー:".$error[2]);
+    if($error="Unknown column 'bookmark_table.adddate' in 'field list'"){
+      exit("現在、Bookmarkの登録はありません");
+    }else{
+      exit("SQLエラー:".$error[2]);
+    }
   }else{
     $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     return $result;
