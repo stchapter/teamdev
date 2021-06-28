@@ -40,18 +40,55 @@ if ($_POST) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update_course</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+  <link rel="icon" href="../img/favicon.ico">
+  <link rel="stylesheet" href="../src/css/updateres.css">
+  <title>GEEKBOOK</title>
 </head>
 <body>
-    <form action="" method="POST">
-        <label>コメント：<?=$responses["res"]?>
-        <input type="text" name="res"></label><br>
-        <button type="submit" value="更新">更新</button>
-    </form>
+    <header>
+    <div class="header_container">
+        <div class="header_logo_container">
+            <div class="header_logo">
+                <img src="../img/topImg.png">
+            </div>
+        </div>
+    </div>
+    <div class="header_button">
+        <div class="header_button_container">
+            <div class="blue ui buttons">
+                <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+                <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+                <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+                <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+                <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+            <div class="header_button_R">
+                <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </header>
+    <div class="container_whole">
+        <div class="container_co">
+            <form action="" method="POST">
+                <div class="title">コメントの編集</div>
+                <div class="before_res"><?=$responses["res"]?></div>
+                <div class="ui fluid action input">
+                    <input type="text" name="res" placeholder="新しいコメントを入力してください" style="height:80px;">
+                </div>
+                <div class="btn"><button class="big ui blue button" type="submit" value="更新">更新</button></div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+
+<?php
+include("./instance/footer.php");
+?>
