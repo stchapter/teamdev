@@ -74,6 +74,8 @@
     text-align: center;
     background-color: #2285d0;
     height: 80px;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
 }
 
 .footer > p{
