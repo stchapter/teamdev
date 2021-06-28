@@ -137,34 +137,32 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
       <table class="mytable">
 
   <?php foreach($res2 as $value): ?>
-      <tr>
-        <td>
-
-      <div class="new_result">
-        <a href="result.php?id=<?php echo h($value[id]); ?>" class="new_title"><?php echo h($value[title]); ?></a>
-        <p class="new_p"><?php echo h($value[cont]); ?></p>
-          <div class="new_userview">
-          <p class="new_person">投稿者：<?php echo h($value[name]); ?>さん</p>
-          <p class="new_review">評価：<?php echo h($value[star]); ?></p>
+    <tr>
+      <td>
+        <div class="new_result">
+          <div class="result_container">
+            <a href="result.php?id=<?php echo h($value[id]); ?>" class="new_title"><?php echo h($value[title]); ?></a>
+            <p class="new_p">コメント：<?php echo h($value[cont]); ?></p>
+            <div class="new_userview">
+              <p class="new_person">投稿者：<?php echo h($value[name]); ?>さん</p>
+              <p class="new_review">評価：<?php echo h($value[star]); ?></p>
+            </div>
+            <div class="new_postdate">
+              <p class="new_date">投稿日：<?php echo $value[pdate]; ?></p>
+            </div>
+            <div class="ui_label"><font style="vertical-align: inherit;"><php echo h($value[lang]); ?></font></div>
           </div>
-
-          <div class="new_postdate">
-          <p class="new_date">投稿日：<?php echo $value[pdate]; ?></p>
+            <div class="result_container">
+            <?php $graph = OpenGraph::fetch(h($value[url])); ?>
+            <?php if(isset($graph->image) == true): ?>
+            <img class="ogp_img" src="<?php  echo $graph->image; ?>">
+            <?php else: ?>
+            <img src="" >
+            <?php endif; ?>
           </div>
-
-          <div class="ui_label"><div font style="vertical-align: inherit;"><php echo h($value[lang]); ?></div></div>
-
-        <?php $graph = OpenGraph::fetch(h($value[url])); ?>
-
-        <?php if(isset($graph->image) == true): ?>
-          <img src="<?php  echo $graph->image; ?>">
-        <?php else: ?>
-          <img src="../prof/noimg.png" >
-        <?php endif; ?>
-      </div>
-
-        </td>
-      </tr>
+        </div>
+      </td>
+    </tr>
   <?php endforeach; ?>
 
         </table>
@@ -189,7 +187,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 <script>
 $(".mytable").paginate({
-            rows: 2,          // Set number of rows per page. Default: 5
+            rows: 5,          // Set number of rows per page. Default: 5
             position: "bottom",   // Set position of pager. Default: "bottom"
             jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
             showIfLess: false  // Don't show pager if table has only one page. Default: true
