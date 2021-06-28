@@ -79,11 +79,25 @@ include("./instance/header.php");
             <div class="ui large label"><?= $pos['lang'] ?></div>
             <div class="ui large label"><?= $pos['cost'] ?></div>
         <!-- bookmark start -->
+
+        <!-- bookmark ボタン（グレーアウト） -->
             <form action="../src/php/insert_bm.php" method="POST" style="margin-left: auto;">
                 <button class="ui button" type="submit" value="send_bm"><i class="star icon"></i> BookMark</button>
                 <input type="hidden" name="id" value="<?=$pos["id"]?>">
                 <input type="hidden" name="uid" value="<?= $suid ?>">
             </form>
+        <!-- bookmark ボタン（グレーアウト） 終わり -->
+
+        <!-- bookmark ボタン（カラー） -->
+                <button class="ui orange button" type="submit" value="send_bm"><i class="star icon"></i> BookMark済み</button>
+                <!-- <input type="hidden" name="id" value="<?=$pos["id"]?>"> -->
+                <!-- <input type="hidden" name="uid" value="<?= $suid ?>"> -->
+        <!-- bookmark ボタン（カラー） 終わり -->
+
+        <!-- ↑　ブックマークしてたらカラー、ブックマークしてない状態（初期状態）ならグレーアウト -->
+        <!-- ↑　グレーアウト押したらブックマーク　/　カラー押したらブックマーク解除できたら良さそう（追加機能かな？） -->
+
+
         <!-- bookmark end -->
             <?php if(isset($pos['fname'])): ?>
             <button class="ui button">
