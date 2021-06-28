@@ -169,7 +169,7 @@ include("./instance/header.php");
                             <td class="k_td">一般</td>
                         <?php else:?>
                             <td class="k_td">管理者</td>
-                        <?php endif;?>                        
+                        <?php endif;?>
                         <?php if ($user["life"] == 0): ?>
                             <td class="k_td">在籍</td>
                         <?php else:?>
@@ -183,7 +183,7 @@ include("./instance/header.php");
 
             <p class="k_title_mini">ユーザー　一覧</p>
             <form action="" method="POST">
-            <table class="">
+            <table class="mytable">
                 <thead>
                     <tr>
                         <th>ユーザー名</th>
@@ -207,7 +207,7 @@ include("./instance/header.php");
                             <td class="k_td">一般</td>
                         <?php else:?>
                             <td class="k_td">管理者</td>
-                        <?php endif;?> 
+                        <?php endif;?>
                         <?php if ($u["life"] == 0): ?>
                             <td class="k_td">在籍</td>
                         <?php else:?>
@@ -326,11 +326,29 @@ include("./instance/header.php");
 
   <footer>
     <div class="s_footer">
-      <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
+      <p>copyright ©️ GEEKBOOK <br> For G’s Academy</p>
     </div>
   </footer>
 
+
+
+
+
     <script src="../src/JS/jquery-2.1.3.min.js"></script>
     <script src="../src/JS/main.js"></script>
+    <script src="../src/js/PaginateMyTable.js"></script>
+
+
+<script>
+$(".mytable").paginate({
+            rows: 10,          // Set number of rows per page. Default: 5
+            position: "bottom",   // Set position of pager. Default: "bottom"
+            jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
+            showIfLess: false  // Don't show pager if table has only one page. Default: true
+        });
+</script>
+
+
+
     </body>
 </html>
