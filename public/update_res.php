@@ -78,9 +78,8 @@ if ($_POST) {
         <div class="container_co">
             <form action="" method="POST">
                 <div class="title">コメントの編集</div>
-                <div class="before_res"><?=$responses["res"]?></div>
                 <div class="ui fluid action input">
-                    <input type="text" name="res" placeholder="新しいコメントを入力してください" style="height:80px;">
+                    <textarea name="res" placeholder="新しいコメントを入力してください" rows="4" cols="80"><?=$responses["res"]?></textarea>
                 </div>
                 <div class="btn"><button class="big ui blue button" type="submit" value="更新">更新</button></div>
             </form>
