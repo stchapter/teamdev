@@ -54,6 +54,7 @@ function passvc2($postname){
   }
 }
 
+
 // 入力確認用
 function inputconf($postname,$postname2){
   $val1 = filter_input(INPUT_POST, $postname);

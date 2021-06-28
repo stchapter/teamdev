@@ -142,7 +142,6 @@ function bookmark_del($id){
 }
 
 
-
 // テーブル結合でpostデータを呼び出す
 function kennsaku_naiyou($where,$post_c){
   $pdo = db_conn();
@@ -167,6 +166,7 @@ function kennsaku_naiyou($where,$post_c){
     ORDER BY pdate DESC
   ");
   $status = $stmt->execute();
+
 
   if($status==false) {
     $error = $stmt->errorInfo();
