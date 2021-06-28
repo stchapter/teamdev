@@ -55,7 +55,7 @@ if(password_verify($pw, $val['pw'])){
       // v($_SESSION["name"]);
 
       // redirect("main.php");
-      redirect("../../public/userEdit.php");
+      redirect("../../public/main.php");
 
     }else{
       //Login失敗時
