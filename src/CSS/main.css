@@ -83,6 +83,14 @@
   padding-bottom: 20px;
   width: 750px;
   border-bottom: 1px solid rgb(150, 150, 150);
+  display:flex;
+  justify-content:space-between;
+}
+
+.ogp_img{
+  width: 200px;
+  max-height: 150px;
+  object-fit: cover;
 }
 
 .new_p {
