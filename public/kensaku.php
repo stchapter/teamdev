@@ -3,17 +3,20 @@
 session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
-require_once("../src/php/OpenGraph.php");  
+include("../src/php/user_db_list.php");
+require_once("../src/php/OpenGraph.php");
 sschk();
+
+
+$name=$_SESSION["name"];
 
 // $kensaku = $_POST['kensaku'];
 // 直接kensakuページを叩いた時用に「HTML」をデフォルト設定
 if(isset($_POST["kensaku"])){
   $kensaku = $_POST["kensaku"];
 }else{
-  $kensaku = "HTML"; 
+  $kensaku = "HTML";
 }
-$pcount = 0; // $pcountの初期化
 
 
 /*-------------------------------------------------------------------------
@@ -32,44 +35,8 @@ if(strlen($kensaku)>0){
   }
 }
 
-//1.  DB接続
-$pdo = db_conn();
-
-//２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM post_table JOIN user_table ON post_table.uid = user_table.id $where ORDER BY pdate DESC");
-$status = $stmt->execute();
-
-//３．データ表示
-$view="";  //HTML文字作成を入れる変数
-if($status==false) {
-    //execute（SQL実行時にエラーがある場合）
-    $error = $stmt->errorInfo();
-    exit("SQLError:".$error[2]);
-}else{
-  //Selectデータの数だけ自動でループしてくれる
-  //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
-}
-while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $view .='<div class="new_result">';
-    $view .='<a href="'.h($res["url"]).'" class="new_title">'.h($res["title"]).'</a>';
-    $view .='<p class="new_p">'.h($res["cont"]).'</p>';
-    $view .='<div class="new_userview">';
-    $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
-    $view .='<p class="new_review">評価：'.h($res["star"]).'</p>';
-    $view .='</div>';
-    $view .='<div class="new_postdate">';
-    $view .='<p class="new_date">投稿日：'.$res["pdate"].'</p>';
-    $view .='</div>';
-    $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
-    $graph = OpenGraph::fetch(''.h($res["url"]).'');
-    if(isset($graph->image) == true){
-      $view .='<img src="'.$graph->image.'" />';
-    }else{
-      //OGP画像がない場合に仮imageを差し込む場合はココに記入
-    };
-    $view .='</div>';
-    $pcount ++;
-}
+$post_c="投稿";
+$res2 = kennsaku_naiyou($where,$post_c);
 
 
 /*-------------------------------------------------------------------------
@@ -77,6 +44,8 @@ DB接続（人気の言語一覧作成用）
 -------------------------------------------------------------------------*/
 //1.  DB接続(省略)
 //２．データ登録SQL作成
+$pdo = db_conn();
+
 $stmt = $pdo->prepare("SELECT lang, count(*) AS COUNT FROM post_table GROUP BY lang ORDER BY COUNT DESC LIMIT 3");
 $status = $stmt->execute();
 
@@ -90,7 +59,7 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
 }
-while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view2 .='<form method="POST" action="kensaku.php">';
     $view2 .='<input class="item" type="submit" style="border:none; outline: none;" name="kensaku" value='.h($res["lang"]).'>';
     $view2 .='</form>';
@@ -107,37 +76,33 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
   <link rel="icon" href="../img/favicon.ico">
+   <!-- ↓　ここを変更する -->
   <link rel="stylesheet" href="../src/css/main.css">
   <title>GEEKBOOK</title>
 </head>
 <body>
-
   <header>
   <div class="header_container">
-
     <div class="header_logo_container">
       <div class="header_logo">
         <img src="../img/topImg.png">
       </div>
-      <p class="login_name">ログインしている人の名前　さん</p>
+  </div>
     </div>
-
-
     <div class="header_button">
       <div class="header_button_container">
         <div class="blue ui buttons">
-          <a class="ui button">TOPへ</a>
-          <a class="ui button">登録修正</a>
-          <a class="ui button">新規投稿</a>
-          <a class="ui button">自分の投稿</a>
-          <a class="ui button">Bookmark</a>
-  	  <div class="header_button_R">
-            <a class="ui button">Logout</a>
-	  </div>
+		<button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+		<button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+		<button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+		<button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+		<button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+		<div class="header_button_R">
+		 <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+	</div>
         </div>
       </div>
     </div>
-
   </div>
   </header>
 
@@ -146,7 +111,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <div class="main_left">
     <div class="ui vertical menu">
       <div class="item">
-        <div class="header"><font style="vertical-align: inherit;">人気の言語</font></div>
+        <div class="header"><div font style="vertical-align: inherit;">人気の言語</div></div>
         <div class="menu">
           <?=$view2?>
         </div>
@@ -160,17 +125,51 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     <div class="out_container">
       <div class="r_out">
         <div>「<?=$kensaku?>」の検索結果:</div>
-        <div><?=$pcount?>件</div>
+
+        <div><?php echo count($res2);?>件</div>
       </div>
     </div>
   <!-- ↑ search_container -->
 
 
-    <div class="new_container">
 
-      <?=$view?>
+<div class="block">
+      <table class="mytable">
 
-    </div>
+  <?php foreach($res2 as $value): ?>
+      <tr>
+        <td>
+
+      <div class="new_result">
+        <a href="result.php?id=<?php echo h($value[id]); ?>" class="new_title"><?php echo h($value[title]); ?></a>
+        <p class="new_p"><?php echo h($value[cont]); ?></p>
+          <div class="new_userview">
+          <p class="new_person">投稿者：<?php echo h($value[name]); ?>さん</p>
+          <p class="new_review">評価：<?php echo h($value[star]); ?></p>
+          </div>
+
+          <div class="new_postdate">
+          <p class="new_date">投稿日：<?php echo $value[pdate]; ?></p>
+          </div>
+
+          <div class="ui_label"><div font style="vertical-align: inherit;"><php echo h($value[lang]); ?></div></div>
+
+        <?php $graph = OpenGraph::fetch(h($value[url])); ?>
+
+        <?php if(isset($graph->image) == true): ?>
+          <img src="<?php  echo $graph->image; ?>">
+        <?php else: ?>
+          <img src="../prof/noimg.png" >
+        <?php endif; ?>
+      </div>
+
+        </td>
+      </tr>
+  <?php endforeach; ?>
+
+        </table>
+
+</div>
   <!-- ↑　new_container -->
 
   </div>
@@ -178,12 +177,31 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
 
   </div>
 
+
+
+
+
+
+  <script src="../src/js/jquery-2.1.3.min.js"></script>
+  <script src="../src/js/PaginateMyTable.js"></script>
+  <script src="paginathing.min.js"></script>
+
+
+<script>
+$(".mytable").paginate({
+            rows: 2,          // Set number of rows per page. Default: 5
+            position: "bottom",   // Set position of pager. Default: "bottom"
+            jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
+            showIfLess: false  // Don't show pager if table has only one page. Default: true
+        });
+</script>
+
+
     <footer>
     <div class="footer">
-      <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
+      <p>copyright ©️ GEEKBOOK <br> For G’s Academy</p>
     </div>
   </footer>
-
 
 </body>
 </html>
