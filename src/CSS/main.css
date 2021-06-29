@@ -35,6 +35,31 @@
   margin-left: 70%;
 }
 
+#loader-bg {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  background: #fff;
+  z-index: 1;
+}
+
+#loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  text-align: center;
+  z-index: 2;
+}
+
+#wrap{
+  display: none;
+}
 /* メイン */
 .main_container{
   width: 1020px;
@@ -50,7 +75,7 @@
 
 .main_left{
   margin-top: 20px;
-
+  width: 200px;
 }
 
 .out_container{
