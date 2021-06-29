@@ -37,7 +37,7 @@ function passvc($postname){
   $val = filter_input(INPUT_POST, $postname);
 
   if (!preg_match("/^[a-zA-Z0-9]{4,8}+$/", $val)){
-    return '<div class="alert alert-danger" role="alert" style="margin-bottom: 30px;">【パスワードは4文字以上8文字以下の英数字でお願いします】';
+    return '<div class="alert alert-danger" role="alert">【パスワードは4文字以上8文字以下の英数字でお願いします】';
   }
 }
 
