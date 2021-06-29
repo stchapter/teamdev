@@ -122,7 +122,7 @@
 .editor_container{
   width: 1020px;
   margin: 0 auto;
-  height: 600px;
+  /* height: 600px; */
 }
 
 .editor_title{
@@ -312,7 +312,7 @@ table th:last-child{
 }
 
 .table_height{
-  height: 600px;
+  /* height: 600px; */
 }
 
 .bk_tr{
@@ -324,7 +324,15 @@ table th:last-child{
   background: #fff;
 }
 
+.k_tr:nth-child(odd) .bk_td_r{
+  background: #fff;
+}
+
 .k_tr:nth-child(even) .bk_td{
+  background: #eee;
+}
+
+.k_tr:nth-child(even) .bk_td_r{
   background: #eee;
 }
 
