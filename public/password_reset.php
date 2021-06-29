@@ -37,16 +37,16 @@
           <div class="pw_info">登録メールアドレスを入力願います</div>
       <?php
         if ($_SESSION['error_status'] == 1) {
-          echo "<h2 style='color:red;'>パスワードをリセットしてください。</h2>";
+          echo "<p style='color:red;'>パスワードをリセットしてください。</p>";
         }
         if ($_SESSION['error_status'] == 2) {
-          echo "<h2 style='color:red;'>入力内容に誤りがあります。</h2>";
+          echo "<p style='color:red;'>入力内容に誤りがあります。</p>";
         }
         if ($_SESSION['error_status'] == 3) {
-          echo "<h2 style='color:red;'>不正なリクエストです。</h2>";
+          echo "<p style='color:red;'>不正なリクエストです。</p>";
         }
         if ($_SESSION['error_status'] == 4) {
-          echo '<h2 style="color:red;">タイムアウトか不正なURLです。</h2>';
+          echo '<p style="color:red;">タイムアウトか不正なURLです。</p>';
         }
         //エラー情報のリセット
         $_SESSION['error_status'] = 0;
