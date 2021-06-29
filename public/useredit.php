@@ -1,4 +1,4 @@
-a<?php
+<?php
 include("../src/php/funcs.php");
 include("../src/php/db.php");
 include("../src/php/user_db_list.php");

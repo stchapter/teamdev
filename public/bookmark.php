@@ -24,14 +24,14 @@
     <div class="header_button">
       <div class="header_button_container">
         <div class="blue ui buttons">
-          <button class="ui button">TOPへ</button>
-          <button class="ui button">登録修正</button>
-          <button class="ui button">新規投稿</button>
-          <button class="ui button">自分の投稿</button>
-          <button class="ui button">Bookmark</button>
-  	  <div class="header_button_R">
-            <button class="ui button">Logout</button>
-	  </div>
+          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+          <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+          <div class="header_button_R">
+            <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+        </div>
         </div>
       </div>
     </div>
