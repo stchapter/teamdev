@@ -98,7 +98,9 @@
 }
 
 .new_title{
+  padding-right: 10px;
   font-size: 20px;
+  line-height: 20px;
 }
 
 .new_userview{
@@ -312,7 +314,7 @@ table th:last-child{
 }
 
 .table_height{
-  /* height: 600px; */
+  height: 600px;
 }
 
 .bk_tr{

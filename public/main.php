@@ -86,7 +86,7 @@ if($status==false) {
 }
 while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view2 .='<form method="POST" action="kensaku.php">';
-    $view2 .='<input class="item" type="submit" style="border:none; outline: none;" name="kensaku" value='.h($res["lang"]).'>';
+    $view2 .='<input class="item" type="submit" style="border:none; outline: none; cursor: pointer; margin-bottom: 5px;" name="kensaku" value='.h($res["lang"]).'>';
     $view2 .='</form>';
 }
 
@@ -113,7 +113,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
       <div class="header_logo">
         <img src="../img/topImg.png">
       </div>
-      <p class="login_name"><?=$_SESSION["name"]?>　さん</p>
+      <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
     </div>
 
 
@@ -140,7 +140,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <div class="main_left">
     <div class="ui vertical menu">
       <div class="item">
-        <div class="header"><font style="vertical-align: inherit;">人気の言語</font></div>
+        <div class="header">人気の言語</div>
         <div class="menu">
           <?=$view2?>
         </div>
@@ -160,6 +160,10 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     </div>
   </form>
   <!-- ↑ search_container -->
+
+      <div class="m_out">
+        <div>最新の投稿</div>
+      </div>
 
 
     <div class="new_container">
