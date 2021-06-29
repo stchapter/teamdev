@@ -64,13 +64,27 @@
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-</head>
-<body>
-<h1>パスワードリセット完了</h1>
-パスワードのリセットが終了しました。<br>
-ログイン画面からログインしてください。<br><br>
-<a href="login.php">ログイン画面に戻る</a>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+    <link rel="stylesheet" href="../src/css/entrycomp.css">
+    <link rel="icon" href="../img/favicon.ico">
+    <title>GEEKBOOK</title>
+  </head>
+  <body>
+    <div class="container_whole">
+      <div class="text_comp">リセット完了</div>
+      <div class="pw_info">パスワードのリセットが終了しました。<br>
+        ログイン画面からログインしてください。
+      </div>
+      <a href="login.php" class="ui blue button">ログイン画面に戻る</a>
+    </div>
 </body>
 </html>
+
+<?php
+  include("./instance/footer.php");
+?>
