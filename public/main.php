@@ -13,7 +13,7 @@ DB接続（一覧作成用）
 $pdo = db_conn();
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT 
+$stmt = $pdo->prepare("SELECT
   post_table.id,
   post_table.title,
   user_table.name,
@@ -26,6 +26,7 @@ $stmt = $pdo->prepare("SELECT
   JOIN user_table
   ON post_table.uid = user_table.id
   WHERE post_table.life = 0
+  AND post_table.post = '投稿'
   ORDER BY pdate
   DESC LIMIT 5");
 $status = $stmt->execute();
