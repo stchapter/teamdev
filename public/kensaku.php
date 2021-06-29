@@ -87,8 +87,8 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
 
   <div id="loader-bg">
   <div id="loader">
-    <div class="ui active primary inline loader"></div>
-    <p>Now Loading...</p>
+    <img src="../img/neko.gif">
+    <p style="color: #fff; font-size: 18px;">ちょっと待ってね ...</p>
   </div>
 </div>
 

@@ -41,7 +41,7 @@
   height: 100vh;
   top: 0px;
   left: 0px;
-  background: #fff;
+  background: #66ceff;
   z-index: 1;
 }
 
@@ -60,6 +60,12 @@
 #wrap{
   display: none;
 }
+
+.block{
+  height: 1100px;
+  margin-bottom: 110px;
+}
+
 /* メイン */
 .main_container{
   width: 1020px;
