@@ -12,6 +12,7 @@ $suid = $_SESSION["id"];
 
 // ダミーのログインユーザーIDセット
 // $_SESSION['id'] = 2;
+    
 
 // 投稿内容一覧(表示SQL)
 $pos = [];
@@ -95,17 +96,19 @@ include("./instance/header.php");
             <div class="ui large label"><?= $pos['cost'] ?></div>
 
         <!-- bookmark start -->
-        <form action="../src/php/insert_bm.php" method="POST" style="margin-left: auto;">
             <?php if($bms["pid"] == $id AND $bms["uid"] == $_SESSION["id"]): ?>
+            <form action="../src/php/delete_bm.php" method="POST" style="margin-left: auto;">
                 <button class="ui orange button" type="submit" value="send_bm"><i class="star icon"></i> BookMark済み</button>
                 <input type="hidden" name="id" value="<?=$pos["id"]?>">
                 <input type="hidden" name="uid" value="<?= $suid ?>">
+            </form>
             <?php else:?>
+            <form action="../src/php/insert_bm.php" method="POST" style="margin-left: auto;">
                 <button class="ui button" type="submit" value="send_bm"><i class="star icon"></i> BookMark</button>
                 <input type="hidden" name="id" value="<?=$pos["id"]?>">
                 <input type="hidden" name="uid" value="<?= $suid ?>">
+            </form>
             <?php endif;?>
-        </form>
         <!-- bookmark end -->
 
             <?php if(isset($pos['fname'])): ?>
