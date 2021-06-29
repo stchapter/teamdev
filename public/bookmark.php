@@ -61,7 +61,7 @@ $val = bookmark_naiyou($id);
 <div class="editor_container">
 
   <p class="bm_title">Bookmarks</p>
-  
+
 <div class="table_height">
   <table class="mytable">
     <tr class="bk_tr">
@@ -77,7 +77,7 @@ $val = bookmark_naiyou($id);
     <?php foreach($val as $doc): ?>
       <tr class="k_tr">
         <td  class="bk_td"><?php echo h($doc[lang]); ?></td>
-        <td  class="bk_td"><a href="result.php?id=<?php echo h($doc[id]); ?>"><?php echo h($doc[title]); ?></a></td>
+        <td  class="bk_td"><a href="result.php?id=<?php echo h($doc[pid]); ?>"><?php echo h($doc[title]); ?></a></td>
         <td  class="bk_td"><?php echo h($doc[star]); ?></td>
         <td  class="bk_td"><a href="<?php echo h($doc[url]); ?>" target="new">参照URL</a></td>
         <td  class="bk_td"><a href="../upload/<?php echo h($doc[fpass]); ?>" download><?php echo h($doc[fname]); ?></a></td>
