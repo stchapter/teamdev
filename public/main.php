@@ -14,6 +14,7 @@ $pdo = db_conn();
 
 //２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT 
+  post_table.id,
   post_table.title,
   user_table.name,
   post_table.cont,
@@ -41,8 +42,8 @@ if($status==false) {
 }
 while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   $view .='<div class="new_result">';
-  $view .='<div class="●●">';
-  $view .='<a href="'.h($res["url"]).'" class="new_title">'.h($res["title"]).'</a>';
+  $view .='<div class="result_container">';
+  $view .='<a href="result.php?id='.h($res["id"]).'" class="new_title">'.h($res["title"]).'</a>';
   $view .='<p class="new_p">'.h($res["cont"]).'</p>';
   $view .='<div class="new_userview">';
   $view .='<p class="new_person">投稿者：'.h($res["name"]).'さん</p>';
@@ -53,7 +54,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   $view .='</div>';
   $view .='<div class="ui label"><font style="vertical-align: inherit;">'.h($res["lang"]).'</font></div>';
   $view .='</div>';
-  $view .='<div class="●●">';
+  $view .='<div class="result_container">';
   $graph = OpenGraph::fetch(''.h($res["url"]).'');
   if(isset($graph->image) == true){
     $view .='<img class="ogp_img" src="'.$graph->image.'"/>';

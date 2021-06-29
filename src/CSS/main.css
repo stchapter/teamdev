@@ -364,10 +364,6 @@ table th:last-child{
   width: 40px;
 }
 
-table tr:nth-child(odd){
-  background-color: #eee
-}
-
 /* .tbody_r{
   height: 400px;
 } */
@@ -473,7 +469,9 @@ table tr:nth-child(odd){
 
 .ui-state-default, .clickable{
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 30px;
+  font-size:20px;
+  color:gray;
 }
 
 .m_container{
