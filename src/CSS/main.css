@@ -127,7 +127,7 @@
 .editor_title{
   font-weight: normal;
   font-size: 20px;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 .contents{
@@ -477,6 +477,7 @@ table th:last-child{
 .m_container{
   width: 1020px;
   margin: 50px auto;
+  padding: 50px 0;
 }
 
 .m_text{
@@ -503,6 +504,11 @@ table th:last-child{
   padding: 10px 0 4px 0;
   margin: 0;
   width: 120px;
+}
+
+.ck_comment{
+  padding: 20px 0 8px 0;
+  margin: 10px 0;
 }
 
 .r_url{
