@@ -40,9 +40,13 @@ include("./instance/header.php");
   <h2 class="editor_title">プロフィール編集</h2>
 
   <div>
-  <img src="../prof/noimg.png">
-  <!-- ↓正しいコード。　↑差し替え中 -->
-  <!-- <img src="../prof/<?php echo h($val[ipass]); ?>"> -->
+
+  <?php if ($val[ipass]): ?>
+          <img src="../prof/<?php echo h($val[ipass]); ?>">
+  <?php else: ?>
+          <img src="../prof/noimg.png">
+  <?php endif; ?>
+
   </div>
 
   <div>
