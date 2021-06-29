@@ -42,26 +42,83 @@ if ($_POST) {
 
 
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update_course</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+  <link rel="icon" href="../img/favicon.ico">
+  <link rel="stylesheet" href="../src/css/update.css">
+  <title>GEEKBOOK</title>
 </head>
 <body>
+
+
+  <header>
+  <div class="header_container">
+
+    <div class="header_logo_container">
+      <div class="header_logo">
+        <img src="../img/topImg.png">
+      </div>
+      <p class="login_name"><?=$_SESSION["name"]?>　さん</p>
+    </div>
+
+
+    <div class="header_button">
+      <div class="header_button_container">
+        <div class="blue ui buttons">
+          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+          <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+          <div class="header_button_R">
+            <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+	        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </header>
+
+<div class="container">
+
+    <div class="ke_card">
+
+
     <form action="" method="POST">
-        <label>コース：<input type="text" name="course" value="<?=h($courseS["course"])?>"></label><br>
-        <label>
-            表示：
+
+    <div class="ke_contents_fix">
+
+    <p style="font-size: 40px;
+              font-weight: bold;">コース</p>
+        <div class="ui huge icon input">
+            <input type="text" name="course" value="<?=h($courseS["course"])?>">
+            <i class="primary school icon"></i>
+        </div>
+        </div>
+
+         <p class="ke_p">表示</p>
+        <div class="ke_select">
             <select name="life" id="life">
                 <option value="0" <?= h($courseS['life']) === '0' ? 'selected' : '' ?>>表示</option>
                 <option value="1" <?= h($courseS['life']) === '1' ? 'selected' : '' ?>>非表示</option>
             </select>
-        </label><br>
-        <input type="submit" value="更新">
+        </div>
+
+        <input class="large ui primary button" style="margin: 60px 0 0 30px;" type="submit" value="更新">
     </form>
-</body>
-</html>
+
+
+    </div>
+</div>
+
+
+<?php
+include("./instance/footer.php");
+?>
