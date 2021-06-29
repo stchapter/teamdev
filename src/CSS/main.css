@@ -314,6 +314,14 @@ table th:last-child{
   height: 600px;
 }
 
+tr:nth-child(odd) .k_td{
+  background: #fff;
+}
+
+tr:nth-child(even) .k_td{
+  background: #eee;
+}
+
 /* .mytable {
   /* height: 600px; */
 

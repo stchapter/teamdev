@@ -7,7 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
   <link rel="icon" href="../img/favicon.ico">
-  <link rel="stylesheet" href="../src/css/main.css">
+  <link rel="stylesheet" href="../src/css/responsive.css">
   <title>GEEKBOOK</title>
   <script src="../src/js/jquery-2.1.3.min.js"></script>
   <script src="../src/js/PaginateMyTable.js"></script>
@@ -58,7 +58,7 @@ $val = bookmark_naiyou($id);
 
 
 
-<div class="editor_container">
+<div class="m_container">
 
   <p class="bm_title">Bookmarks</p>
 

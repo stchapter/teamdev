@@ -315,13 +315,17 @@ table th:last-child{
   height: 600px;
 }
 
-/* .mytable {
-  /* height: 600px; */
-
-
 .bk_tr{
   display: table-row !important;
   height: 40px !important;
+}
+
+.k_tr:nth-child(odd) .bk_td{
+  background: #fff;
+}
+
+.k_tr:nth-child(even) .bk_td{
+  background: #eee;
 }
 
 .bk_th{
@@ -337,6 +341,12 @@ table th:last-child{
   padding: 10px 0;
   text-align: center;
   height: 30px !important;
+}
+.bk_td{
+  padding: 10px 0;
+  text-align: center;
+  height: 30px !important;
+  background: #eee;
 }
 
 .bk_td_r{
@@ -477,8 +487,8 @@ table th:last-child{
 
 .m_container{
   width: 1020px;
-  margin: 50px auto;
-  padding: 50px 0;
+  margin: 20px auto;
+  height: 750px;
 }
 
 .m_text{
