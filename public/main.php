@@ -86,7 +86,7 @@ if($status==false) {
 }
 while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view2 .='<form method="POST" action="kensaku.php">';
-    $view2 .='<input class="item" type="submit" style="border:none; outline: none; cursor: pointer; margin-bottom: 5px;" name="kensaku" value='.h($res["lang"]).'>';
+    $view2 .='<input class="item" type="submit" style="border:none; outline: none; cursor: pointer; margin-bottom: 8px; font-size: 16px;" name="kensaku" value='.h($res["lang"]).'>';
     $view2 .='</form>';
 }
 
@@ -140,7 +140,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <div class="main_left">
     <div class="ui vertical menu">
       <div class="item">
-        <div class="header">人気の言語</div>
+        <div class="header" style="font-size: 16px; margin-top: 8px;">人気の言語</div>
         <div class="menu">
           <?=$view2?>
         </div>
