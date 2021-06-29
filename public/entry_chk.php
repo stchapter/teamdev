@@ -132,7 +132,7 @@ if(isset($_POST['entry'])) {
       <label class="label" for="name">お名前　</label>
           <?php echo $doc2; ?>
           <?php echo $err[1]; ?>
-    </div>
+
     </div>
 
     <div class="e_contents">
@@ -170,14 +170,15 @@ if(isset($_POST['entry'])) {
           <?php echo $doc5; ?>
           <?php echo $err[4]; ?>
     </div>
-    </div>
+
+
 
     <div class="e_contents">
       <label class="label" for="student">学籍番号　</label>
           <?php echo $doc6; ?>
           <?php echo $err[5]; ?>
     </div>
-    </div>
+
 
     <div class="e_contents">
       <label class="label" for="mail">メールアドレス　</label>
@@ -185,13 +186,11 @@ if(isset($_POST['entry'])) {
           <?php echo $err[9]; ?>
           <?php echo $err[6]; ?>
     </div>
-    </div>
 
     <div class="e_contents">
       <label class="label" for="pw">パスワード　</label>
           <?php echo $doc8; ?>
           <?php echo $err[7]; ?>
-    </div>
     </div>
 
     <div class="e_contents">
@@ -208,9 +207,13 @@ if(isset($_POST['entry'])) {
     <input type="submit" name="edit" value="修正" class="ui large button" style="margin-top: 30px;">
     <?php echo $doc10; ?>
   </form>
-
+    </div>
 
 </div>
+</div>
+</div>
+</div>
+
 </div>
 
 <?php
