@@ -62,10 +62,22 @@
   display: flex;
 }
 
+.m_out{
+  width: 750px;
+  display: flex;
+}
+
 .r_out > div{
   /* width: 200px; */
   margin-left: 8px;
   font-size: 16px;
+  color: rgb(150, 150, 150);
+}
+
+.m_out > div{
+  /* width: 200px; */
+  margin: 30px 0 0 8px;
+  font-size: 20px;
   color: rgb(150, 150, 150);
 }
 
@@ -75,7 +87,7 @@
 
 .new_container{
   width: 750px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .new_result{
@@ -95,10 +107,14 @@
 
 .new_p {
   margin-top: 10px;
+  padding-right: 10px;
 }
 
 .new_title{
+  display: block;
   font-size: 20px;
+  padding-right: 10px;
+  line-height: 1.3em;
 }
 
 .new_userview{
@@ -273,7 +289,7 @@ textarea{
 }
 
 .hide_r{
-  height: 510px;
+  height: 600px;
   padding: 8px;
   /* display: none; */
   overflow: scroll;
@@ -319,6 +335,30 @@ tr:nth-child(odd) .k_td{
 }
 
 tr:nth-child(even) .k_td{
+  background: #eee;
+}
+
+.k_tr_r:nth-child(odd) .k_td{
+  background: #fff;
+}
+
+.k_tr_r:nth-child(even) .k_td{
+  background: #eee;
+}
+
+.k_tr_r:nth-child(odd) .k_td_r{
+  background: #fff;
+}
+
+.k_tr_r:nth-child(even) .k_td_r{
+  background: #eee;
+}
+
+.k_tr_r:nth-child(odd) .k_td_i{
+  background: #fff;
+}
+
+.k_tr_r:nth-child(even) .k_td_i{
   background: #eee;
 }
 
