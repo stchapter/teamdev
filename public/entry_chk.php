@@ -213,7 +213,7 @@ if(isset($_POST['entry'])) {
 </div>
 </div>
 </div>
-
+</div>
 </div>
 
 <?php

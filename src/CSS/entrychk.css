@@ -3,10 +3,10 @@
   margin: 0;
   padding: 0;
 } */
-/* body{
+body{
   height: 0;
-  width: 0;
-} */
+  /* width: 0; */
+}
 
 .header_logo{
   width: 350px;
@@ -142,7 +142,7 @@ textarea{
 
 .e_container{
   width: 1020px;
-  height: 1080px;
+  /* height: 1080px; */
   margin: 30px auto;
 
 }
@@ -213,7 +213,7 @@ select {
 /* フッター */
 .footer{
   width: 100vw;
-  margin-top: 120px;
+  margin-top: 150px;
   text-align: center;
   background-color: #2285d0;
   height: 80px;
@@ -228,4 +228,13 @@ select {
   margin: 0 auto;
   padding-top: 20px;
   color: white;
+}
+
+
+@media screen and (min-width:1500px) {
+  .e_container{
+    width: 1020px;
+    /* height: 1080px; */
+    margin: 250px auto;
+  }
 }
