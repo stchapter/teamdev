@@ -55,3 +55,30 @@
     padding-top: 20px;
     color: white;
 }
+
+
+/* password-check 関連*/
+.pw_info{
+    margin: 20px 0 30px 0;
+}
+.mail_box{
+    width:300px;
+}
+.pw_reset_container{
+    margin-top: 40px;
+}
+.ui.big.button{
+    margin:0 20px;
+}
+.submit_container{
+    display: flex;
+    flex-direction: column;
+    width:300px;
+    margin: 10px auto 20px auto;
+}
+.ui.left.icon.input{
+    margin:5px 0;
+}
+.pw_info2{
+    margin: 20px 0 20px 0;
+}
