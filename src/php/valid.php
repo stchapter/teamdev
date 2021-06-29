@@ -7,7 +7,7 @@ function valc($postname,$min,$max){
   $n = strlen($val);
 
   if ($n == 0){
-    $result = '<div class="alert alert-danger" role="alert">未入力です。';
+    $result = '<div class="alert alert-danger" role="alert">未入力です。</div>';
     return $result;
 
   }elseif ($n > $max){
@@ -28,7 +28,7 @@ function mailvc($postname){
   $val = filter_input(INPUT_POST, $postname);
 
   if (!preg_match('/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/iD', $val)){
-    return '<div class="alert alert-danger" role="alert">【メールアドレスが正しくありません】';
+    return '<div class="alert alert-danger" role="alert">【メールアドレスが正しくありません】</div>';
   }
 }
 
@@ -37,7 +37,7 @@ function passvc($postname){
   $val = filter_input(INPUT_POST, $postname);
 
   if (!preg_match("/^[a-zA-Z0-9]{4,8}+$/", $val)){
-    return '<div class="alert alert-danger" role="alert">【パスワードは4文字以上8文字以下の英数字でお願いします】';
+    return '<div class="alert alert-danger" role="alert">【パスワードは4文字以上8文字以下の英数字でお願いします】</div>';
   }
 }
 
@@ -49,7 +49,7 @@ function passvc2($postname){
 
   }else{
       if (!preg_match("/^[[:graph:]|[:space:]]+$/i", $val)){
-      return '<div class="alert alert-danger" role="alert">【半角英数字記号の入力でお願いします】';
+      return '<div class="alert alert-danger" role="alert">【半角英数字記号の入力でお願いします】</div>';
       }
   }
 }
@@ -61,7 +61,7 @@ function inputconf($postname,$postname2){
   $val2 = filter_input(INPUT_POST, $postname2);
 
   if ($val1 !== $val2){
-    return '<div class="alert alert-danger" role="alert">【入力に差異があります】';
+    return '<div class="alert alert-danger" role="alert">【入力に差異があります】</div>';
   }
 }
 
