@@ -375,6 +375,7 @@ textarea{
   font-size: 24px;
   font-weight: bold;
   padding: 16px 0;
+  line-height: 1.2em;
 }
 
 .hide::-webkit-scrollbar {
