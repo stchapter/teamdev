@@ -1,52 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
-  <link rel="icon" href="../img/favicon.ico">
-   <!-- ↓　ここを変更する -->
-  <link rel="stylesheet" href="../src/css/main.css">
-  <link rel="stylesheet" href="../src/css/alart.css">
-  <title>GEEKBOOK</title>
-</head>
-<body>
-  <header>
-    <div class="header_container">
-      <div class="header_logo_container">
-        <div class="header_logo">
-          <img src="../img/topImg.png">
-        </div>
-        <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
-      </div>
-    </div>
-    <div class="header_button">
-      <div class="header_button_container">
-        <div class="blue ui buttons">
-          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
-          <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
-          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
-          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
-          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
-          <?php if($_SESSION["kanri"]==1): ?>
-          <button class="ui button" onclick="location.href='superuser.php'">Admin</button>
-          <div class="header_button_Rev" style="margin-left:50%;">
-            <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
-          </div>
-          <?php else: ?>
-            <div class="header_button_Rev" style="margin-left:70%;">
-              <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
-            </div>
-          <?php endif; ?>
-        </div>
-      </div>
-    </div>
-  </header>
-
-<body>
-
 
 <?php
 
@@ -104,49 +55,49 @@ $cerr = array_filter($err);
 // v(count($err));
 // 配列の中味の個数を数えて、エラーが0ならば確認画面を写し違うならば編集画面
 if (count($cerr) === 0 ) {
-    // echo "はっか1";
-    //表示させつつPOSTデータはhiddenで送信できるように
-    $doc0 ="ご確認";
-    $doc1 ='*******<input type="hidden" class="" name="kw" value="'.h($kw).'">';
-    $doc2 ='<div class="select">'.$name.'</div><input type="hidden" class="" name="name" value="'.h($name).'">';
-    $doc3 =$camp.'<input type="hidden" class="" name="camp" value="'.h($camp).'">';
-    $doc4 =$course.'<input type="hidden" class="" name="course" value="'.h($course).'">';
-    $doc5 ='<div class="select">'.$cls.'</div><input type="hidden" class="" name="cls" value="'.h($cls).'">';
-    $doc6 ='<div class="select">'.$student.'</div><input type="hidden" class="" name="student" value="'.h($student).'">';
-    $doc7 ='<div class="select">'.$mail.'</div><input type="hidden" class="" name="mail" value="'.h($mail).'">';
-    $doc8 ='<div class="select">*******</div><input type="hidden"  class="" name="pw" value="'.h($pw).'">';
-    $doc9 ='<div class="select">*******</div>';
-    $doc10 ='<input type="submit" name="entry" value="登録" class="ui primary button" style="margin-top: 30px;">';
+  // echo "はっか1";
+  //表示させつつPOSTデータはhiddenで送信できるように
+  $doc0 ="ご確認";
+  $doc1 ='*******<input type="hidden" class="" name="kw" value="'.h($kw).'">';
+  $doc2 ='<div class="select">'.$name.'</div><input type="hidden" class="" name="name" value="'.h($name).'">';
+  $doc3 =$camp.'<input type="hidden" class="" name="camp" value="'.h($camp).'">';
+  $doc4 =$course.'<input type="hidden" class="" name="course" value="'.h($course).'">';
+  $doc5 ='<div class="select">'.$cls.'</div><input type="hidden" class="" name="cls" value="'.h($cls).'">';
+  $doc6 ='<div class="select">'.$student.'</div><input type="hidden" class="" name="student" value="'.h($student).'">';
+  $doc7 ='<div class="select">'.$mail.'</div><input type="hidden" class="" name="mail" value="'.h($mail).'">';
+  $doc8 ='<div class="select">*******</div><input type="hidden"  class="" name="pw" value="'.h($pw).'">';
+  $doc9 ='<div class="select">*******</div>';
+  $doc10 ='<input type="submit" name="entry" value="登録" class="ui primary button" style="margin-top: 30px;">';
 
-    $doc11 ='<div class="select">'.$intro.'</div><input type="hidden" class="m_text" name="intro" value="'.h($intro).'">';
-    $doc12 ='<div class="select">'.$fb.'</div><input type="hidden" class="" name="fb" value="'.h($fb).'">';
-    $doc13 ='<div class="select">'.$tw.'</div><input type="hidden" class="" name="tw" value="'.h($tw).'">';
+  $doc11 ='<div class="select">'.$intro.'</div><input type="hidden" class="m_text" name="intro" value="'.h($intro).'">';
+  $doc12 ='<div class="select">'.$fb.'</div><input type="hidden" class="" name="fb" value="'.h($fb).'">';
+  $doc13 ='<div class="select">'.$tw.'</div><input type="hidden" class="" name="tw" value="'.h($tw).'">';
 
-    if ($life==1) {
-      $lifevalue ='<div class="select">退会</div>';
-    }else {
-      $lifevalue ='<div class="select">利用中</div>';
-    }
-    $doc14 =$lifevalue.'<input type="hidden" class="" name="life" value="'.h($life).'">';
+  if ($life==1) {
+    $lifevalue ='<div class="select">退会</div>';
+  }else {
+    $lifevalue ='<div class="select">利用中</div>';
+  }
+  $doc14 =$lifevalue.'<input type="hidden" class="" name="life" value="'.h($life).'">';
 
-    $doc15 ='<img src="../prof/'.$ipass.'">';
+  $doc15 ='<img src="../prof/'.$ipass.'">';
 
 
 }else{
-    $doc0 ="登録修正";
-    $doc1 ='<input type="password" class="" name="kw">';
-    $doc2 ='<div class="ui input text_input"><input type="text" class="" name="name" value="'.h($name).'"></div>';
-    $doc5 ='<div class="ui input text_input"><input type="number" class="" name="cls" value="'.h($cls).'"></div>';
-    $doc6 ='<div class="ui input text_input"><input type="number" class="" name="student" value="'.h($student).'"></div>';
-    $doc7 ='<div class="ui input text_input"><input type="text" class="" name="mail" value="'.h($mail).'"></div><br>';
-    $doc8 ='<div class="ui input text_input"><input type="password"  class="" name="pw" value=""></div><br>';
-    $doc9 ='<div class="ui input text_input"><input type="password"  class="" name="pw_c" value=""></div><br>';
-    $doc10 ='';
+  $doc0 ="登録修正";
+  $doc1 ='<input type="password" class="" name="kw">';
+  $doc2 ='<div class="ui input text_input"><input type="text" class="" name="name" value="'.h($name).'"></div>';
+  $doc5 ='<div class="ui input text_input"><input type="number" class="" name="cls" value="'.h($cls).'"></div>';
+  $doc6 ='<div class="ui input text_input"><input type="number" class="" name="student" value="'.h($student).'"></div>';
+  $doc7 ='<div class="ui input text_input"><input type="text" class="" name="mail" value="'.h($mail).'"></div><br>';
+  $doc8 ='<div class="ui input text_input"><input type="password"  class="" name="pw" value=""></div><br>';
+  $doc9 ='<div class="ui input text_input"><input type="password"  class="" name="pw_c" value=""></div><br>';
+  $doc10 ='';
 
-    $doc11 ='<textarea name="intro" class="m_text" id="intro" >'.h($intro).'</textarea>';
-    $doc12 ='<div class="ui input text_input"><input type="text" name="fb" class="" id="fb" value="'.h($fb).'"></div>';
-    $doc13 ='<div class="ui input text_input"><input type="text" name="tw" class="" id="tw" value="'.h($tw).'"></div>';
-    $doc14 ='<br><small>退会希望者はチェックしてください</small><input type="checkbox" name="life" value="1">';
+  $doc11 ='<textarea name="intro" class="m_text" id="intro" >'.h($intro).'</textarea>';
+  $doc12 ='<div class="ui input text_input"><input type="text" name="fb" class="" id="fb" value="'.h($fb).'"></div>';
+  $doc13 ='<div class="ui input text_input"><input type="text" name="tw" class="" id="tw" value="'.h($tw).'"></div>';
+  $doc14 ='<br><small>退会希望者はチェックしてください</small><input type="checkbox" name="life" value="1">';
 }
 
 
@@ -184,19 +135,67 @@ $stmt->bindValue(':tw', $tw, PDO::PARAM_STR);    //Integer（数値の場合 PDO
 $stmt->bindValue(':life', $life, PDO::PARAM_INT);    //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
 
-    $status = $stmt->execute(); //実行
+$status = $stmt->execute(); //実行
 
-    //データ登録処理後
-    if($status==false){
-      sql_error($stmt);
-    }else{
+//データ登録処理後
+if($status==false){
+  sql_error($stmt);
+}else{
 
-      redirect("main.php");
-    }
-  }
+  redirect("main.php");
+}
+}
 
 
-  ?>
+?>
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+  <link rel="icon" href="../img/favicon.ico">
+   <!-- ↓　ここを変更する -->
+  <link rel="stylesheet" href="../src/css/main.css">
+  <link rel="stylesheet" href="../src/css/alart.css">
+  <title>GEEKBOOK</title>
+</head>
+<body>
+  <header>
+    <div class="header_container">
+      <div class="header_logo_container">
+        <div class="header_logo">
+          <img src="../img/topImg.png">
+        </div>
+        <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
+      </div>
+    </div>
+    <div class="header_button">
+      <div class="header_button_container">
+        <div class="blue ui buttons">
+          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+          <button class="ui button" onclick="location.href='useredit.php'">マイプロフィール</button>
+          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+          <?php if($_SESSION["kanri"]==1): ?>
+          <button class="ui button" onclick="location.href='superuser.php'">Admin</button>
+          <div class="header_button_Rev" style="margin-left:50%;">
+            <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+          </div>
+          <?php else: ?>
+            <div class="header_button_Rev" style="margin-left:70%;">
+              <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+            </div>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <div class="m_container">
 
