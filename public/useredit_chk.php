@@ -1,3 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+  <link rel="icon" href="../img/favicon.ico">
+   <!-- ↓　ここを変更する -->
+  <link rel="stylesheet" href="../src/css/main.css">
+  <link rel="stylesheet" href="../src/css/alart.css">
+  <title>GEEKBOOK</title>
+</head>
+<body>
+  <header>
+  <div class="header_container">
+    <div class="header_logo_container">
+      <div class="header_logo">
+        <img src="../img/topImg.png">
+      </div>
+  </div>
+    </div>
+    <div class="header_button">
+      <div class="header_button_container">
+        <div class="blue ui buttons">
+		<button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+		<button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+		<button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+		<button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+		<button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+		<div class="header_button_R">
+		 <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </header>
+
+<body>
+
 
 <?php
 
@@ -55,49 +97,49 @@ $cerr = array_filter($err);
 // v(count($err));
 // 配列の中味の個数を数えて、エラーが0ならば確認画面を写し違うならば編集画面
 if (count($cerr) === 0 ) {
-  // echo "はっか1";
-  //表示させつつPOSTデータはhiddenで送信できるように
-  $doc0 ="ご確認";
-  $doc1 ='*******<input type="hidden" class="" name="kw" value="'.h($kw).'">';
-  $doc2 =$name.'<input type="hidden" class="" name="name" value="'.h($name).'">';
-  $doc3 =$camp.'<input type="hidden" class="" name="camp" value="'.h($camp).'">';
-  $doc4 =$course.'<input type="hidden" class="" name="course" value="'.h($course).'">';
-  $doc5 =$cls.'<input type="hidden" class="" name="cls" value="'.h($cls).'">';
-  $doc6 =$student.'<input type="hidden" class="" name="student" value="'.h($student).'">';
-  $doc7 =$mail.'<input type="hidden" class="" name="mail" value="'.h($mail).'">';
-  $doc8 ='*******<input type="hidden"  class="" name="pw" value="'.h($pw).'">';
-  $doc9 ='*******';
-  $doc10 ='<input type="submit" name="entry" value="登録" class="">';
+    // echo "はっか1";
+    //表示させつつPOSTデータはhiddenで送信できるように
+    $doc0 ="ご確認";
+    $doc1 ='*******<input type="hidden" class="" name="kw" value="'.h($kw).'">';
+    $doc2 ='<div class="select">'.$name.'</div><input type="hidden" class="" name="name" value="'.h($name).'">';
+    $doc3 =$camp.'<input type="hidden" class="" name="camp" value="'.h($camp).'">';
+    $doc4 =$course.'<input type="hidden" class="" name="course" value="'.h($course).'">';
+    $doc5 ='<div class="select">'.$cls.'</div><input type="hidden" class="" name="cls" value="'.h($cls).'">';
+    $doc6 ='<div class="select">'.$student.'</div><input type="hidden" class="" name="student" value="'.h($student).'">';
+    $doc7 ='<div class="select">'.$mail.'</div><input type="hidden" class="" name="mail" value="'.h($mail).'">';
+    $doc8 ='<div class="select">*******</div><input type="hidden"  class="" name="pw" value="'.h($pw).'">';
+    $doc9 ='<div class="select">*******</div>';
+    $doc10 ='<input type="submit" name="entry" value="登録" class="ui primary button" style="margin-top: 30px;">';
 
-  $doc11 =$intro.'<input type="hidden" class="m_text" name="intro" value="'.h($intro).'">';
-  $doc12 =$fb.'<input type="hidden" class="" name="fb" value="'.h($fb).'">';
-  $doc13 =$tw.'<input type="hidden" class="" name="tw" value="'.h($tw).'">';
+    $doc11 ='<div class="select">'.$intro.'</div><input type="hidden" class="m_text" name="intro" value="'.h($intro).'">';
+    $doc12 ='<div class="select">'.$fb.'</div><input type="hidden" class="" name="fb" value="'.h($fb).'">';
+    $doc13 ='<div class="select">'.$tw.'</div><input type="hidden" class="" name="tw" value="'.h($tw).'">';
 
-  if ($life==1) {
-    $lifevalue ="退会";
-  }else {
-    $lifevalue ="利用中";
-  }
-  $doc14 =$lifevalue.'<input type="hidden" class="" name="life" value="'.h($life).'">';
+    if ($life==1) {
+      $lifevalue ='<div class="select">退会</div>';
+    }else {
+      $lifevalue ='<div class="select">利用中</div>';
+    }
+    $doc14 =$lifevalue.'<input type="hidden" class="" name="life" value="'.h($life).'">';
 
-  $doc15 ='<img src="../prof/'.$ipass.'">';
+    $doc15 ='<img src="../prof/'.$ipass.'">';
 
 
 }else{
-  $doc0 ="登録修正";
-  $doc1 ='<input type="password" class="" name="kw">';
-  $doc2 ='<input type="text" class="" name="name" value="'.h($name).'">';
-  $doc5 ='<input type="number" class="" name="cls" value="'.h($cls).'">';
-  $doc6 ='<input type="number" class="" name="student" value="'.h($student).'">';
-  $doc7 ='<input type="text" class="" name="mail" value="'.h($mail).'"><br>';
-  $doc8 ='<input type="password"  class="" name="pw" value=""><br>';
-  $doc9 ='<input type="password"  class="" name="pw_c" value=""><br>';
-  $doc10 ='';
+    $doc0 ="登録修正";
+    $doc1 ='<input type="password" class="" name="kw">';
+    $doc2 ='<div class="ui input text_input"><input type="text" class="" name="name" value="'.h($name).'"></div>';
+    $doc5 ='<div class="ui input text_input"><input type="number" class="" name="cls" value="'.h($cls).'"></div>';
+    $doc6 ='<div class="ui input text_input"><input type="number" class="" name="student" value="'.h($student).'"></div>';
+    $doc7 ='<div class="ui input text_input"><input type="text" class="" name="mail" value="'.h($mail).'"></div><br>';
+    $doc8 ='<div class="ui input text_input"><input type="password"  class="" name="pw" value=""></div><br>';
+    $doc9 ='<div class="ui input text_input"><input type="password"  class="" name="pw_c" value=""></div><br>';
+    $doc10 ='';
 
-  $doc11 ='<textarea name="intro" class="m_text" id="intro" >'.h($intro).'</textarea>';
-  $doc12 ='<input type="text" name="fb" class="" id="fb" value="'.h($fb).'">';
-  $doc13 ='<input type="text" name="tw" class="" id="tw" value="'.h($tw).'">';
-  $doc14 ='<small>退会希望者はチェックしてください</small><input type="checkbox" name="life" value="1">';
+    $doc11 ='<textarea name="intro" class="m_text" id="intro" >'.h($intro).'</textarea>';
+    $doc12 ='<div class="ui input text_input"><input type="text" name="fb" class="" id="fb" value="'.h($fb).'"></div>';
+    $doc13 ='<div class="ui input text_input"><input type="text" name="tw" class="" id="tw" value="'.h($tw).'"></div>';
+    $doc14 ='<br><small>退会希望者はチェックしてください</small><input type="checkbox" name="life" value="1">';
 }
 
 
@@ -192,14 +234,11 @@ $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場
 
     <form method="POST" action="useredit_chk.php" enctype="multipart/form-data">
 
-  <div class="contents">
-      <label for="name">お名前</label><br/>
-          <div class="ui input text_input">
-            <?php echo $doc2; ?>
-          </div>
-          <div><?php echo $err[1]; ?></div>
-  </div>
-  </div>
+    <div class="contents">
+      <label for="name">お名前</label>
+          <?php echo $doc2; ?>
+          <?php echo $err[1]; ?>
+    </div>
 
 
   <div class="contents_fix">
@@ -239,92 +278,91 @@ $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場
   </div>
 
   <div class="contents_fix">
-  <div class="contents">
-      <label for="class">学期</label></br>
-        <div class="ui input text_input">
+
+    <div class="contents">
+      <label for="class">学期</label><br/>
+
           <?php echo $doc5; ?>
-        </div>
-          <div><?php echo $err[4]; ?></div>
-  </div>
-  </div>
 
-  <div class="contents">
-      <label for="student">学籍番号</label></br>
-        <div class="ui input text_input">
+          <?php echo $err[4]; ?>
+    </div>
+
+    <div class="contents">
+      <label for="student">学籍番号</label><br/>
+
           <?php echo $doc6; ?>
-        </div>
-          <div><?php echo $err[5]; ?></div>
+
+          <?php echo $err[5]; ?>
+    </div>
   </div>
-  </div>
-  </div>
 
 
 
 
+    <div class="contents">
+      <label for="intro">自己紹介</label><br/>
+          <?php echo $doc11; ?>
+    </div>
 
-  <div class="contents">
-      <label for="intro">自己紹介</label>
-          <div><?php echo $doc11; ?></div>
-  </div>
+
 
 
   <div class="contents_fix">
+    <div class="contents">
+      <label style="font-size: 16px;" for="fb">facebook</label>
+     　FacebookのIDのみ入力<br/>
 
-  <div class="contents">
-      <label style="font-size: 16px; padding-top: 20px;" for="fb">facebook</label>
-     　<small>FacebookのIDのみ入力</small><br/>
-            <div class="ui input text_input">
               <?php echo $doc12; ?>
-            </div>
-          <div><?php echo $err[9]; ?></div>
-  </div>
 
-  <div class="contents">
-    <lable style="font-size: 16px; padding-top: 20px;" for="tw">twitter</lable>
-      　<small>例「@gsacademy」</small><br/>
-            <div class="ui input text_input">
+          <?php echo $err[9]; ?>
+    </div>
+
+    <div class="contents">
+    <label style="font-size: 16px;" for="tw">twitter</label>
+      　例「@gsacademy」<br/>
+
               <?php echo $doc13; ?>
-            </div>
-          <div><?php echo $err[10]; ?></div>
-  </div>
-  </div>
 
+          <?php echo $err[10]; ?>
+    </div>
 
-  <div class="contents_fix">
-
-  <div class="contents">
-      <label style="font-size: 14px;  padding-top: 20px;" for="pw">パスワード</label>
-          <small>4桁以上8桁以下の英数字</small>
-        <div class="ui input text_input">
-          <?php echo $doc8; ?>
-        </div>
-          <div><?php echo $err[7]; ?></div>
-  </div>
-
-  <div class="contents">
-      <label style="font-size: 14px;" for="cpw">パスワード確認入力</label></br>
-        <div class="ui input text_input">
-          <?php echo $doc9; ?>
-        </div>
-          <div><?php echo $err[8]; ?></div>
-  </div>
-  </div>
   </div>
 
 
-  <div class="contents">
-        <div class="ui input text_input">
+    <div class="contents_fix">
+      <div class="contents">
+        <label for="life">コンディション</label>
           <?php echo $doc14; ?>
-        </div>
-  </div>
+      </div>
+    </div>
+
+    <div class="contents_fix">
+      <div class="contents">
+        <label style="font-size: 14px;" for="pw">パスワード</label>
+            <small>4桁以上8桁以下の英数字</small><br/>
+            <?php echo $doc8; ?>
+            <?php echo $err[7]; ?>
+      </div>
+
+      <div class="contents">
+        <label style="font-size: 14px;" for="cpw">パスワード確認入力</label><br/>
+            <?php echo $doc9; ?>
+            <?php echo $err[8]; ?>
+      </div>
+    </div>
 
 
-  <div class="contents">
-    <input type="submit" name="edit" value="修正" class="ui primary button" style="margin-top: 20px;">
-    <?php echo $doc10; ?>
-  </div>
+    <div class="contents_fix">
+      <br><input type="submit" name="edit" value="修正" class="ui primary button" style="margin-top: 30px;">
+      <?php echo $doc10; ?>
+    </div>
+
 
   </form>
+
+
+</div>
+
 
 
     </div>
