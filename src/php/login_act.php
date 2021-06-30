@@ -32,6 +32,10 @@ if($status==false){
 $val = $stmt->fetch();         //1レコードだけ取得
 
 v($val);
+if($val['life']==1){
+      $_SESSION["emess"]='<div class="alert alert-danger" role="alert">この登録は退会済です<br></div>';
+      redirect("../../public/login.php");
+}
 
 
 if(password_verify($pw, $val['pw'])){
@@ -57,7 +61,7 @@ if(password_verify($pw, $val['pw'])){
       // redirect("main.php");
       redirect("../../public/main.php");
 
-      
+
     }else{
       //Login失敗時
       redirect("../../public/login.php");
