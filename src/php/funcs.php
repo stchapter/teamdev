@@ -45,7 +45,7 @@ function sschk(){
   if(!isset($_SESSION["chk_ssid"]) || $_SESSION["chk_ssid"]!=session_id()){
     exit("Login Error ログインしてないよ！");
   }else{
-    session_regenerate_id(true);//ページごとにセッションidを入れ替えます。同じidだとハッキングリスクがあるため。
+    // session_regenerate_id(true);//ページごとにセッションidを入れ替えます。同じidだとハッキングリスクがあるため。
     $_SESSION["chk_ssid"] = session_id();//新しいセッションに入れ替える
   }
 }
