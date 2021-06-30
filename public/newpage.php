@@ -59,6 +59,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
         <div class="header_logo">
           <img src="../img/topImg.png">
         </div>
+         <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
       </div>
     </div>
     <div class="header_button">

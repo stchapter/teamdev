@@ -1,3 +1,19 @@
+<?php
+include("../src/php/funcs.php");
+include("../src/php/db.php");
+include("../src/php/user_db_list.php");
+
+session_start();
+
+// 認証下
+sschk();
+
+
+$id = $_SESSION["id"];
+// DBから取得
+$val = bookmark_naiyou($id);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -19,6 +35,7 @@
       <div class="header_logo">
         <img src="../img/topImg.png">
       </div>
+       <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
   </div>
     </div>
     <div class="header_button">
@@ -39,21 +56,6 @@
   </header>
 <body>
 
-<?php
-include("../src/php/funcs.php");
-include("../src/php/db.php");
-include("../src/php/user_db_list.php");
-
-session_start();
-
-// 認証下
-sschk();
-
-
-$id = $_SESSION["id"];
-// DBから取得
-$val = bookmark_naiyou($id);
-?>
 
 
 
