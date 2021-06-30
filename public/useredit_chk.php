@@ -190,43 +190,6 @@ $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場
 
 
   ?>
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
-    <link rel="icon" href="../img/favicon.ico">
-     <!-- ↓　ここを変更する -->
-    <link rel="stylesheet" href="../src/css/main.css">
-    <title>GEEKBOOK</title>
-  </head>
-<body>
-  <header>
-    <div class="header_container">
-      <div class="header_logo_container">
-        <div class="header_logo">
-          <img src="../img/topImg.png">
-        </div>
-      </div>
-      <div class="header_button">
-        <div class="header_button_container">
-          <div class="blue ui buttons">
-            <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
-            <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
-            <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
-            <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
-            <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
-            <div class="header_button_R">
-              <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
 
   <div class="m_container">
 
@@ -235,7 +198,7 @@ $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場
     <form method="POST" action="useredit_chk.php" enctype="multipart/form-data">
 
     <div class="contents">
-      <label for="name">お名前</label>
+      <label for="name">お名前</label><br/>
           <?php echo $doc2; ?>
           <?php echo $err[1]; ?>
     </div>
@@ -328,14 +291,6 @@ $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場
 
   </div>
 
-
-    <div class="contents_fix">
-      <div class="contents">
-        <label for="life">コンディション</label>
-          <?php echo $doc14; ?>
-      </div>
-    </div>
-
     <div class="contents_fix">
       <div class="contents">
         <label style="font-size: 14px;" for="pw">パスワード</label>
@@ -352,8 +307,15 @@ $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場
     </div>
 
 
+
     <div class="contents_fix">
-      <br><input type="submit" name="edit" value="修正" class="ui primary button" style="margin-top: 30px;">
+      <div class="contents" style="font-size: 18px;">
+          <?php echo $doc14; ?>
+      </div>
+    </div>
+
+    <div class="contents_fix">
+      <br><input type="submit" name="edit" value="修正" class="ui large primary button" style="margin-top: 70px; margin-bottom: 150px;">
       <?php echo $doc10; ?>
     </div>
 
