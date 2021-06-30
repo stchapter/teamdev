@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-<script src="../src/js/jquery-2.1.3.min.js"></script>
-<script src="../src/js/PaginateMyTable.js"></script>
 
 </head>
 <body> -->
@@ -47,10 +45,10 @@ $val = post_naiyou($id);
     p.error{
       margin:0;
       color:red;
-     font-weight:bold;
+      font-weight:bold;
       margin-bottom:1em;
     }
-  </style>
+    </style>
 </head>
 <body>
   <header>
@@ -122,13 +120,15 @@ $val = post_naiyou($id);
     </div>
   </footer>
 
+  <script src="../src/js/jquery-2.1.3.min.js"></script>
+  <script src="../src/js/PaginateMyTable.js"></script>
 <script>
 $(".mytable").paginate({
-            rows: 10,          // Set number of rows per page. Default: 5
-            position: "bottom",   // Set position of pager. Default: "bottom"
-            jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
-            showIfLess: false  // Don't show pager if table has only one page. Default: true
-        });
+  rows: 10,          // Set number of rows per page. Default: 5
+  position: "bottom",   // Set position of pager. Default: "bottom"
+  jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
+  showIfLess: false  // Don't show pager if table has only one page. Default: true
+});
 </script>
 </body>
 </html>

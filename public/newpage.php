@@ -169,5 +169,5 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
 include("./instance/footer.php");
 ?>
 
-<script src="../src/JS/jquery-2.1.3.min.js"></script>
-<script src="../src/JS/jquery-main.js"></script>
+<script src="../src/js/jquery-2.1.3.min.js"></script>
+<script src="../src/js/jquery-main.js"></script>

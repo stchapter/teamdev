@@ -6,8 +6,8 @@ include("../src/php/funcs.php");
 include("../src/php/db.php");
 
 
-// $id = $_POST["id"];
-$id  = 2;          //test用にidを1に固定
+$id = $_POST["id"];
+// $id  = 2;          //test用にidを1に固定
 $pdo = db_conn();
 
 //２．データ登録SQL作成
@@ -199,7 +199,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     </div>
   </footer>
 
-    <script src="../src/JS/jquery-2.1.3.min.js"></script>
-    <script src="../src/JS/jquery-main.js"></script>
+    <script src="../src/js/jquery-2.1.3.min.js"></script>
+    <script src="../src/js/jquery-main.js"></script>
     </body>
 </html>
