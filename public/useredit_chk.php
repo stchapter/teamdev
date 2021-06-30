@@ -40,6 +40,7 @@
 
 <body>
 
+
 <?php
 
 include("../src/php/funcs.php");
@@ -144,13 +145,13 @@ if (count($cerr) === 0 ) {
 
 //DBへの登録処理を分ける。formのnameの値がtrueか調べて押されたボタンを判別
 if(isset($_POST['entry'])) {
-    // echo "はっか";
+  // echo "はっか";
 
-    $hash_pass = password_hash($pw, PASSWORD_DEFAULT);
+  $hash_pass = password_hash($pw, PASSWORD_DEFAULT);
 
-    $pdo = db_conn();
+  $pdo = db_conn();
 
-    $sql = "UPDATE user_table SET
+  $sql = "UPDATE user_table SET
         name = :name,
         camp = :camp,
         course = :course,
@@ -163,18 +164,18 @@ if(isset($_POST['entry'])) {
         pw = :pw
         WHERE id = $id";
 
-    $stmt = $pdo->prepare($sql);
+$stmt = $pdo->prepare($sql);
 
-    $stmt->bindValue(':name', $name, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':camp', $camp, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':course', $course, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':cls', $cls, PDO::PARAM_INT);      //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':student', $student, PDO::PARAM_INT);      //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':intro', $intro, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':fb', $fb, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':tw', $tw, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':life', $life, PDO::PARAM_INT);    //Integer（数値の場合 PDO::PARAM_INT)
-    $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':name', $name, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':camp', $camp, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':course', $course, PDO::PARAM_STR);      //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':cls', $cls, PDO::PARAM_INT);      //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':student', $student, PDO::PARAM_INT);      //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':intro', $intro, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':fb', $fb, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':tw', $tw, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':life', $life, PDO::PARAM_INT);    //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
 
     $status = $stmt->execute(); //実行
 
@@ -183,21 +184,55 @@ if(isset($_POST['entry'])) {
       sql_error($stmt);
     }else{
 
-    redirect("main.php");
+      redirect("main.php");
     }
-}
+  }
 
 
-?>
+  ?>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+    <link rel="icon" href="../img/favicon.ico">
+     <!-- ↓　ここを変更する -->
+    <link rel="stylesheet" href="../src/css/main.css">
+    <title>GEEKBOOK</title>
+  </head>
+<body>
+  <header>
+    <div class="header_container">
+      <div class="header_logo_container">
+        <div class="header_logo">
+          <img src="../img/topImg.png">
+        </div>
+      </div>
+      <div class="header_button">
+        <div class="header_button_container">
+          <div class="blue ui buttons">
+            <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+            <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+            <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+            <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+            <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+            <div class="header_button_R">
+              <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
+  <div class="m_container">
 
-<div class="m_container">
+    <h2 class="editor_title"><?php echo $doc0; ?></h2>
 
-  <h2 class="editor_title"><?php echo $doc0; ?></h2>
-
-
-  <form method="POST" action="useredit_chk.php" enctype="multipart/form-data">
-
+    <form method="POST" action="useredit_chk.php" enctype="multipart/form-data">
 
     <div class="contents">
       <label for="name">お名前</label>
@@ -205,43 +240,45 @@ if(isset($_POST['entry'])) {
           <?php echo $err[1]; ?>
     </div>
 
+
   <div class="contents_fix">
-    <div class="contents">
+  <div class="contents">
       <label for="camp">校舎</label>
-        <div class="select">
           <?php if (count($cerr) === 0 ):?>
             <div class="ui input text_input">
                   <?php echo $doc3; ?>
             </div>
           <?php else : ?>
-                        <select type="text" name="camp" class="" id="camp" value="<?php h($camp);?>">
+            <div class="select">
+              <select type="text" name="camp" class="" id="camp" value="<?php h($camp);?>">
                 <?php foreach($camp_list as $value): ?>
                   <option value="<?php echo h($value); ?>"><?php echo h($value); ?></option>
                 <?php endforeach; ?>
               </select>
+            </div>
           <?php endif; ?>
-        </div>
-    </div>
+  </div>
 
-    <div class="contents">
-      <label for="course">受講コース</label>
-        <div class="select">
+  <div class="contents">
+      <label for="course">受講コース</label></br>
           <?php if (count($cerr) === 0 ):?>
             <div class="ui input text_input">
                 <?php echo $doc4; ?>
             </div>
           <?php else : ?>
+            <div class="select">
               <select type="text" name="course" class="" id="course" value="'.h($course).'">
                 <?php foreach($course_list as $value): ?>
                   <option value="<?php echo h($value); ?>"><?php echo h($value); ?></option>
                 <?php endforeach; ?>
               </select>
+            </div>
           <?php endif; ?>
-        </div>
-    </div>
+  </div>
   </div>
 
   <div class="contents_fix">
+
     <div class="contents">
       <label for="class">学期</label><br/>
 
@@ -258,6 +295,7 @@ if(isset($_POST['entry'])) {
           <?php echo $err[5]; ?>
     </div>
   </div>
+
 
 
 
@@ -287,6 +325,7 @@ if(isset($_POST['entry'])) {
 
           <?php echo $err[10]; ?>
     </div>
+
   </div>
 
 
@@ -326,6 +365,17 @@ if(isset($_POST['entry'])) {
 
 
 
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
+    </div>
+  </footer>
 
 </body>
 </html>

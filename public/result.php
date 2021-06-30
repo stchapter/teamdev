@@ -12,6 +12,7 @@ $suid = $_SESSION["id"];
 
 // ダミーのログインユーザーIDセット
 // $_SESSION['id'] = 2;
+    
 
 // 投稿内容一覧(表示SQL)
 $pos = [];
@@ -52,6 +53,20 @@ if ($status) {
     $users = array_column($users, 'name', 'id');
 };
 // var_dump($users[$res['uid']]);
+
+
+// bookmark(表示SQL)
+$sql = "SELECT * FROM bookmark_table WHERE pid = :pid AND uid = :uid";
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':uid',$suid, PDO::PARAM_INT);
+$stmt->bindValue(':pid',$id, PDO::PARAM_INT);
+$status = $stmt->execute();
+// var_dump($suid);
+
+if ($status) {
+    $bms = $stmt->fetch(PDO::FETCH_ASSOC);
+};
+
 include("./instance/header.php");
 
 ?>
@@ -65,9 +80,10 @@ include("./instance/header.php");
             <!-- <p class="r_comment">言語</p> -->
             <div class="r_fix">
             <p class="r_comment">投稿者コメント</p>
-            <div class="r_comment"><?= $pos['star'] ?></div>
+            <div class="r_comment">
+                <?= $pos['star'] ?></div>
             </div>
-            <p class="r_text"><?= $post['cont'] ?></p>
+            <p class="r_text"><?= $pos['cont'] ?></p>
             <!-- <p class="r_text">jQueryオブジェクトに対してplay()やgetContext(“2d”)を使用する場合、jQueryオブジェクトは配列のような形で取得されるため、get(0)などを使用して、「一番最初の要素」を取得した上で命令をしないといけない</p> -->
 
             <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>"><?= $pos['url'] ?></a></p>
@@ -78,27 +94,23 @@ include("./instance/header.php");
         <div class="r_fix">
             <div class="ui large label"><?= $pos['lang'] ?></div>
             <div class="ui large label"><?= $pos['cost'] ?></div>
-        <!-- bookmark start -->
 
-        <!-- bookmark ボタン（グレーアウト） -->
+        <!-- bookmark start -->
+            <?php if($bms["pid"] == $id AND $bms["uid"] == $_SESSION["id"]): ?>
+            <form action="../src/php/delete_bm.php" method="POST" style="margin-left: auto;">
+                <button class="ui orange button" type="submit" value="send_bm"><i class="star icon"></i> BookMark済み</button>
+                <input type="hidden" name="id" value="<?=$pos["id"]?>">
+                <input type="hidden" name="uid" value="<?= $suid ?>">
+            </form>
+            <?php else:?>
             <form action="../src/php/insert_bm.php" method="POST" style="margin-left: auto;">
                 <button class="ui button" type="submit" value="send_bm"><i class="star icon"></i> BookMark</button>
                 <input type="hidden" name="id" value="<?=$pos["id"]?>">
                 <input type="hidden" name="uid" value="<?= $suid ?>">
             </form>
-        <!-- bookmark ボタン（グレーアウト） 終わり -->
-
-        <!-- bookmark ボタン（カラー） -->
-                <button class="ui orange button" type="submit" value="send_bm"><i class="star icon"></i> BookMark済み</button>
-                <!-- <input type="hidden" name="id" value="<?=$pos["id"]?>"> -->
-                <!-- <input type="hidden" name="uid" value="<?= $suid ?>"> -->
-        <!-- bookmark ボタン（カラー） 終わり -->
-
-        <!-- ↑　ブックマークしてたらカラー、ブックマークしてない状態（初期状態）ならグレーアウト -->
-        <!-- ↑　グレーアウト押したらブックマーク　/　カラー押したらブックマーク解除できたら良さそう（追加機能かな？） -->
-
-
+            <?php endif;?>
         <!-- bookmark end -->
+
             <?php if(isset($pos['fname'])): ?>
             <button class="ui button">
             <i class="cloud download alternate icon"></i>

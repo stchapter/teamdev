@@ -1,3 +1,4 @@
+
 <?php
 //session check//
 session_start();
@@ -52,21 +53,20 @@ $status = $stmt->execute();
 //３．データ表示
 $view2="";  //HTML文字作成を入れる変数
 if($status==false) {
-    //execute（SQL実行時にエラーがある場合）
-    $error = $stmt->errorInfo();
-    exit("SQLError:".$error[2]);
+  //execute（SQL実行時にエラーがある場合）
+  $error = $stmt->errorInfo();
+  exit("SQLError:".$error[2]);
 }else{
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
 }
 while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $view2 .='<form method="POST" action="kensaku.php">';
-    $view2 .='<input class="item" type="submit" style="border:none; outline: none;" name="kensaku" value='.h($res["lang"]).'>';
-    $view2 .='</form>';
+  $view2 .='<form method="POST" action="kensaku.php">';
+  $view2 .='<input class="item" type="submit" style="border:none; outline: none; cursor: pointer; margin-bottom: 8px; font-size: 16px;" name="kensaku" value='.h($res["lang"]).'>';
+  $view2 .='</form>';
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -76,17 +76,29 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
   <link rel="icon" href="../img/favicon.ico">
+  <script src="../src/js/jquery-2.1.3.min.js"></script>
+  <script src="../src/js/main.js"></script>
    <!-- ↓　ここを変更する -->
   <link rel="stylesheet" href="../src/css/main.css">
   <title>GEEKBOOK</title>
 </head>
+
 <body>
+
+  <div id="loader-bg">
+  <div id="loader">
+    <img src="../img/neko.gif">
+    <p style="color: #fff; font-size: 18px;">ちょっと待ってね ...</p>
+  </div>
+</div>
+
   <header>
   <div class="header_container">
     <div class="header_logo_container">
       <div class="header_logo">
         <img src="../img/topImg.png">
       </div>
+       <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
   </div>
     </div>
     <div class="header_button">
@@ -106,12 +118,15 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   </div>
   </header>
 
+
+
+<div id="wrap">
   <div class="main_container">
 
   <div class="main_left">
     <div class="ui vertical menu">
       <div class="item">
-        <div class="header"><div font style="vertical-align: inherit;">人気の言語</div></div>
+        <div class="header" style="font-size: 16px; margin-top: 8px;">人気の言語</div>
         <div class="menu">
           <?=$view2?>
         </div>
@@ -174,24 +189,25 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <!-- ↑　main_right -->
 
   </div>
+</div>
 
 
 
 
 
 
-  <script src="../src/js/jquery-2.1.3.min.js"></script>
+  <!-- <script src="../src/js/jquery-2.1.3.min.js"></script>
+  <script src="../src/JS/main.js"></script> -->
   <script src="../src/js/PaginateMyTable.js"></script>
-  <script src="paginathing.min.js"></script>
-
+  <!-- <script src="paginathing.min.js"></script> -->
 
 <script>
 $(".mytable").paginate({
-            rows: 5,          // Set number of rows per page. Default: 5
-            position: "bottom",   // Set position of pager. Default: "bottom"
-            jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
-            showIfLess: false  // Don't show pager if table has only one page. Default: true
-        });
+  rows: 5,          // Set number of rows per page. Default: 5
+  position: "bottom",   // Set position of pager. Default: "bottom"
+  jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
+  showIfLess: false  // Don't show pager if table has only one page. Default: true
+});
 </script>
 
 

@@ -128,7 +128,7 @@ include("./instance/header.php");
 ?>
 
 
-<h1 class="k_title"><i class="cat icon"></i> <?= $name ?>さん、こんにちは</h1>
+<h1 class="k_title"><i class="cat icon"></i> <?=$_SESSION["name"]?>さん、こんにちは！</h1>
 
 <div class="editor_container">
         <!-- ユーザー検索 始まり -->
@@ -245,8 +245,8 @@ include("./instance/header.php");
                         <?php if ($camp["life"] == 0): ?>
                             <td class="k_td"><span style="color: black;"><?= $camp['camp'] ?></span></td>
                         <?php else:?>
-                            <td class="k_td"><span style="color: #808080;"><?= $camp['camp'] ?></span></td>
-                        <?php endif;?>                        
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $camp['camp'] ?></span></td>
+                        <?php endif;?>
                         <td class="k_td"><a href="update_camp.php?id=<?= $camp['id'] ?>">edit</a></td>
                     </tr>
                 <!-- <?php endforeach; ?> -->
@@ -282,8 +282,8 @@ include("./instance/header.php");
                         <?php if ($course["life"] == 0): ?>
                             <td class="k_td"><span style="color: black;"><?= $course['course'] ?></span></td>
                         <?php else:?>
-                            <td class="k_td"><span style="color: #808080;"><?= $course['course'] ?></span></td>
-                        <?php endif;?>                        
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $course['course'] ?></span></td>
+                        <?php endif;?>
 
                         <!-- <td class="k_td"><?= $course['course'] ?></td> -->
                         <td class="k_td"><a href="update_course.php?id=<?= $course['id'] ?>">edit</a></td>

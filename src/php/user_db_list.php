@@ -88,6 +88,7 @@ function bookmark_naiyou($id){
   $stmt = $pdo->prepare("
     SELECT
     bookmark_table.id,
+    post_table.id as pid,
     post_table.lang,
     post_table.title,
     post_table.url,
@@ -103,7 +104,7 @@ function bookmark_naiyou($id){
     JOIN user_table
     ON (post_table.uid = user_table.id)
     AND bookmark_table.uid=$id
-    AND post_table.life = 0
+    AND post_table.post = '投稿'
     AND user_table.life = 0
     ORDER BY adddate DESC
   ");
@@ -143,7 +144,7 @@ function bookmark_del($id){
 
 
 // テーブル結合でpostデータを呼び出す
-function kennsaku_naiyou($where,$post_c){
+function kennsaku_naiyou($where){
   $pdo = db_conn();
   $stmt = $pdo->prepare("
     SELECT
@@ -163,6 +164,7 @@ function kennsaku_naiyou($where,$post_c){
     JOIN user_table
     ON (post_table.uid = user_table.id)
     AND user_table.life = 0
+    AND post_table.post = '投稿'
     $where
     ORDER BY pdate DESC
   ");

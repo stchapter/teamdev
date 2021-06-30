@@ -83,6 +83,7 @@ session_destroy();
 </form>
 
 <div>未登録の方は<a href="entry.php"> こちら</a></div>
+<div>パスワードを忘れた方は<a href="password_reset.php">こちら</a></div>
 </div>
 
 

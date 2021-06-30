@@ -35,17 +35,19 @@
   margin-left: 70%;
 }
 
+
 #loader-bg {
+  display: none;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0px;
   left: 0px;
-  background: #66ceff;
+  background: #fff;
   z-index: 1;
 }
-
 #loader {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -57,14 +59,6 @@
   z-index: 2;
 }
 
-#wrap{
-  display: none;
-}
-
-.block{
-  height: 1100px;
-  margin-bottom: 110px;
-}
 
 /* メイン */
 .main_container{
@@ -81,7 +75,7 @@
 
 .main_left{
   margin-top: 20px;
-  width: 200px;
+
 }
 
 .out_container{
@@ -93,22 +87,10 @@
   display: flex;
 }
 
-.m_out{
-  width: 750px;
-  display: flex;
-}
-
 .r_out > div{
   /* width: 200px; */
   margin-left: 8px;
   font-size: 16px;
-  color: rgb(150, 150, 150);
-}
-
-.m_out > div{
-  /* width: 200px; */
-  margin: 30px 0 0 8px;
-  font-size: 20px;
   color: rgb(150, 150, 150);
 }
 
@@ -118,7 +100,7 @@
 
 .new_container{
   width: 750px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .new_result{
@@ -138,14 +120,12 @@
 
 .new_p {
   margin-top: 10px;
-  padding-right: 10px;
 }
 
 .new_title{
-  display: block;
-  font-size: 20px;
   padding-right: 10px;
-  line-height: 1.3em;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .new_userview{
@@ -169,6 +149,7 @@
 .editor_container{
   width: 1020px;
   margin: 0 auto;
+  /* height: 600px; */
 }
 
 .editor_title{
@@ -320,7 +301,7 @@ textarea{
 }
 
 .hide_r{
-  height: 600px;
+  height: 510px;
   padding: 8px;
   /* display: none; */
   overflow: scroll;
@@ -361,45 +342,25 @@ table th:last-child{
   height: 600px;
 }
 
-tr:nth-child(odd) .k_td{
-  background: #fff;
-}
-
-tr:nth-child(even) .k_td{
-  background: #eee;
-}
-
-.k_tr_r:nth-child(odd) .k_td{
-  background: #fff;
-}
-
-.k_tr_r:nth-child(even) .k_td{
-  background: #eee;
-}
-
-.k_tr_r:nth-child(odd) .k_td_r{
-  background: #fff;
-}
-
-.k_tr_r:nth-child(even) .k_td_r{
-  background: #eee;
-}
-
-.k_tr_r:nth-child(odd) .k_td_i{
-  background: #fff;
-}
-
-.k_tr_r:nth-child(even) .k_td_i{
-  background: #eee;
-}
-
-/* .mytable {
-  /* height: 600px; */
-
-
 .bk_tr{
   display: table-row !important;
   height: 40px !important;
+}
+
+.k_tr:nth-child(odd) .bk_td{
+  background: #fff;
+}
+
+.k_tr:nth-child(odd) .bk_td_r{
+  background: #fff;
+}
+
+.k_tr:nth-child(even) .bk_td{
+  background: #eee;
+}
+
+.k_tr:nth-child(even) .bk_td_r{
+  background: #eee;
 }
 
 .bk_th{
@@ -415,6 +376,12 @@ tr:nth-child(even) .k_td{
   padding: 10px 0;
   text-align: center;
   height: 30px !important;
+}
+.bk_td{
+  padding: 10px 0;
+  text-align: center;
+  height: 30px !important;
+  background: #eee;
 }
 
 .bk_td_r{
@@ -555,8 +522,8 @@ tr:nth-child(even) .k_td{
 
 .m_container{
   width: 1020px;
-  margin: 40px auto;
-  padding-bottom: 50px;
+  margin: 20px auto;
+  height: 750px;
 }
 
 .m_text{
@@ -658,4 +625,25 @@ tr:nth-child(even) .k_td{
   margin: 0 auto;
   padding-top: 20px;
   color: white;
+}
+
+@media screen and (min-width:1500px) {
+.footer{
+  width: 100%;
+  margin-top: 120px;
+  text-align: center;
+  background-color: #2285d0;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer > p{
+  font-size: 12px;
+  letter-spacing: 1px;
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 20px;
+  color: white;
+}
 }

@@ -28,7 +28,9 @@ function mailvc($postname){
   $val = filter_input(INPUT_POST, $postname);
 
   if (!preg_match('/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/iD', $val)){
+
     return '<div class="danger" role="alert">【メールアドレスが正しくありません】</div>';
+
   }
 }
 
@@ -37,7 +39,9 @@ function passvc($postname){
   $val = filter_input(INPUT_POST, $postname);
 
   if (!preg_match("/^[a-zA-Z0-9]{4,8}+$/", $val)){
+
     return '<div class="danger" role="alert" style="margin-bottom: 30px;">【パスワードは4文字以上8文字以下の英数字でお願いします】</div>';
+
   }
 }
 
@@ -62,6 +66,7 @@ function inputconf($postname,$postname2){
 
   if ($val1 !== $val2){
     return '<div class="danger" role="alert">【入力に差異があります】</div>';
+
   }
 }
 

@@ -42,7 +42,7 @@ $cerr =[];
 
 // バリーテーション関数へ、エラーがあったらエラー内容を配列に戻す。formのnmaeを入れる。
 if ($kw !== $kw_c[0]) {
-  $err[0] = "認証コード違います";
+  $err[0] = "認証コードが違います";
 }
 
 $err[1] = valc(name,1,24);
@@ -72,7 +72,7 @@ if (count($cerr) === 0 ) {
     $doc7 =$mail.'<input type="hidden" class="" name="mail" value="'.h($mail).'">';
     $doc8 ='*******<input type="hidden"  class="" name="pw" value="'.h($pw).'">';
     $doc9 ='*******';
-    $doc10 ='<input type="submit" name="entry" value="登録" class="ui primary button">';
+    $doc10 ='<input type="submit" name="entry" value="登録" class="ui large primary button">';
 
 }else{
     $doc0 ="登録修正";
@@ -123,83 +123,96 @@ if(isset($_POST['entry'])) {
   <form method="POST" action="entry_chk.php">
 
     <div class="e_contents">
-      <lable class="label" for="kw">認証コード　</label>
-          <?php echo $doc1; ?>
-          <?php echo $err[0]; ?>
+      <label class="label" for="kw">認証コード　</label>
+          <?php echo $doc1; ?><br />
+          <div class="alert-danger"><?php echo $err[0]; ?></div>
     </div>
 
     <div class="e_contents">
-      <lable class="label" for="name">お名前　</label>
+      <label class="label" for="name">お名前　</label>
           <?php echo $doc2; ?>
           <?php echo $err[1]; ?>
+
     </div>
 
     <div class="e_contents">
-      <lable class="label" for="camp">校舎　</label>
+      <label class="label" for="camp">校舎　</label>
         <?php if (count($cerr) === 0 ):?>
               <?php echo $doc3; ?>
         <?php else : ?>
+        <div class="select">
                 <select type="text" name="camp" class="" id="camp" value="<?php h($camp);?>">
               <?php foreach($camp_list as $value): ?>
                 <option value="<?php echo h($value); ?>"><?php echo h($value); ?></option>
               <?php endforeach; ?>
             </select>
+            </div>
         <?php endif; ?>
     </div>
 
     <div class="e_contents">
-      <lable class="label" for="course">受講コース　</label>
+      <label class="label" for="course">受講コース　</label>
         <?php if (count($cerr) === 0 ):?>
               <?php echo $doc4; ?>
         <?php else : ?>
+        <div class="select">
             <select type="text" name="course" class="" id="course" value="'.h($course).'">
               <?php foreach($course_list as $value): ?>
                 <option value="<?php echo h($value); ?>"><?php echo h($value); ?></option>
               <?php endforeach; ?>
             </select>
+        </div>
         <?php endif; ?>
     </div>
 
     <div class="e_contents">
-      <lable class="label" for="class">学期　</label>
+      <label class="label" for="class">学期　</label>
           <?php echo $doc5; ?>
           <?php echo $err[4]; ?>
     </div>
 
+
+
     <div class="e_contents">
-      <lable class="label" for="student">学籍番号　</label>
+      <label class="label" for="student">学籍番号　</label>
           <?php echo $doc6; ?>
           <?php echo $err[5]; ?>
     </div>
 
+
     <div class="e_contents">
-      <lable class="label" for="mail">メールアドレス　</label>
+      <label class="label" for="mail">メールアドレス　</label>
           <?php echo $doc7; ?>
           <?php echo $err[9]; ?>
           <?php echo $err[6]; ?>
     </div>
 
     <div class="e_contents">
-      <lable class="label" for="pw">パスワード　</label>
+      <label class="label" for="pw">パスワード　</label>
           <?php echo $doc8; ?>
           <?php echo $err[7]; ?>
     </div>
 
     <div class="e_contents">
-      <lable class="label" for="cpw">パスワード確認　</label>
+      <label class="label" for="cpw">パスワード確認　</label>
           <?php echo $doc9; ?>
           <?php echo $err[8]; ?>
     </div>
+    <!-- </div> -->
 
             <input type="hidden" name="camp_list" class="" value="$camp_list">
             <input type="hidden" name="course_list" class="" value="$course_list">
             <input type="hidden" name="kw_c" class="" value="$kw_c">
 
-    <input type="submit" name="edit" value="修正" class="ui button" style="margin-top: 30px;">
+    <input type="submit" name="edit" value="修正" class="ui large button" style="margin-top: 30px;">
     <?php echo $doc10; ?>
   </form>
+    </div>
 
-
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 

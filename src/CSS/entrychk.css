@@ -3,10 +3,10 @@
   margin: 0;
   padding: 0;
 } */
-/* body{
+body{
   height: 0;
-  width: 0;
-} */
+  /* width: 0; */
+}
 
 .header_logo{
   width: 350px;
@@ -142,6 +142,7 @@ textarea{
 
 .e_container{
   width: 1020px;
+  /* height: 1080px; */
   margin: 30px auto;
 
 }
@@ -151,17 +152,11 @@ legend{
   margin: 50px;
 }
 
-.label{
-  font-size: 20px;
-  padding: 10px 30px 40px 10px;
-  border-bottom: 2px solid #2285d0;
-}
-
 .e_contents{
-  margin-bottom: 25px;
-  padding-bottom: 30px;
-  padding-top: 30px;
   width: 700px;
+  font-size: 20px;
+  padding: 30px 30px 20px 20px;
+  border-bottom: 2px dashed #2285d0;
 }
 
 .label_fix{
@@ -169,10 +164,56 @@ legend{
 }
 
 
+select {
+  /* 初期化 */
+  /* appearance: none; */
+  /* -moz-appearance: none; */
+  /* -webkit-appearance: none; */
+  /* background: none; */
+  border: none;
+  color: #333;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.select{
+  margin-left: 20px;
+  background: #fff;
+  height: 40px;
+  width: 300px;
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: 5px;
+  /* position: relative; */
+  z-index: 1;
+}
+
+.select::after {
+  position: absolute;
+  content: '';
+  width: 8px;
+  height: 8px;
+  /* right: 10px; */
+  /* top: 50%; */
+  /* transform: translateY(-50%) rotate(45deg); */
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  z-index: -1;
+}
+
+.alert-danger{
+  font-size: 18px;
+  padding-left: 16px;
+  padding-top: 8px;
+  color: rgb(182, 45, 45);
+}
+
+
 /* フッター */
 .footer{
   width: 100vw;
-  margin-top: 120px;
+  margin-top: 150px;
   text-align: center;
   background-color: #2285d0;
   height: 80px;
@@ -187,4 +228,13 @@ legend{
   margin: 0 auto;
   padding-top: 20px;
   color: white;
+}
+
+
+@media screen and (min-width:1500px) {
+  .e_container{
+    width: 1020px;
+    /* height: 1080px; */
+    margin: 250px auto;
+  }
 }
