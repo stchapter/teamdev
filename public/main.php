@@ -121,7 +121,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
       <div class="header_button_container">
         <div class="blue ui buttons">
           <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
-          <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+          <button class="ui button" onclick="location.href='useredit.php'">マイプロフィール</button>
           <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
           <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
           <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
