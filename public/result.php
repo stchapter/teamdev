@@ -99,7 +99,7 @@ include("./instance/header.php");
             <!-- <p class="r_text">jQueryオブジェクトに対してplay()やgetContext(“2d”)を使用する場合、jQueryオブジェクトは配列のような形で取得されるため、get(0)などを使用して、「一番最初の要素」を取得した上で命令をしないといけない</p> -->
 
             <!-- <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>"><?= $pos['url'] ?></a></p> -->
-            <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>"><?= $surl ?></a></p>
+            <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>" target="new"><?= $surl ?></a></p>
             <div class="r_fix">
             </div>
         </div>
@@ -202,7 +202,7 @@ include("./instance/header.php");
     </div>
   </div>
   <div class="extra content">
-    <button class="ui facebook button" onclick="location.href='https://www.facebook.com/<?= $user['fb'] ?>'">
+    <button class="ui facebook button" onclick="location.href='https://www.facebook.com/<?= $user['fb'] ?>'" >
         <i class="facebook icon"></i>
             Facebook
     </button>
