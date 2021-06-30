@@ -135,13 +135,6 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   </div>
   </header>
 
-<div id="loader-bg">
-  <div id="loader">
-    <div class="ui active primary inline loader"></div>
-    <p>Now Loading...</p>
-  </div>
-</div>
-
 <div id="wrap">
   <div class="main_container">
 
@@ -196,7 +189,5 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   </footer>
 
 
-    <script src="../src/JS/jquery-2.1.3.min.js"></script>
-    <script src="../src/JS/main.js"></script>
 </body>
 </html>
