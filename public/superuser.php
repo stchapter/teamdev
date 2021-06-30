@@ -334,8 +334,8 @@ include("./instance/header.php");
 
 
 
-    <script src="../src/JS/jquery-2.1.3.min.js"></script>
-    <script src="../src/JS/main.js"></script>
+    <script src="../src/js/jquery-2.1.3.min.js"></script>
+    <script src="../src/js/main.js"></script>
     <script src="../src/js/PaginateMyTable.js"></script>
 
 

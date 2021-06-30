@@ -189,6 +189,6 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   </footer>
 
 
-    <script src="../src/JS/jquery-2.1.3.min.js"></script>
+    <script src="../src/js/jquery-2.1.3.min.js"></script>
 </body>
 </html>
