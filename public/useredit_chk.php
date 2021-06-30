@@ -59,26 +59,26 @@ if (count($cerr) === 0 ) {
   //表示させつつPOSTデータはhiddenで送信できるように
   $doc0 ="ご確認";
   $doc1 ='*******<input type="hidden" class="" name="kw" value="'.h($kw).'">';
-  $doc2 ='<div class="select">'.$name.'</div><input type="hidden" class="" name="name" value="'.h($name).'">';
-  $doc3 =$camp.'<input type="hidden" class="" name="camp" value="'.h($camp).'">';
-  $doc4 =$course.'<input type="hidden" class="" name="course" value="'.h($course).'">';
-  $doc5 ='<div class="select">'.$cls.'</div><input type="hidden" class="" name="cls" value="'.h($cls).'">';
-  $doc6 ='<div class="select">'.$student.'</div><input type="hidden" class="" name="student" value="'.h($student).'">';
-  $doc7 ='<div class="select">'.$mail.'</div><input type="hidden" class="" name="mail" value="'.h($mail).'">';
-  $doc8 ='<div class="select">*******</div><input type="hidden"  class="" name="pw" value="'.h($pw).'">';
-  $doc9 ='<div class="select">*******</div>';
-  $doc10 ='<input type="submit" name="entry" value="登録" class="ui primary button" style="margin-top: 30px;">';
+  $doc2 ='<div class="select_1">'.$name.'</div><input type="hidden" class="" name="name" value="'.h($name).'">';
+  $doc3 =$camp.'<input type="hidden" class="select_1" name="camp" value="'.h($camp).'">';
+  $doc4 =$course.'<input type="hidden" class="select_1" name="course" value="'.h($course).'">';
+  $doc5 ='<div class="select_1">'.$cls.'</div><input type="hidden" class="" name="cls" value="'.h($cls).'">';
+  $doc6 ='<div class="select_1">'.$student.'</div><input type="hidden" class="" name="student" value="'.h($student).'">';
+  $doc7 ='<div class="select_1">'.$mail.'</div><input type="hidden" class="" name="mail" value="'.h($mail).'">';
+  $doc8 ='<div class="select_1">*******</div><input type="hidden"  class="" name="pw" value="'.h($pw).'">';
+  $doc9 ='<div class="select_1">*******</div>';
+  $doc10 ='<input type="submit" name="entry" value="登録" class="ui large primary button" style="margin-top: 150px; margin-bottom: 100px;">';
 
-  $doc11 ='<div class="select">'.$intro.'</div><input type="hidden" class="m_text" name="intro" value="'.h($intro).'">';
-  $doc12 ='<div class="select">'.$fb.'</div><input type="hidden" class="" name="fb" value="'.h($fb).'">';
-  $doc13 ='<div class="select">'.$tw.'</div><input type="hidden" class="" name="tw" value="'.h($tw).'">';
+  $doc11 ='<div class="select_1">'.$intro.'</div><input type="hidden" class="m_text" name="intro" value="'.h($intro).'">';
+  $doc12 ='<div class="select_1">'.$fb.'</div><input type="hidden" class="" name="fb" value="'.h($fb).'">';
+  $doc13 ='<div class="select_1">'.$tw.'</div><input type="hidden" class="" name="tw" value="'.h($tw).'">';
 
   if ($life==1) {
-    $lifevalue ='<div class="select">退会</div>';
+    $lifevalue ='<div class="select_1">退会</div>';
   }else {
-    $lifevalue ='<div class="select">利用中</div>';
+    $lifevalue ='<div class="select_1">利用中</div>';
   }
-  $doc14 =$lifevalue.'<input type="hidden" class="" name="life" value="'.h($life).'">';
+  $doc14 =$lifevalue.'<input type="hidden" class="select_1" name="life" value="'.h($life).'">';
 
   $doc15 ='<img src="../prof/'.$ipass.'">';
 
@@ -212,9 +212,9 @@ if($status==false){
 
   <div class="contents_fix">
   <div class="contents">
-      <label for="camp">校舎</label>
+      <label for="camp">校舎</label><br/>
           <?php if (count($cerr) === 0 ):?>
-            <div class="ui input text_input">
+            <div class="ui input text_input" style="  font-size: 24px; font-weight: bold; padding: 16px 0; height: 50px;">
                   <?php echo $doc3; ?>
             </div>
           <?php else : ?>
@@ -231,7 +231,7 @@ if($status==false){
   <div class="contents">
       <label for="course">受講コース</label></br>
           <?php if (count($cerr) === 0 ):?>
-            <div class="ui input text_input">
+            <div class="ui input text_input" style=" font-size: 24px; font-weight: bold; padding: 16px 0;">
                 <?php echo $doc4; ?>
             </div>
           <?php else : ?>
@@ -320,8 +320,8 @@ if($status==false){
       </div>
     </div>
 
-    <div class="contents_fix">
-      <br><input type="submit" name="edit" value="修正" class="ui large primary button" style="margin-top: 70px; margin-bottom: 150px;">
+    <div class="contents">
+      <br><input type="submit" name="edit" value="修正" class="ui large primary button" style="margin-top: 70px; margin-bottom: 160px;">
       <?php echo $doc10; ?>
     </div>
 

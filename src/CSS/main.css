@@ -224,7 +224,7 @@
 
 .contents{
   width: 450px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .contents > p{
@@ -369,6 +369,12 @@ textarea{
   padding: 8px;
   /* display: none; */
   overflow: scroll;
+}
+
+.select_1{
+  font-size: 24px;
+  font-weight: bold;
+  padding: 16px 0;
 }
 
 .hide::-webkit-scrollbar {
