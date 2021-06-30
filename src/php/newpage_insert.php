@@ -44,6 +44,6 @@ $fname    = $_FILES["upfile"]["name"];
     //////DBにデータを保存 end
     ------------------------------------------------ */
 
-    redirect('../../public/newpage.php');
+    redirect('../../public/mypage.php');
 
 ?>
