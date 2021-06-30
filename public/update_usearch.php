@@ -136,7 +136,7 @@ if ($_POST) {
         class="big ui blue button"
         type="submit"
          value="更新"
-        style="margin-top: 60px;">更新</button>
+        style="margin-top: 30px; !important">更新</button>
     </form>
         <!-- <div class="ke_logo">
             <img src="../img/stanp.png">
