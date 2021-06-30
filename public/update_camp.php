@@ -2,7 +2,7 @@
 
 // session ID
 // sschk();
-
+session_start();
 // データベースに接続
 include("../src/php/funcs.php");
 include("../src/php/db.php");
@@ -65,7 +65,7 @@ if ($_POST) {
       <div class="header_logo">
         <img src="../img/topImg.png">
       </div>
-      <p class="login_name"><?=$_SESSION["name"]?>　さん</p>
+         <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
     </div>
 
 

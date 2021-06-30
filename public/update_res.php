@@ -57,6 +57,7 @@ if ($_POST) {
             <div class="header_logo">
                 <img src="../img/topImg.png">
             </div>
+                     <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
         </div>
     </div>
     <div class="header_button">
