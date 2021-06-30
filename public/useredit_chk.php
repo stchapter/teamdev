@@ -14,28 +14,35 @@
 </head>
 <body>
   <header>
-  <div class="header_container">
-    <div class="header_logo_container">
-      <div class="header_logo">
-        <img src="../img/topImg.png">
+    <div class="header_container">
+      <div class="header_logo_container">
+        <div class="header_logo">
+          <img src="../img/topImg.png">
+        </div>
+        <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
       </div>
-  </div>
     </div>
     <div class="header_button">
       <div class="header_button_container">
         <div class="blue ui buttons">
-		<button class="ui button" onclick="location.href='main.php'">TOPへ</button>
-		<button class="ui button" onclick="location.href='useredit.php'">マイプロフィール</button>
-		<button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
-		<button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
-		<button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
-		<div class="header_button_R">
-		 <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
-	</div>
+          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
+          <button class="ui button" onclick="location.href='useredit.php'">登録修正</button>
+          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
+          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
+          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+          <?php if($_SESSION["kanri"]==1): ?>
+          <button class="ui button" onclick="location.href='superuser.php'">Admin</button>
+          <div class="header_button_Rev" style="margin-left:50%;">
+            <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+          </div>
+          <?php else: ?>
+            <div class="header_button_Rev" style="margin-left:70%;">
+              <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+            </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
-  </div>
   </header>
 
 <body>
@@ -109,16 +116,16 @@ if (count($cerr) === 0 ) {
     $doc7 ='<div class="select">'.$mail.'</div><input type="hidden" class="" name="mail" value="'.h($mail).'">';
     $doc8 ='<div class="select">*******</div><input type="hidden"  class="" name="pw" value="'.h($pw).'">';
     $doc9 ='<div class="select">*******</div>';
-    $doc10 ='<input type="submit" name="entry" value="登録" class="ui large primary button" style="margin-top: 30px;">';
+    $doc10 ='<input type="submit" name="entry" value="登録" class="ui primary button" style="margin-top: 30px;">';
 
     $doc11 ='<div class="select">'.$intro.'</div><input type="hidden" class="m_text" name="intro" value="'.h($intro).'">';
     $doc12 ='<div class="select">'.$fb.'</div><input type="hidden" class="" name="fb" value="'.h($fb).'">';
     $doc13 ='<div class="select">'.$tw.'</div><input type="hidden" class="" name="tw" value="'.h($tw).'">';
 
     if ($life==1) {
-      $lifevalue ='<div class="select">退会しました</div>';
+      $lifevalue ='<div class="select">退会</div>';
     }else {
-      $lifevalue ='<div class="">利用中です</div>';
+      $lifevalue ='<div class="select">利用中</div>';
     }
     $doc14 =$lifevalue.'<input type="hidden" class="" name="life" value="'.h($life).'">';
 
@@ -314,7 +321,7 @@ $stmt->bindValue(':pw', $hash_pass, PDO::PARAM_STR);    //Integer（数値の場
       </div>
     </div>
 
-    <!-- <div class="contents_fix"> -->
+    <div class="contents_fix">
       <br><input type="submit" name="edit" value="修正" class="ui large primary button" style="margin-top: 70px; margin-bottom: 150px;">
       <?php echo $doc10; ?>
     </div>
