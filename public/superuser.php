@@ -245,7 +245,7 @@ include("./instance/header.php");
                         <?php if ($camp["life"] == 0): ?>
                             <td class="k_td"><span style="color: black;"><?= $camp['camp'] ?></span></td>
                         <?php else:?>
-                            <td class="k_td"><span style="color: #808080;"><?= $camp['camp'] ?></span></td>
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $camp['camp'] ?></span></td>
                         <?php endif;?>
                         <td class="k_td"><a href="update_camp.php?id=<?= $camp['id'] ?>">edit</a></td>
                     </tr>
@@ -282,7 +282,7 @@ include("./instance/header.php");
                         <?php if ($course["life"] == 0): ?>
                             <td class="k_td"><span style="color: black;"><?= $course['course'] ?></span></td>
                         <?php else:?>
-                            <td class="k_td"><span style="color: #808080;"><?= $course['course'] ?></span></td>
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $course['course'] ?></span></td>
                         <?php endif;?>
 
                         <!-- <td class="k_td"><?= $course['course'] ?></td> -->
