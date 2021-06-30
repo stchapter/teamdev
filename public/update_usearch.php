@@ -87,7 +87,7 @@ if ($_POST) {
   </div>
   </header>
 
-<div class="ke_container">
+<div class="container">
 
     <div class="ke_card">
 
@@ -95,16 +95,12 @@ if ($_POST) {
 
         <div class="ke_contents_fix">
 
-            <p style="font-size: 40px;
-                      font-weight: bold;"><?= $user['name'] ?></p>
+            <p class="kp_u"><?= $user['name'] ?></p>
 
-            <p style="font-size: 40px;
-                      font-weight: bold;
-                      margin-left: 100px;"><?= $user['camp'] ?> 校</p>
+            <p class="kp_u_r"><?= $user['camp'] ?> 校</p>
         </div>
         <div class="ke_contents_fix1">
-            <p style="font-size: 50px;
-                      font-weight: bold;"><?= $user['course'] ?></p>
+            <p class="kp_u"><?= $user['course'] ?></p>
             <p style="font-size: 30px;
                       font-weight: bold;
                       margin-left: 60px;"><?= $user['cls'] ?> th</p>
