@@ -111,10 +111,10 @@ include("./instance/header.php");
             <?php endif;?>
         <!-- bookmark end -->
 
-            <?php if(isset($pos['fname'])): ?>
+            <?php if($pos['fpass']): ?>
             <button class="ui button">
             <i class="cloud download alternate icon"></i>
-                <a href="../upload/<?= $pos['fname'] ?>" download>添付ファイル</a>
+                <a href="../upload/<?= $pos['fpass'] ?>" download>添付ファイル</a>
             <?php endif; ?>
             </button>
         </div>
