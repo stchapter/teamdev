@@ -84,7 +84,7 @@ $val = bookmark_naiyou($id);
         <td  class="bk_td"><a href="<?php echo h($doc[url]); ?>" target="new">参照URL</a></td>
         <td  class="bk_td"><a href="../upload/<?php echo h($doc[fpass]); ?>" download><?php echo h($doc[fname]); ?></a></td>
         <td  class="bk_td"><?php echo h($doc[name]); ?></td>
-        <td  class="bk_td"><?php echo h($doc[addate]); ?></td>
+        <td  class="bk_td"><?php echo h($doc[adddate]); ?></td>
         <td  class="bk_td"><a href="../src/php/bookdel.php?id=<?php echo h($doc[id]); ?>">
           <i class="trash alternate icon"></i></a>
         </td>
