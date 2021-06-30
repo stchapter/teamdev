@@ -42,9 +42,13 @@ include("./instance/header.php");
   <div>
 
   <?php if ($val[ipass]): ?>
-          <img src="../prof/<?php echo h($val[ipass]); ?>">
+          <div class="prof_logo">
+            <img src="../prof/<?php echo h($val[ipass]); ?>">
+          </div>
   <?php else: ?>
-          <img src="../prof/noimg.png">
+          <div class="prof_logo">
+            <img src="../prof/noimg.png">
+          </div>
   <?php endif; ?>
 
   </div>

@@ -1,7 +1,4 @@
 /* ヘッダー */
-.header_logo{
-  width: 250px;
-}
 
 .header_logo_container{
   width: 1020px;
@@ -10,6 +7,9 @@
   display: flex;
 }
 
+.header_logo{
+  width: 250px;
+}
 .header_logo > img {
   width: 100%;
   object-fit: cover;
@@ -67,6 +67,51 @@
 }
 
 /* メイン */
+
+.prof_logo{
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.prof_logo1{
+  width: 100%;
+  height: 100%;
+  width: 290px;
+  height: 260px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.prof_logo::before{
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.prof_logo > img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  object-fit: cover;
+}
+
+.prof_logo1::before{
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.prof_logo1 > img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  object-fit: cover;
+}
+
 .main_container{
   width: 1020px;
   margin: 0 auto;

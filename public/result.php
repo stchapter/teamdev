@@ -12,7 +12,7 @@ $suid = $_SESSION["id"];
 
 // ダミーのログインユーザーIDセット
 // $_SESSION['id'] = 2;
-    
+
 
 // 投稿内容一覧(表示SQL)
 $pos = [];
@@ -176,7 +176,9 @@ include("./instance/header.php");
 
 <div class="ui card">
   <div class="image">
+  <div class="prof_logo1">
     <img src="../prof/<?=$user['ipass']?>" alt="profile img">
+  </div>
   </div>
   <div class="content">
     <a class="header"><p><?= $user['name'] ?></p></a>
