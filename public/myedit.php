@@ -1,12 +1,12 @@
 <?php
-//session check//
-// session_start();
-// sschk();
+// session check//
+session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
+sschk();
 
 
-$id = $_POST["id"];
+$id = $_GET["id"];
 // $id  = 2;          //test用にidを1に固定
 $pdo = db_conn();
 
