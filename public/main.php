@@ -135,7 +135,8 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   </div>
   </header>
 
-<div id="wrap">
+
+
   <div class="main_container">
 
   <div class="main_left">
@@ -180,7 +181,6 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <!-- ↑　main_right -->
 
   </div>
-</div>
 
     <footer>
     <div class="footer">
@@ -189,5 +189,6 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   </footer>
 
 
+    <script src="../src/JS/jquery-2.1.3.min.js"></script>
 </body>
 </html>
