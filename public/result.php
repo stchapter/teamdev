@@ -25,6 +25,18 @@ if ($status) {
     $pos = $stmt->fetch(PDO::FETCH_ASSOC);
 };
 
+function mb_strimlen($str, $start, $length, $trimmarker = '', $encoding = false) {
+   $encoding = $encoding ? $encoding : mb_internal_encoding();
+   $str = mb_substr($str, $start, mb_strlen($str), $encoding);
+   if (mb_strlen($str, $encoding) > $length) {
+       $markerlen = mb_strlen($trimmarker, $encoding);
+       $str = mb_substr($str, 0, $length - $markerlen, $encoding) . $trimmarker;
+   }
+   return $str;
+}
+
+$surl = mb_strimlen($pos['url'], 0, 40, "...", 'UTF-8');
+
 // 投稿者情報取得(表示SQL)
 $sql = "SELECT * FROM user_table WHERE id = :uid ";
 $stmt = $pdo->prepare($sql);
@@ -86,7 +98,8 @@ include("./instance/header.php");
             <p class="r_text"><?= $pos['cont'] ?></p>
             <!-- <p class="r_text">jQueryオブジェクトに対してplay()やgetContext(“2d”)を使用する場合、jQueryオブジェクトは配列のような形で取得されるため、get(0)などを使用して、「一番最初の要素」を取得した上で命令をしないといけない</p> -->
 
-            <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>"><?= $pos['url'] ?></a></p>
+            <!-- <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>"><?= $pos['url'] ?></a></p> -->
+            <p class="r_url">URL<i class="angle right icon"></i><a href="<?= $pos['url'] ?>"><?= $surl ?></a></p>
             <div class="r_fix">
             </div>
         </div>
