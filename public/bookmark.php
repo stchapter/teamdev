@@ -41,11 +41,11 @@ $val = bookmark_naiyou($id);
     <div class="header_button">
       <div class="header_button_container">
         <div class="blue ui buttons">
-          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
-          <button class="ui button" onclick="location.href='useredit.php'">マイプロフィール</button>
-          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
-          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
-          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
+          <button class="ui button" onclick="location.href='main.php'"><i class="home icon"></i>ホーム</button>
+          <button class="ui button" onclick="location.href='newpage.php'"><i class="envelope open icon"></i>新規投稿</button>
+          <button class="ui button" onclick="location.href='mypage.php'"><i class="clipboard list icon"></i>投稿リスト</button>
+          <button class="ui button" onclick="location.href='bookmark.php'"><i class="star icon"></i>ブックマーク</button>
+          <button class="ui button" onclick="location.href='useredit.php'"><i class="pen square icon"></i>プロフィール編集</button>
           <?php if($_SESSION["kanri"]==1): ?>
           <button class="ui button" onclick="location.href='superuser.php'">Admin</button>
           <div class="header_button_Rev" style="margin-left:50%;">
@@ -53,7 +53,7 @@ $val = bookmark_naiyou($id);
           </div>
           <?php else: ?>
             <div class="header_button_Rev" style="margin-left:70%;">
-              <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
+              <button class="ui icon button" onclick="location.href='../src/php/logout.php'">Logout</button>
             </div>
           <?php endif; ?>
         </div>
