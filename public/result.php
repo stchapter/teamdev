@@ -202,11 +202,11 @@ include("./instance/header.php");
     </div>
   </div>
   <div class="extra content">
-    <button class="ui facebook button" onclick="location.href='https://www.facebook.com/<?= $user['fb'] ?>'" >
+    <button class="ui facebook button" onclick="window.open('https://www.facebook.com/<?= $user['fb'] ?>','_blank')" >
         <i class="facebook icon"></i>
             Facebook
     </button>
-    <button class="ui twitter button" onclick="location.href='https://twitter.com/<?= $user['tw'] ?>'">
+    <button class="ui twitter button" onclick="window.open('https://twitter.com/<?= $user['tw'] ?>','_blank')">
         <i class="twitter icon"></i>
          Twitter
     </button>
