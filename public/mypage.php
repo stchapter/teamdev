@@ -119,13 +119,13 @@ $val = post_naiyou($id);
 </div>
 </div>
 </div>
-
+<!--
 
   <footer>
     <div class="footer">
       <p>copyright ©️ GEEKBOOK <br> For G's Academy</p>
     </div>
-  </footer>
+  </footer> -->
 
   <script src="../src/js/jquery-2.1.3.min.js"></script>
   <script src="../src/js/PaginateMyTable.js"></script>
