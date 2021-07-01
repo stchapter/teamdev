@@ -198,21 +198,40 @@ include("./instance/header.php");
                 <tbody>
                 <?php foreach ($user_lists as $u): ?>
                     <tr>
-                        <td class="k_td"><?= $u['name'] ?></td>
-                        <td class="k_td"><?= $u['camp'] ?></td>
-                        <td class="k_td"><?= $u['course'] ?></td>
-                        <td class="k_td"><?= $u['cls'] ?></td>
-                        <td class="k_td"><?= $u['student'] ?></td>
-                        <?php if ($u["kanri"] == 0): ?>
-                            <td class="k_td">一般</td>
-                        <?php else:?>
-                            <td class="k_td">管理者</td>
-                        <?php endif;?>
                         <?php if ($u["life"] == 0): ?>
-                            <td class="k_td">在籍</td>
+                            <td class="k_td"><span style="color: black;"><?= $u['name'] ?></span></td>
+                            <td class="k_td"><span style="color: black;"><?= $u['camp'] ?></span></td>
+                            <td class="k_td"><span style="color: black;"><?= $u['course'] ?></span></td>
+                            <td class="k_td"><span style="color: black;"><?= $u['cls'] ?></span></td>
+                            <td class="k_td"><span style="color: black;"><?= $u['student'] ?></span></td>
+                            <?php if ($u["kanri"] == 0): ?>
+                                <td class="k_td"><span style="color: black;">一般</span></td>
+                            <?php else:?>
+                                <td class="k_td"><span style="color: black;">管理者</span></td>
+                            <?php endif;?>
+                            <?php if ($u["life"] == 0): ?>
+                                <td class="k_td"><span style="color: black;">在籍</span></td>
+                            <?php else:?>
+                                <td class="k_td"><span style="color: black;">離籍</span></td>
+                            <?php endif;?>
                         <?php else:?>
-                            <td class="k_td">離籍</td>
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $u['name'] ?></span></td>
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $u['camp'] ?></span></td>
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $u['course'] ?></span></td>
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $u['cls'] ?></span></td>
+                            <td class="k_td"><span style="color: #CCCCCC;"><?= $u['student'] ?></span></td>
+                            <?php if ($u["kanri"] == 0): ?>
+                                <td class="k_td"><span style="color: #CCCCCC;">一般</span></td>
+                            <?php else:?>
+                                <td class="k_td"><span style="color: #CCCCCC;">管理者</span></td>
+                            <?php endif;?>
+                            <?php if ($u["life"] == 0): ?>
+                                <td class="k_td"><span style="color: #CCCCCC;">在籍</span></td>
+                            <?php else:?>
+                                <td class="k_td"><span style="color: #CCCCCC;">離籍</span></td>
+                            <?php endif;?>
                         <?php endif;?>
+                        
                         <td class="k_td"><a href="update_usearch.php?user_id=<?= $u['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
