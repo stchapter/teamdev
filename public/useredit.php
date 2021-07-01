@@ -167,15 +167,6 @@ include("./instance/header.php");
 
     <input type="submit" value="更新" class="ui primary button" style="margin-top: 30px;">
   </form>
-
-
-<?php if($val[kanri]=1): ?>
-
-    <div class="contents">
-    <a href="superuser.php">管理者画面へ</a>
-    </div>
-<?php endif;?>
-
 </div>
 
 <?php
