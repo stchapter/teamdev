@@ -76,9 +76,9 @@
       <br><br>
       <a href="login.php" class="ui blue button">ログイン画面に戻る</a>
     </div>
-  </body>
-</html>
 
 <?php
-  include("./instance/footer.php");
+include("./instance/footer.php");
 ?>
+</body>
+</html>

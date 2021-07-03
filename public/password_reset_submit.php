@@ -6,7 +6,7 @@
   $password = $_POST['password'];
   $confirm_password = $_POST['confirm_password'];
   $token = $_POST['token'];
-  
+
   //CSRF エラー
   if ($token != $_SESSION['token']) {
      $_SESSION['error_status'] = 2;
@@ -82,9 +82,9 @@
       </div>
       <a href="login.php" class="ui blue button">ログイン画面に戻る</a>
     </div>
-</body>
-</html>
 
 <?php
-  include("./instance/footer.php");
+include("./instance/footer.php");
 ?>
+</body>
+</html>

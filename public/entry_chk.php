@@ -219,3 +219,5 @@ if(isset($_POST['entry'])) {
 <?php
 include("./instance/footer.php");
 ?>
+</body>
+</html>
