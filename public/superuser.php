@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css" media="all">
+  <link rel="icon" href="../img/favicon.ico">
+  <link rel="stylesheet" href="../src/css/main.css">
+  <title>GEEKBOOK</title>
+</head>
+<body>
 <?php
 
 // session ID
@@ -231,7 +244,7 @@ include("./instance/header.php");
                                 <td class="k_td"><span style="color: #CCCCCC;">離籍</span></td>
                             <?php endif;?>
                         <?php endif;?>
-                        
+
                         <td class="k_td"><a href="update_usearch.php?user_id=<?= $u['id'] ?>">edit</a></td>
                     </tr>
                 <?php endforeach; ?>
@@ -343,21 +356,14 @@ include("./instance/header.php");
 
 </div>
 
-  <footer>
-    <div class="s_footer">
-      <p>copyright ©️ GEEKBOOK <br> For G’s Academy</p>
-    </div>
-  </footer>
 
-
-
-
+<?php
+include("./instance/footer.php");
+?>
 
     <script src="../src/js/jquery-2.1.3.min.js"></script>
     <script src="../src/js/main.js"></script>
     <script src="../src/js/PaginateMyTable.js"></script>
-
-
 <script>
 $(".mytable").paginate({
             rows: 10,          // Set number of rows per page. Default: 5
@@ -366,8 +372,5 @@ $(".mytable").paginate({
             showIfLess: false  // Don't show pager if table has only one page. Default: true
         });
 </script>
-
-
-
-    </body>
+</body>
 </html>

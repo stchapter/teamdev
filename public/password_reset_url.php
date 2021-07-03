@@ -67,7 +67,7 @@
     }
   </script>
 </head>
-<body>
+<>
   <div class="container_whole">
     <div div class="text_comp" style="width:300px;">パスワード変更</div>
     <div class="pw_info2">新しいパスワードを入力してください</div>
@@ -82,7 +82,7 @@
           <input  type="password" name="password" id="password" placeholder="パスワード" onkeyup="setMessage(this.value);">
           <i class="envelope icon"></i>
           <div id="pass_message"></div>
-        </div>  
+        </div>
         <div class="ui left icon input">
           <input type="password" name="confirm_password" id="confirm_password" placeholder="パスワード（確認）" onkeyup="setConfirmMessage(this.value);">
           <i class="envelope icon"></i>
@@ -96,9 +96,9 @@
       </div>
     </form>
   </div>
-</body>
-</html>
 
 <?php
-  include("./instance/footer.php");
+include("./instance/footer.php");
 ?>
+</body>
+</html>

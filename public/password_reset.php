@@ -55,7 +55,7 @@
         <div class="ui left icon input">
           <input class="mail_box" type="text" name="mail" placeholder="メールアドレス">
           <i class="envelope icon"></i>
-        </div>    
+        </div>
         <div class="pw_reset_container">
           <input type="hidden" name="token" value="<?php echo htmlspecialchars($_SESSION['token']  , ENT_QUOTES, "UTF-8") ?>">
           <input type="submit" class="ui big blue button" value="登録">
@@ -63,10 +63,9 @@
         </div>
         </form>
       </div>
-  </body>
-</html>
 
 <?php
-  include("./instance/footer.php");
+include("./instance/footer.php");
 ?>
-
+</body>
+</html>

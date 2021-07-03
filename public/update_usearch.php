@@ -57,38 +57,7 @@ if ($_POST) {
 </head>
 <body>
 
-
-  <header>
-    <div class="header_container">
-      <div class="header_logo_container">
-        <div class="header_logo">
-          <img src="../img/topImg.png">
-        </div>
-        <p class="login_name">こんにちは！　<?=$_SESSION["name"]?>　さん</p>
-      </div>
-    </div>
-    <div class="header_button">
-      <div class="header_button_container">
-        <div class="blue ui buttons">
-          <button class="ui button" onclick="location.href='main.php'">TOPへ</button>
-          <button class="ui button" onclick="location.href='useredit.php'">マイプロフィール</button>
-          <button class="ui button" onclick="location.href='newpage.php'">新規投稿</button>
-          <button class="ui button" onclick="location.href='mypage.php'">自分の投稿</button>
-          <button class="ui button" onclick="location.href='bookmark.php'">Bookmark</button>
-          <?php if($_SESSION["kanri"]==1): ?>
-          <button class="ui button" onclick="location.href='superuser.php'">Admin</button>
-          <div class="header_button_Rev" style="margin-left:50%;">
-            <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
-          </div>
-          <?php else: ?>
-            <div class="header_button_Rev" style="margin-left:70%;">
-              <button class="ui button" onclick="location.href='../src/php/logout.php'">Logout</button>
-            </div>
-          <?php endif; ?>
-        </div>
-      </div>
-    </div>
-  </header>
+<?php include("./instance/header.php"); ?>
 
 <div class="container">
 
@@ -151,3 +120,5 @@ if ($_POST) {
 <?php
 include("./instance/footer.php");
 ?>
+</body>
+</html>
