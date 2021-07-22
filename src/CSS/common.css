@@ -1,0 +1,218 @@
+/* -------------------------------------------------------------------- */
+/* 全体共通 */
+/* -------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+/* ページ全体の基本デザイン */
+body {
+  /*文字・文章*/
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", 游ゴシック,
+    "Yu Gothic", 游ゴシック体, YuGothic, "Meiryo UI", メイリオ, Meiryo,
+    sans-serif;
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.9;
+  /*幅*/
+  margin: 0 0 0;
+  min-width: 960px;
+  background:#F2F5F7;
+}
+
+/*表示領域 .inner*/
+.inner {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+​/* -------------------------------------------------------------------- */
+/* タグ共通設定 */
+/* -------------------------------------------------------------------- */
+
+a,
+p,
+i,
+div,
+label,
+input
+{
+  color: #434445;
+}
+
+/* リスト */
+ul {
+  padding-left: 20px;
+  margin: 0;
+}
+ol {
+  padding-left: 20px;
+}
+dd {
+  margin-left: 0;
+}
+/* テーブル */
+table {
+  border-collapse: collapse;
+}
+/* リンク */
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+/*画像*/
+img {
+  max-width: 100%;
+}
+
+/* -------------------------------------------------------------------- */
+/* header */
+/* -------------------------------------------------------------------- */
+
+header {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+header .display{
+  box-shadow: 1px 1px 1px #DDDDDD;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .header {
+  height: 77px;
+  color: #383333;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+header .header_title{
+  display: flex;
+  align-items:center;
+  color: #000000;
+  text-decoration: none;
+}
+header .img_head{
+  width: 300px;
+  height: 30px;
+  margin: 0 auto;
+  border: none;
+  cursor: pointer;
+  cursor: hand;
+}
+header .prof_img{
+  border-radius: 50%;
+  margin-left: 10px;
+  cursor: pointer;
+  cursor: hand;
+}
+header .lefttag{
+  display: flex;
+  align-items: center;
+  margin-left: 265px;
+  font-size: 12px;
+  align-items: flex-end;
+}
+/* リンク */
+header .top_menu{
+  color: #00478f;
+  font-size: 12px;
+  margin-left: 50px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+}
+header .top_menu::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 1px;
+  background-color: #00478f;
+  transition: .3s;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+header .top_menu:hover::after {
+  width: 100%;
+}
+header .drop_icon{
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+header .drop_flex{
+  display: flex;
+  text-align: left;
+  padding-left: 10px;
+}
+header.boot_atag{
+  text-decoration: none;
+}
+.session_name{
+  margin-bottom: 15px;
+}
+
+/* -------------------------------------------------------------------- */
+/* footer */
+/* -------------------------------------------------------------------- */
+
+.footer_main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  border-top: 2px solid #F2F2F2;
+  background: #fff;
+}
+footer .footer_title{
+  display: flex;
+  align-items:center;
+  color: #000000;
+}
+.footer_masse{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  margin-left: 210px;
+}
+.team_logo{
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
+}
+.footer_lite{
+  letter-spacing: 1pt;
+  line-height: 15pt;
+  color: #00478f;
+  font-weight: bold;
+  font-size: 10px;
+  margin-bottom: 0;
+}
+footer .img_head{
+  width: 300px;
+  height: 30px;
+  margin: 0 auto;
+}
+footer img{
+  border: none;
+}
+.left_head:hover{
+  color: #00478f;
+  background: #00478F;
+}
+
+/* -------------------------------------------------- */
+
+/* -------------------------------------------------- */
