@@ -9,7 +9,7 @@ session_start();
 // sschk();
 
 $id = intval($_SESSION["id"]);
-var_dump($id);
+// var_dump($id);
 // 本番環境ではコメントアウト
 // $id = intval(24);
 
@@ -23,12 +23,12 @@ $sql = "
   FROM
     user_table
   WHERE
-    id=24
+    id=:id
   ;"
 ;
-echo $sql;
+// echo $sql;
 $stmt = $pdo->prepare($sql);
-// $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 // クエリ実行
 $status = $stmt->execute();
 
@@ -41,16 +41,11 @@ if ($status == false) {
 $userProf = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-// DBより各種パラメーターを取得
-// $camp_list=camp_list();
-// $course_list=course_list();
-
 
 // 連想配列からJSON形式に変換
 $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
-v($userProf);
-// フロント側へ渡す
-// echo $userProf;
+// v($userProf);
+
 ?>
 
 <!DOCTYPE html>
