@@ -8,9 +8,10 @@ session_start();
 // 認証下
 // sschk();
 
-// $id = intval($_SESSION["id"]);
+$id = intval($_SESSION["id"]);
+var_dump($id);
 // 本番環境ではコメントアウト
-$id = intval(1);
+// $id = intval(24);
 
 // DB接続
 $pdo = db_conn();
@@ -22,10 +23,12 @@ $sql = "
   FROM
     user_table
   WHERE
-    id=:id
-";
+    id=24
+  ;"
+;
+echo $sql;
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+// $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 // クエリ実行
 $status = $stmt->execute();
 
@@ -45,6 +48,7 @@ $userProf = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // 連想配列からJSON形式に変換
 $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
+v($userProf);
 // フロント側へ渡す
 // echo $userProf;
 ?>
@@ -83,7 +87,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
   // include('../instance/header.php');
   ?>
   <main>
-    <form action="../app/my_profile_act.php" method="POST" enctype="multipart/form-data">
+    <form action="../src/php/update_my_profile.php" method="POST" enctype="multipart/form-data">
       <div class="profile_flex">
         <!-- プロフィールの１番目のブロック（アイコンとメッセージ） -->
         <div class="left">
