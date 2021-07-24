@@ -7,6 +7,7 @@ include("db.php");
 $id = intval($_SESSION["id"]);
 // v($id);
 // v($_POST);
+// v($_FILES["profile_image"]);
 
 //POSTデータからプロフィール情報を取得
 $camp               = isset($_POST['admission_area'])         ? $_POST['admission_area']  : NULL;
@@ -45,21 +46,21 @@ $free_space                      = isset($_POST['free_space'])          ? $_POST
 
 // // アイコン画像のアップロード処理
 // // 1.file名の取得
-// if ($_FILES["profile_image"]["name"] != "" || null) {
-//   $profile_image = $_FILES["profile_image"]["name"];
-//   // 2.画像データをiconフォルダーにアップロード
-//   $upload = "../icon/";
-//   if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $upload . $profile_image)) {
-//     // アップロードが正常に完了したらセッションのimgを変更する
-//     $_SESSION["icon"]      = $profile_image;
-//   } else {
-//     // アップロードが失敗したらエラーを吐き出す
-//     echo $_FILES["profile_image"]["error"];
-//   }
-// } else {
-//   $profile_image = $_POST["default_icon"];
-// }
-
+if ($_FILES["profile_image"]["name"] != "" || null) {
+  $profile_image = $_FILES["profile_image"]["name"];
+  // 2.画像データをprofフォルダーにアップロード
+  $upload = "../../prof/";
+  if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $upload . $profile_image)) {
+    // アップロードが正常に完了したらセッションのimgを変更する
+    $_SESSION["icon"]      = $profile_image;
+  } else {
+    // アップロードが失敗したらエラーを吐き出す
+    echo $_FILES["profile_image"]["error"];
+  }
+} else {
+  $profile_image = $_POST["default_icon"];
+}
+// var_dump($profile_image);
 //DB接続します
 $pdo = db_conn();
 
@@ -71,6 +72,7 @@ $sql = "
     camp = :camp,
     course = :course,
     cls = :cls,
+    ipass = :profile_image,
     graduation_date = :graduation_date,
     birthday = :birthday,
     comment = :comment,
@@ -100,6 +102,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':camp', $camp, PDO::PARAM_STR);
 $stmt->bindValue(':course', $course, PDO::PARAM_STR);
 $stmt->bindValue(':cls', $cls, PDO::PARAM_INT);
+$stmt->bindValue(':profile_image', $profile_image, PDO::PARAM_STR);
 $stmt->bindValue(':graduation_date', $graduation_date, PDO::PARAM_STR);
 $stmt->bindValue(':birthday', $birthday, PDO::PARAM_STR);
 $stmt->bindValue(':comment', $comment, PDO::PARAM_STR);
@@ -131,5 +134,5 @@ if ($status == false) {
   sql_error($stmt);
 }
 
-//マイプロフィールページがジャンプ
+//マイプロフィールページにリダイレクト
 redirect("../../public/my_profile.php");
