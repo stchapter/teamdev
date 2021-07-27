@@ -8,7 +8,8 @@ session_start();
 // 認証下
 // sschk();
 
-$id = intval($_SESSION["id"]);
+// $id = intval($_SESSION["id"]);
+$id = 1;
 // var_dump($id);
 // 本番環境ではコメントアウト
 // $id = intval(24);
@@ -24,8 +25,7 @@ $sql = "
     user_table
   WHERE
     id=:id
-  ;"
-;
+  ;";
 // echo $sql;
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -123,7 +123,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
             </div>
             <div class="icon_area">
               <div class="icon_area_img">
-                <img src="" alt="" id="img">
+                <img src="../prof/noimg.png" alt="" id="img">
                 <label for="profile_image" class="icon_select">
                   <input type="file" id="profile_image" name="profile_image" accept=".jpg,.png,.jpeg" style="display: none">
                   <i class="las la-camera" id="icon_select"></i>
@@ -607,7 +607,6 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
     const json1_str = JSON.stringify(json1);
     const user_info = JSON.parse(json1_str);
     console.log(user_info);
-    console.log(user_info.name)
     // デフォルトの画像をセット
     default_icon.value = user_info.profile_image;
     // selectに該当のvalueがあった際の関数
@@ -646,10 +645,11 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
     select_tab(select_month, graduate[1]);
     // 5.iconのsrcを選択
     const icon_img = document.getElementById('img');
-    const file_name = "../icon/"
+    const file_name = "../prof/"
     // アイコン画像をDBに登録していれば
-    if (user_info.profile_image != undefined) {
-      icon_img.src = file_name + user_info.profile_image;
+    console.log(user_info.ipass)
+    if (user_info.ipass != undefined) {
+      icon_img.src = file_name + user_info.ipass;
     }
     //6.birthのvalueを選択
     const select_birth_year = document.getElementById('birth_year');
@@ -720,8 +720,6 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
     // 19.nameのtextContent挿入
     const name = document.getElementById('name');
     name.textContent = user_info.name;
-
-
   </script>
 
 </body>
