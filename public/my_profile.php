@@ -8,8 +8,8 @@ session_start();
 // 認証下
 // sschk();
 
-// $id = intval($_SESSION["id"]);
-$id = 1;
+$id = intval($_SESSION["id"]);
+// $id = 1;
 // var_dump($id);
 // 本番環境ではコメントアウト
 // $id = intval(24);
