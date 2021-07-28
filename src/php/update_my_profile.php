@@ -6,7 +6,7 @@ include("db.php");
 
 $id = intval($_SESSION["id"]);
 // v($id);
-v($_POST);
+// v($_POST);
 // v($_FILES["profile_image"]);
 
 //POSTデータからプロフィール情報を取得
