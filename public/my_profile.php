@@ -39,7 +39,7 @@ if ($status == false) {
 
 //user_tableからidで絞り込んだ1レコードを連想配列形式で取得
 $userProf = $stmt->fetch(PDO::FETCH_ASSOC);
-// v($userProf);
+v($userProf);
 
 
 

@@ -6,7 +6,7 @@ include("db.php");
 
 $id = intval($_SESSION["id"]);
 // v($id);
-// v($_POST);
+v($_POST);
 // v($_FILES["profile_image"]);
 
 //POSTデータからプロフィール情報を取得
@@ -32,6 +32,14 @@ $residence      = isset($_POST['residence'])      ? $_POST['residence']     : NU
 $birthplace     = isset($_POST['birthplace'])     ? $_POST['birthplace']    : NULL;
 $annual_income  = isset($_POST['annual_income'])  ? $_POST['annual_income'] : NULL;
 $personality    = isset($_POST['personality'])    ? $_POST['personality']   : NULL;
+
+// sns関連
+$fb                          = isset($_POST['fb'])              ? $_POST['fb']             : NULL;
+$tw                          = isset($_POST['twitter'])         ? $_POST['twitter']        : NULL;
+$insta                       = isset($_POST['Instagram'])       ? $_POST['Instagram']      : NULL;
+$linkedin                     = isset($_POST['LinkedIn'])        ? $_POST['LinkedIn']       : NULL;
+
+
 $why_gs                          = isset($_POST['why_gs'])              ? $_POST['why_gs']             : NULL;
 $portfolio_title1                = isset($_POST['portfolio_title1'])    ? $_POST['portfolio_title1']   : NULL;
 $portfolio_url1                  = isset($_POST['portfolio_url1'])      ? $_POST['portfolio_url1']     : NULL;
@@ -81,6 +89,11 @@ $sql = "
     birthplace = :birthplace,
     annual_income = :annual_income,
     personality = :personality,
+    fb = :fb,
+    tw = :tw,
+    insta = :insta,
+    linkedin = :linkedin,
+
     why_gs = :why_gs,
     portfolio_title1 = :portfolio_title1,
     portfolio_url1 = :portfolio_url1,
@@ -111,6 +124,10 @@ $stmt->bindValue(':residence', $residence, PDO::PARAM_INT);
 $stmt->bindValue(':birthplace', $birthplace, PDO::PARAM_INT);
 $stmt->bindValue(':annual_income', $annual_income, PDO::PARAM_INT);
 $stmt->bindValue(':personality', $personality, PDO::PARAM_INT);
+$stmt->bindValue(':fb', $fb, PDO::PARAM_STR);
+$stmt->bindValue(':tw', $tw, PDO::PARAM_STR);
+$stmt->bindValue(':insta', $insta, PDO::PARAM_STR);
+$stmt->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
 $stmt->bindValue(':why_gs', $why_gs, PDO::PARAM_STR);
 $stmt->bindValue(':portfolio_title1', $portfolio_title1, PDO::PARAM_STR);
 $stmt->bindValue(':portfolio_url1', $portfolio_url1, PDO::PARAM_STR);
