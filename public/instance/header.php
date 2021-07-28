@@ -14,7 +14,7 @@
           <button class="ui button" onclick="location.href='newpage.php'"><i class="envelope open icon"></i>新規投稿</button>
           <button class="ui button" onclick="location.href='mypage.php'"><i class="clipboard list icon"></i>投稿リスト</button>
           <button class="ui button" onclick="location.href='bookmark.php'"><i class="star icon"></i>ブックマーク</button>
-          <button class="ui button" onclick="location.href='useredit.php'"><i class="pen square icon"></i>プロフィール編集</button>
+          <button class="ui button" onclick="location.href='my_profile.php'"><i class="pen square icon"></i>プロフィール編集</button>
           <?php if($_SESSION["kanri"]==1): ?>
           <button class="ui button" onclick="location.href='superuser.php'">Admin</button>
           <div class="header_button_Rev" style="margin-left:20%;">

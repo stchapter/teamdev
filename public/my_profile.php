@@ -79,9 +79,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
 </head>
 
 <body>
-  <?php
-  // include('../instance/header.php');
-  ?>
+  <?php include("./instance/header.php"); ?>
   <main>
     <form action="../src/php/update_my_profile.php" method="POST" enctype="multipart/form-data">
       <div class="profile_flex">
@@ -250,6 +248,34 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
               </tr>
             </table>
           </div>
+          <div class="other sns_link">
+            <table>
+              <tr class="cell2">
+                <td><i class="lab la-twitter"></i>Twitter</td>
+              </tr>
+              <tr class="cell2">
+                <td><input type="text" name="twitter" placeholder="TwitterのリンクURL"></td>
+              </tr>
+              <tr class="cell2">
+                <td><i class="lab la-facebook"></i>Facebook</td>
+              </tr>
+              <tr class="cell2">
+                <td><input type="text" name="fb" placeholder="FacebookのリンクURL"></td>
+              </tr>
+              <tr class="cell2">
+                <td><i class="lab la-instagram"></i>Instagram</td>
+              </tr>
+              <tr class="cell2">
+                <td><input type="text" name="Instagram" placeholder="InstagramのリンクURL"></td>
+              </tr>
+              <tr class="cell2">
+                <td><i class="lab la-linkedin-in"></i>LinkedIn</td>
+              </tr>
+              <tr class="cell2">
+                <td><input type="text" name="LinkedIn" placeholder="LinkedInのリンクURL"></td>
+              </tr>
+            </table>
+          </div>
         </div>
         <div class="right">
           <!-- なぜG'sに入学したか? -->
@@ -312,7 +338,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
     </form>
   </main>
   <?php
-  //include('../instance/footer.php');
+  include("./instance/footer.php");
   ?>
   <script>
     // ----------------------------------------------
