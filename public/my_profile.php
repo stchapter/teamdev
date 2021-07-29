@@ -183,20 +183,6 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
                 </td>
               </tr>
               <tr class="cell">
-                <td class="cell_left">年収</td>
-                <td class="cell_right">
-                  <select name="annual_income" id="annual_income">
-                    <option value="1"></option>
-                    <option value="3">200万 - 399万</option>
-                    <option value="4">400万 - 599万</option>
-                    <option value="5">600万 - 799万</option>
-                    <option value="6">800万 - 999万</option>
-                    <option value="7">1000万 - </option>
-                    <option value="2">その他</option>
-                  </select>
-                </td>
-              </tr>
-              <tr class="cell">
                 <td class="cell_left">性格</td>
                 <td class="cell_right">
                   <select name="personality" id="personality">
@@ -254,7 +240,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
                 <td><i class="lab la-twitter"></i>Twitter</td>
               </tr>
               <tr class="cell2">
-                <td><input type="text" name="twitter" placeholder="TwitterのリンクURL"></td>
+                <td><input type="text" name="tw" placeholder="TwitterのリンクURL"></td>
               </tr>
               <tr class="cell2">
                 <td><i class="lab la-facebook"></i>Facebook</td>
@@ -266,13 +252,13 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
                 <td><i class="lab la-instagram"></i>Instagram</td>
               </tr>
               <tr class="cell2">
-                <td><input type="text" name="Instagram" placeholder="InstagramのリンクURL"></td>
+                <td><input type="text" name="insta" placeholder="InstagramのリンクURL"></td>
               </tr>
               <tr class="cell2">
                 <td><i class="lab la-linkedin-in"></i>LinkedIn</td>
               </tr>
               <tr class="cell2">
-                <td><input type="text" name="LinkedIn" placeholder="LinkedInのリンクURL"></td>
+                <td><input type="text" name="linkedin" placeholder=" LinkedInのリンクURL"></td>
               </tr>
             </table>
           </div>
@@ -295,27 +281,18 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
               <input type="text" name="portfolio_title1" class="portfolio_area_title" id="portfolio_area_title1" placeholder="Title">
               <input type="text" name="portfolio_url1" class="portfolio_area_url" id="portfolio_area_url1" placeholder="URL">
               <textarea name="portfolio_comment1" cols="50" rows="4" class="portfolio_area_description" id="portfolio_area_description1" placeholder="説明"></textarea>
-              <!-- <div class="portfolio_area_content" id="portfolio_area_content1">
-            <img src="" alt="" class="portfolio_area_content_img" id="portfolio_area_content_img1">
-          </div> -->
             </div>
             <!-- ２つ目のポートフォリオ -->
             <div class="portfolio_area" id="portfolio_area_2">
               <input type="text" name="portfolio_title2" class="portfolio_area_title" id="portfolio_area_title2" placeholder="Title">
               <input type="text" name="portfolio_url2" class="portfolio_area_url" id="portfolio_area_url2" placeholder="URL">
               <textarea name="portfolio_comment2" cols="50" rows="4" class="portfolio_area_description" id="portfolio_area_description2" placeholder="説明"></textarea>
-              <!-- <div class="portfolio_area_content" id="portfolio_area_content2">
-            <img src="" alt="" class="portfolio_area_content_img" id="portfolio_area_content_img2">
-          </div> -->
             </div>
             <!-- ３つ目のポートフォリオ -->
             <div class="portfolio_area" id="portfolio_area_3">
               <input type="text" name="portfolio_title3" class="portfolio_area_title" id="portfolio_area_title3" placeholder="Title">
               <input type="text" name="portfolio_url3" class="portfolio_area_url" id="portfolio_area_url3" placeholder="URL">
               <textarea name="portfolio_comment3" cols="50" rows="4" class="portfolio_area_description" id="portfolio_area_description3" placeholder="説明"></textarea>
-              <!-- <div class="portfolio_area_content" id="portfolio_area_content3">
-            <img src="" alt="" class="portfolio_area_content_img" id="portfolio_area_content_img3">
-          </div> -->
             </div>
           </div>
           <!-- プロフィールの３番目のブロック -->
@@ -698,9 +675,9 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
     //10.birthplaceのvalueを選択
     const birthplace = document.getElementById('from');
     select_tab(birthplace, user_info.birthplace);
-    //11.annual_incomeのvalueを選択
-    const annual_income = document.getElementById('annual_income');
-    select_tab(annual_income, user_info.annual_income);
+    // //11.annual_incomeのvalueを選択
+    // const annual_income = document.getElementById('annual_income');
+    // select_tab(annual_income, user_info.annual_income);
     //12.english_skillのvalueを選択
     const english_skill = document.getElementById('english_skill');
     select_tab(english_skill, user_info.english_skill);
@@ -729,23 +706,23 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
     input_insert(portfolio_area_title3, user_info.portfolio_title3);
     input_insert(portfolio_area_url3, user_info.portfolio_url3);
     input_insert(portfolio_area_description3, user_info.portfolio_comment3);
-
-    // //15.available_skillのvalueを選択
-    // const available_skill = document.getElementById('available_skill');
-    // input_insert(available_skill, user_info.available_skill);
-    // //16.historyのvalueを選択
-    // const history = document.getElementById('history');
-    // input_insert(history, user_info.history);
-    // // 17.qualificationのvalueを選択
-    // // const qualification = document.getElementById('qualification');
-    // input_insert(qualification, user_info.qualification);
-
     // 18.free_spaceのvalueを選択
     const free_space = document.getElementById('free_space');
     input_insert(free_space, user_info.free_space);
     // 19.nameのtextContent挿入
     const name = document.getElementById('name');
     name.textContent = user_info.name;
+    //20.SNSのリンク
+    const sns = {
+      tw: document.querySelector('input[name="tw"]'),
+      fb: document.querySelector('input[name="fb"]'),
+      insta: document.querySelector('input[name="insta"]'),
+      linkedin: document.querySelector('input[name="linkedin"]')
+    }
+    input_insert(sns.tw, user_info.tw)
+    input_insert(sns.fb, user_info.fb)
+    input_insert(sns.insta, user_info.insta)
+    input_insert(sns.linkedin, user_info.linkedin)
   </script>
 
 </body>
