@@ -144,7 +144,37 @@ function bookmark_del($id){
 
 
 // テーブル結合でpostデータを呼び出す
-function kennsaku_naiyou($where){
+function kennsaku_kensu($where){
+  $pdo = db_conn();
+  $stmt = $pdo->prepare("
+    SELECT
+    post_table.id,
+    post_table.lang,
+    post_table.title,
+    post_table.cont,
+    post_table.uid,
+    user_table.name
+    FROM post_table
+    JOIN user_table
+    ON (post_table.uid = user_table.id)
+    AND user_table.life = 0
+    AND post_table.post = '投稿'
+    $where
+  ");
+  $status = $stmt->execute();
+
+  if($status==false) {
+    $error = $stmt->errorInfo();
+    exit("SQLエラー:".$error[2]);
+  }else{
+    $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+}
+
+
+// テーブル結合でpostデータを呼び出す
+function kennsaku_naiyo($where,$scount,$row_count){
   $pdo = db_conn();
   $stmt = $pdo->prepare("
     SELECT
@@ -167,9 +197,9 @@ function kennsaku_naiyou($where){
     AND post_table.post = '投稿'
     $where
     ORDER BY pdate DESC
+    LIMIT $scount, $row_count
   ");
   $status = $stmt->execute();
-
 
   if($status==false) {
     $error = $stmt->errorInfo();
@@ -179,16 +209,5 @@ function kennsaku_naiyou($where){
     return $result;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

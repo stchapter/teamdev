@@ -3,16 +3,44 @@
 session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
+include_once("../src/php/paging.php");
 require_once("../src/php/OpenGraph.php");
 sschk();
 
 /*-------------------------------------------------------------------------
-DB接続（一覧作成用）
+ページネーションの設定
+-------------------------------------------------------------------------*/
+//ページネーションの１ページあたりの件数を指定
+$row_count = 10;
+
+//現在のページを取得 存在しない場合は1とする
+$page = 1;
+if(isset($_GET['page']) && is_numeric($_GET['page'])){
+    $page = (int)$_GET['page'];
+}
+if(!$page){
+    $page = 1;
+}
+
+/*-------------------------------------------------------------------------
+DB接続（全件数確認用）
 -------------------------------------------------------------------------*/
 //1.  DB接続します
 $pdo = db_conn();
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM post_table");
+$status = $stmt->execute();
+$count = $stmt -> fetch(PDO::FETCH_COLUMN);
 
-//２．データ登録SQL作成
+
+/*-------------------------------------------------------------------------
+DB接続（一覧作成用）
+-------------------------------------------------------------------------*/
+//1．DB接続します(省略)
+
+//2．データ登録SQL作成
+// Limitの開始地点
+$scount= ($page - 1)* $row_count;
+
 $stmt = $pdo->prepare("SELECT
   post_table.id,
   post_table.title,
@@ -27,8 +55,8 @@ $stmt = $pdo->prepare("SELECT
   ON post_table.uid = user_table.id
   WHERE post_table.life = 0
   AND post_table.post = '投稿'
-  ORDER BY pdate
-  DESC LIMIT 5");
+  ORDER BY pdate DESC
+  LIMIT $scount, $row_count");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -90,6 +118,11 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view2 .='</form>';
 }
 
+//Pagingクラスを生成し、ページングのHTMLを生成
+$pageing = new Paging();
+$pageing -> count = $row_count;
+$pageing -> setHtml($count);
+
 ?>
 
 <!DOCTYPE html>
@@ -142,11 +175,13 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     <div class="new_container">
 
       <?=$view?>
+      <?php echo $pageing -> html ?>
 
     </div>
 
   <!-- ↑　new_container -->
 
+    
 
   </div>
   <!-- ↑　main_right -->

@@ -5,9 +5,9 @@ session_start();
 include("../src/php/funcs.php");
 include("../src/php/db.php");
 include("../src/php/user_db_list.php");
+include_once('../src/php/paging.php');
 require_once("../src/php/OpenGraph.php");
 sschk();
-
 
 $name=$_SESSION["name"];
 
@@ -19,11 +19,33 @@ if(isset($_POST["kensaku"])){
   $kensaku = "HTML";
 }
 
+/*-------------------------------------------------------------------------
+ページネーションの初期設定
+-------------------------------------------------------------------------*/
+//ページネーションの1ページ毎の件数を設定
+$row_count = 10;
+
+//現在のページを取得 存在しない場合は1とする
+$page = 1;
+if(isset($_GET['page']) && is_numeric($_GET['page'])){
+    $page = (int)$_GET['page'];
+}if(!$page){
+    $page = 1;
+}
+
+// Limitの開始地点
+$scount= ($page - 1)* $row_count;
+
+//$pageの数から件数分を表示するSQLクエリを生成 配列で取得
+// var_dump((($page - 1)* $row_count));
+// $stmt = $pdo ->prepare("SELECT * FROM pref ORDER BY id LIMIT $scount, $row_count");
+// $status = $stmt -> execute();
+// $aryPref = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 /*-------------------------------------------------------------------------
 DB接続（検索結果一覧作成用）
 -------------------------------------------------------------------------*/
-//0. 事前準備：検索文言をSQL用に組み立てる
+//事前準備：検索文言をSQL用に組み立てる
 if(strlen($kensaku)>0){
   $kensaku2 = str_replace("　", " ", $kensaku);  //全角スペースを半角スペースに置換
   $array = explode(" ",$kensaku2);               //検索文言を半角スペースで分割
@@ -36,17 +58,21 @@ if(strlen($kensaku)>0){
   }
 }
 
-$post_c="投稿";
-$res2 = kennsaku_naiyou($where,$post_c);
+$kensu = kennsaku_kensu($where);
+$naiyo = kennsaku_naiyo($where,$scount,$row_count);
+
+//Pagingクラスを生成し、ページングのHTMLを生成
+$pageing = new Paging();
+$pageing -> count = $row_count;
+$pageing -> setHtml(count($kensu));
 
 
 /*-------------------------------------------------------------------------
 DB接続（人気の言語一覧作成用）
 -------------------------------------------------------------------------*/
 //1.  DB接続(省略)
-//２．データ登録SQL作成
 $pdo = db_conn();
-
+//２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT lang, count(*) AS COUNT FROM post_table GROUP BY lang ORDER BY COUNT DESC LIMIT 3");
 $status = $stmt->execute();
 
@@ -78,7 +104,7 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
   <link rel="icon" href="../img/favicon.ico">
   <script src="../src/js/jquery-2.1.3.min.js"></script>
   <script src="../src/js/main.js"></script>
-   <!-- ↓　ここを変更する -->
+  <!-- ↓　ここを変更する -->
   <link rel="stylesheet" href="../src/css/main.css">
   <title>GEEKBOOK</title>
 </head>
@@ -91,103 +117,73 @@ while( $res = $stmt->fetch(PDO::FETCH_ASSOC)){
     </div>
   </div>
 
-<?php include("./instance/header.php"); ?>
+  <?php include("./instance/header.php"); ?>
 
 
 
 
-<div id="wrap">
-  <div class="main_container">
+  <div id="wrap">
+    <div class="main_container">
 
-  <div class="main_left">
-    <div class="ui vertical menu">
-      <div class="item">
-        <div class="header" style="font-size: 16px; margin-top: 8px;">人気の言語</div>
-        <div class="menu">
-          <?=$view2?>
-        </div>
-      </div>
-  </div>
-
-  </div>
-
-  <div class="main_right">
-
-    <div class="out_container">
-      <div class="r_out">
-        <div>「<?=$kensaku?>」の検索結果:</div>
-
-        <div><?php echo count($res2);?>件</div>
-      </div>
-    </div>
-  <!-- ↑ search_container -->
-
-
-
-<div class="block">
-      <table class="mytable">
-
-  <?php foreach($res2 as $value): ?>
-    <tr>
-      <td>
-        <div class="new_result">
-          <div class="result_container">
-            <a href="result.php?id=<?php echo h($value[id]); ?>" class="new_title"><?php echo h($value[title]); ?></a>
-            <p class="new_p">コメント：<?php echo h($value[cont]); ?></p>
-            <div class="new_userview">
-              <p class="new_person">投稿者：<?php echo h($value[name]); ?>さん</p>
-              <p class="new_review">評価：<?php echo h($value[star]); ?></p>
-            </div>
-            <div class="new_postdate">
-              <p class="new_date">投稿日：<?php echo $value[pdate]; ?></p>
-            </div>
-            <div class="ui_label"><font style="vertical-align: inherit;"><php echo h($value[lang]); ?></font></div>
-          </div>
-            <div class="result_container">
-            <?php $graph = OpenGraph::fetch(h($value[url])); ?>
-            <?php if(isset($graph->image) == true): ?>
-            <img class="ogp_img" src="<?php  echo $graph->image; ?>">
-            <?php else: ?>
-            <img src="" >
-            <?php endif; ?>
+      <div class="main_left">
+        <div class="ui vertical menu">
+          <div class="item">
+            <div class="header" style="font-size: 16px; margin-top: 8px;">人気の言語</div>
+            <div class="menu"><?=$view2?></div>
           </div>
         </div>
-      </td>
-    </tr>
-  <?php endforeach; ?>
+      </div>
 
-        </table>
+      <div class="main_right">
 
-</div>
-  <!-- ↑　new_container -->
-
-  </div>
-  <!-- ↑　main_right -->
-
-  </div>
-</div>
+        <div class="out_container">
+          <div class="r_out">
+            <div>「<?=$kensaku?>」の検索結果:</div>
+            <div><?php echo count($kensu);?>件</div>
+          </div>
+        </div>
+        <!-- ↑ search_container -->
 
 
+        <div class="block">
+          <table class="mytable">
+            <?php foreach($naiyo as $value): ?>
+            <tr>
+              <td>
+                <div class="new_result">
 
+                  <div class="result_container">
+                    <a href="result.php?id=<?php echo h($value[id]); ?>" class="new_title"><?php echo h($value[title]); ?></a>
+                    <p class="new_p">コメント：<?php echo h($value[cont]); ?></p>
+                    <div class="new_userview">
+                      <p class="new_person">投稿者：<?php echo h($value[name]); ?>さん</p>
+                      <p class="new_review">評価：<?php echo h($value[star]); ?></p>
+                    </div>
+                    <div class="new_postdate">
+                      <p class="new_date">投稿日：<?php echo $value[pdate]; ?></p>
+                    </div>
+                    <div class="ui_label"><font style="vertical-align: inherit;"><php echo h($value[lang]); ?></font></div>
+                  </div>
 
+                  <div class="result_container">
+                    <?php $graph = OpenGraph::fetch(h($value[url])); ?>
+                    <?php if(isset($graph->image) == true): ?>
+                    <img class="ogp_img" src="<?php  echo $graph->image; ?>">
+                    <?php else: ?>
+                    <img src="" >
+                    <?php endif; ?>
+                  </div>
 
-<?php
-include("./instance/footer.php");
-?>
-
-  <!-- <script src="../src/js/jquery-2.1.3.min.js"></script>
-  <script src="../src/JS/main.js"></script> -->
-  <script src="../src/js/PaginateMyTable.js"></script>
-  <!-- <script src="paginathing.min.js"></script> -->
-
-<script>
-$(".mytable").paginate({
-  rows: 5,          // Set number of rows per page. Default: 5
-  position: "bottom",   // Set position of pager. Default: "bottom"
-  jqueryui: true,    // Allows using jQueryUI theme for pager buttons. Default: false
-  showIfLess: false  // Don't show pager if table has only one page. Default: true
-});
-</script>
-
+                </div>
+              </td>
+            </tr>
+            <?php endforeach; ?>
+          </table>
+          <?php echo $pageing -> html ?>
+        </div><!-- ↑ block -->
+      </div><!-- ↑ main_right -->
+    </div><!-- ↑ main_container -->
+  </div><!-- ↑ wrap -->
+  <?php include("./instance/footer.php");?>
 </body>
 </html>
