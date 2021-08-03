@@ -5,7 +5,7 @@
 main{
   width: 1000px;
   margin: 0 auto;
-  margin-top: 120px;
+  margin-top: 50px;
 }
 
 
@@ -17,7 +17,7 @@ textarea{
   outline: none;
   resize: vertical;
   margin: 0;
-  padding: 10px;
+  padding: 20px;
 }
 
 select {
@@ -48,6 +48,37 @@ textarea{
   box-shadow: 0 0 1px 0 rgba(0,0,0,.12), 0 1px 2px 0 rgba(0,0,0,.22);
 	transition: .3s;
   height: 100%;
+  padding: 12px;
+}
+
+::placeholder {
+  color: #c8c8c8;
+}
+/* 旧Edge対応 */
+::-ms-input-placeholder {
+  color: #c8c8c8;
+}
+/* IE対応 */
+:-ms-input-placeholder {
+  color: #c8c8c8;
+}
+
+
+/* -------------------------------------------------- */
+/* テキストエリアのデザイン*/
+/* -------------------------------------------------- */
+.input_label {
+  border: none;
+  outline: none;
+  resize: none;
+  background:#fff;
+  padding: 0px;
+  border-radius: 1%;
+  box-shadow: 0 0 1px 0 rgba(0,0,0,.12), 0 1px 2px 0 rgba(0,0,0,.22);
+	transition: .3s;
+  height: 100%;
+  padding: 3px;
+  margin: 0 8px;
 }
 
 /* -------------------------------------------------- */
@@ -427,4 +458,9 @@ footer .footer_masse{
 }
 #birth_day{
   width: 18%;
+}
+.editor_title{
+  font-weight: normal;
+  font-size: 20px;
+  padding: 30px;
 }

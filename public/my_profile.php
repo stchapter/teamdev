@@ -81,6 +81,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
 <body>
   <?php include("./instance/header.php"); ?>
   <main>
+    <h2 class="editor_title">プロフィール編集</h2>
     <form action="../src/php/update_my_profile.php" method="POST" enctype="multipart/form-data">
       <div class="profile_flex">
         <!-- プロフィールの１番目のブロック（アイコンとメッセージ） -->
@@ -105,7 +106,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
                 <option value="BIZ">BIZ</option>
                 <option value="その他">その他</option>
               </select>
-              <input type="text" pattern="\d{2}" maxlength="2" name="admission_period" id="admission_period" required>
+                <input type="text" pattern="\d{2}" maxlength="2" name="admission_period" id="admission_period" class="input_label" required>
               <p>期</p>
             </div>
             <div class="graduate">
@@ -237,28 +238,44 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
           <div class="other sns_link">
             <table>
               <tr class="cell2">
-                <td><i class="lab la-twitter"></i>Twitter</td>
+                <td><i class="lab la-twitter"></i> : Twitter</td>
               </tr>
               <tr class="cell2">
-                <td><input type="text" name="tw" placeholder="TwitterのリンクURL"></td>
+                <td>
+                  <div class="ui input text_input">
+                    <input type="text" name="tw" placeholder="TwitterのリンクURL">
+                  </div>
+                </td>
               </tr>
               <tr class="cell2">
-                <td><i class="lab la-facebook"></i>Facebook</td>
+                <td><i class="lab la-facebook"></i> : Facebook</td>
               </tr>
               <tr class="cell2">
-                <td><input type="text" name="fb" placeholder="FacebookのリンクURL"></td>
+                <td>
+                  <div class="ui input text_input">
+                    <input type="text" name="fb" placeholder="FacebookのリンクURL">
+                  </div>
+                </td>
               </tr>
               <tr class="cell2">
-                <td><i class="lab la-instagram"></i>Instagram</td>
+                <td><i class="lab la-instagram"></i> : Instagram</td>
               </tr>
               <tr class="cell2">
-                <td><input type="text" name="insta" placeholder="InstagramのリンクURL"></td>
+                <td>
+                  <div class="ui input text_input">
+                    <input type="text" name="insta" placeholder="InstagramのリンクURL">
+                  </div>
+                </td>
               </tr>
               <tr class="cell2">
-                <td><i class="lab la-linkedin-in"></i>LinkedIn</td>
+                <td><i class="lab la-linkedin-in"></i> : LinkedIn</td>
               </tr>
               <tr class="cell2">
-                <td><input type="text" name="linkedin" placeholder=" LinkedInのリンクURL"></td>
+                <td>
+                  <div class="ui input text_input">
+                    <input type="text" name="linkedin" placeholder=" LinkedInのリンクURL">
+                  </div>
+                </td>
               </tr>
             </table>
           </div>
@@ -277,21 +294,42 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
           <div class="second">
             <p class="portfolio_title">ポートフォリオ・作品（３点まで）</p>
             <!-- １つ目のポートフォリオ -->
+            <div class="ui pointing below label">
+              　1つめ　
+            </div>
             <div class="portfolio_area" id="portfolio_area_1">
-              <input type="text" name="portfolio_title1" class="portfolio_area_title" id="portfolio_area_title1" placeholder="Title">
-              <input type="text" name="portfolio_url1" class="portfolio_area_url" id="portfolio_area_url1" placeholder="URL">
+              <div class="ui fluid input">
+                <input type="text" name="portfolio_title1" class="portfolio_area_title" id="portfolio_area_title1" placeholder="Title">
+              </div>
+              <div class="ui fluid input">
+                <input type="text" name="portfolio_url1" class="portfolio_area_url" id="portfolio_area_url1" placeholder="URL">
+              </div>
               <textarea name="portfolio_comment1" cols="50" rows="4" class="portfolio_area_description" id="portfolio_area_description1" placeholder="説明"></textarea>
             </div>
             <!-- ２つ目のポートフォリオ -->
+            <div class="ui pointing below label">
+              　２つめ　
+            </div>
             <div class="portfolio_area" id="portfolio_area_2">
-              <input type="text" name="portfolio_title2" class="portfolio_area_title" id="portfolio_area_title2" placeholder="Title">
-              <input type="text" name="portfolio_url2" class="portfolio_area_url" id="portfolio_area_url2" placeholder="URL">
+              <div class="ui fluid input">
+                <input type="text" name="portfolio_title2" class="portfolio_area_title" id="portfolio_area_title2" placeholder="Title">
+              </div>
+              <div class="ui fluid input">
+                <input type="text" name="portfolio_url2" class="portfolio_area_url" id="portfolio_area_url2" placeholder="URL">
+              </div>
               <textarea name="portfolio_comment2" cols="50" rows="4" class="portfolio_area_description" id="portfolio_area_description2" placeholder="説明"></textarea>
             </div>
             <!-- ３つ目のポートフォリオ -->
+            <div class="ui pointing below label">
+              　３つめ　
+            </div>
             <div class="portfolio_area" id="portfolio_area_3">
-              <input type="text" name="portfolio_title3" class="portfolio_area_title" id="portfolio_area_title3" placeholder="Title">
-              <input type="text" name="portfolio_url3" class="portfolio_area_url" id="portfolio_area_url3" placeholder="URL">
+              <div class="ui fluid input">
+                <input type="text" name="portfolio_title3" class="portfolio_area_title" id="portfolio_area_title3" placeholder="Title">
+              </div>
+              <div class="ui fluid input">
+                <input type="text" name="portfolio_url3" class="portfolio_area_url" id="portfolio_area_url3" placeholder="URL">
+              </div>
               <textarea name="portfolio_comment3" cols="50" rows="4" class="portfolio_area_description" id="portfolio_area_description3" placeholder="説明"></textarea>
             </div>
           </div>
@@ -310,7 +348,10 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
         </div>
       </div>
       <div class="button_area">
-        <input type="submit" class="edit_button" value="保存する">
+        <button class="ui primary button" type="submit">
+          保存する
+        </button>
+        <!-- <input type="submit" class="edit_button" value="保存する"> -->
       </div>
     </form>
   </main>
