@@ -52,6 +52,9 @@ $portfolio_url3                  = isset($_POST['portfolio_url3'])      ? $_POST
 $portfolio_comment3              = isset($_POST['portfolio_comment3'])  ? $_POST['portfolio_comment3'] : NULL;
 $free_space                      = isset($_POST['free_space'])          ? $_POST['free_space']         : NULL;
 
+//DB接続します
+$pdo = db_conn();
+
 // // アイコン画像のアップロード処理
 // // 1.file名の取得
 if ($_FILES["profile_image"]["name"] !== "" || null) {
@@ -61,16 +64,34 @@ if ($_FILES["profile_image"]["name"] !== "" || null) {
   if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $upload . $profile_image)) {
     // アップロードが正常に完了したらセッションのimgを変更する
     $_SESSION["icon"]      = $profile_image;
+
+    //プロフィールイメージ変更のためのクエリを作成
+    $sql = "
+      UPDATE
+        user_table
+      SET
+        ipass = :profile_image
+      WHERE id = :id
+      ;"
+    ;
+    // クエリのセット
+    $stmt = $pdo->prepare($sql);
+    // 値のセット
+    $stmt->bindValue(':profile_image', $profile_image, PDO::PARAM_STR);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    // クエリの実行
+    $status = $stmt->execute();
+
+    if ($status == false) {
+      sql_error($stmt1);
+    }
+
   } else {
     // アップロードが失敗したらエラーを吐き出す
     echo $_FILES["profile_image"]["error"];
   }
-} else {
-  $profile_image = 'noimg.png';
 }
-// var_dump($profile_image);
-//DB接続します
-$pdo = db_conn();
 
 //usersテーブルへのマイプロフィールを更新のためのクエリを作成
 $sql = "
@@ -80,7 +101,6 @@ $sql = "
     camp = :camp,
     course = :course,
     cls = :cls,
-    ipass = :profile_image,
     graduation_date = :graduation_date,
     birthday = :birthday,
     comment = :comment,
@@ -93,7 +113,6 @@ $sql = "
     tw = :tw,
     insta = :insta,
     linkedin = :linkedin,
-
     why_gs = :why_gs,
     portfolio_title1 = :portfolio_title1,
     portfolio_url1 = :portfolio_url1,
@@ -115,7 +134,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':camp', $camp, PDO::PARAM_STR);
 $stmt->bindValue(':course', $course, PDO::PARAM_STR);
 $stmt->bindValue(':cls', $cls, PDO::PARAM_INT);
-$stmt->bindValue(':profile_image', $profile_image, PDO::PARAM_STR);
 $stmt->bindValue(':graduation_date', $graduation_date, PDO::PARAM_STR);
 $stmt->bindValue(':birthday', $birthday, PDO::PARAM_STR);
 $stmt->bindValue(':comment', $comment, PDO::PARAM_STR);
@@ -139,12 +157,10 @@ $stmt->bindValue(':portfolio_title3', $portfolio_title3, PDO::PARAM_STR);
 $stmt->bindValue(':portfolio_url3', $portfolio_url3, PDO::PARAM_STR);
 $stmt->bindValue(':portfolio_comment3', $portfolio_comment3, PDO::PARAM_STR);
 $stmt->bindValue(':free_space', $free_space, PDO::PARAM_STR);
-// $stmt->bindValue(':profile_image', $profile_image, PDO::PARAM_STR);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-// プロフィールアップデートのためのクエリを実行
-// echo $sql;
-$status = $stmt->execute();
 
+// プロフィール更新のクエリの実行
+$status = $stmt->execute();
 
 //クエリ実行時にエラーがある場合は停止
 if ($status == false) {
