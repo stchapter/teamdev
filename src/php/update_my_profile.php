@@ -54,7 +54,7 @@ $free_space                      = isset($_POST['free_space'])          ? $_POST
 
 // // アイコン画像のアップロード処理
 // // 1.file名の取得
-if ($_FILES["profile_image"]["name"] != "" || null) {
+if ($_FILES["profile_image"]["name"] !== "" || null) {
   $profile_image = $_FILES["profile_image"]["name"];
   // 2.画像データをprofフォルダーにアップロード
   $upload = "../../prof/";
@@ -66,7 +66,7 @@ if ($_FILES["profile_image"]["name"] != "" || null) {
     echo $_FILES["profile_image"]["error"];
   }
 } else {
-  $profile_image = $_POST["default_icon"];
+  $profile_image = 'noimg.png';
 }
 // var_dump($profile_image);
 //DB接続します
