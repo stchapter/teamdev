@@ -17,6 +17,8 @@ textarea {
   resize: vertical;
   margin: 0;
   padding: 10px;
+  color: #585753;
+
 }
 
 input {
@@ -55,6 +57,16 @@ textarea {
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   transition: 0.3s;
   height: 100%;
+  padding: 10px;
+}
+
+/* -------------------------------------------------- */
+/* データ取得箇所のデザイン*/
+/* -------------------------------------------------- */
+
+.data_designed{
+  font-size: 21px;
+  color: #585753;
 }
 
 /* -------------------------------------------------- */
@@ -147,7 +159,8 @@ textarea {
   justify-content: center;
   margin-bottom: 10px;
   font-size: 1.2rem;
-  align-items: baseline;
+  /* align-items: baseline; */
+  align-items: flex-end;
 }
 .gs_year > p {
   padding-top: 5px;
@@ -161,8 +174,12 @@ textarea {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  align-items: self-start;
+  /* align-items: self-start; */
   pointer-events: none;
+  align-items: flex-end;
+}
+.gs_course > p{
+  margin: 0;
 }
 .gs_course > select {
   width: 50px;
@@ -176,10 +193,11 @@ textarea {
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  align-items: self-start;
+  /* align-items: self-start; */
+  align-items: flex-end;
 }
 .graduate > p {
-  margin-right: 3px;
+  margin: 0 3px;
 }
 .icon_name_area {
   text-align: center;
@@ -196,10 +214,10 @@ textarea {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: self-start;
+  align-items: flex-end;
 }
 .birth > p {
-  margin-right: 5px;
+  margin: 0;
 }
 .message_area {
   width: 95%;
@@ -215,7 +233,8 @@ textarea {
   pointer-events: none;
 }
 .cell {
-  margin-bottom: 30px;
+  height: 40px;
+  border-bottom: 1px rgb(187, 187, 187) dashed;
 }
 .cell_left {
   padding: 5px;
@@ -237,6 +256,7 @@ textarea {
   width: 100%;
 }
 .cell2 {
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content:space-evenly;
@@ -267,6 +287,8 @@ textarea {
   width: 100%;
   margin-bottom: 15px;
   border-bottom: 1px gray solid;
+  padding: 4px 10px;
+  font-size: 16px;
 }
 .portfolio_area_url {
   width: 100%;
