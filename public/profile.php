@@ -11,7 +11,7 @@ session_start();
 // ポストでユーザーIDが飛んできたら検索して、ユーザ情報をjsonで返却予定
 // $id = $_POST['id'];
 // 本番環境ではコメントアウト
-$id = intval(21);
+$id = intval(24);
 
 // DB接続
 $pdo = db_conn();
@@ -89,33 +89,33 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
         <div class="left">
           <div class="icon">
             <div class="gs_year">
-              <p>地域</p>
-              <select name="admission_area" id="admission_area" required>
+              <select name="admission_area" id="admission_area" class="data_designed" required>
                 <option value=""></option>
                 <option value="原宿">原宿</option>
                 <option value="福岡">福岡</option>
                 <option value="北海道">北海道</option>
                 <option value="その他">その他</option>
               </select>
+              <p>校</p>
             </div>
             <div class="gs_course">
               <p>コース</p>
-              <select id="course_name" name="course_name" required>
+              <select id="course_name" name="course_name" class="data_designed" required>
                 <option value=""></option>
                 <option value="LAB">LAB</option>
                 <option value="DEV">DEV</option>
                 <option value="BIZ">BIZ</option>
                 <option value="その他">その他</option>
               </select>
-              <input type="text" pattern="\d{2}" maxlength="2" name="admission_period" id="admission_period" required>
+              <input type="text" pattern="\d{2}" maxlength="2" name="admission_period" id="admission_period" class="data_designed" required>
               <p>期</p>
             </div>
             <div class="graduate">
-              <select id="year" name="graduation_date_year" required>
+              <select id="year" name="graduation_date_year" class="data_designed" required>
                 <option value=""></option>
               </select>
               <p>年</p>
-              <select id="month" name="graduation_date_month" required>
+              <select id="month" name="graduation_date_month" class="data_designed" required>
                 <option value=""></option>
               </select>
               <p>月</p>
@@ -132,18 +132,18 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
               </div>
             </div>
             <div class="icon_name_area">
-              <p class="name" id="name">名前</p>
+              <p class="data_designed" id="name">名前</p>
               <div class="birth">
                 <p>生年月日</p>
-                <select id="birth_year" name="birthday_year">
+                <select id="birth_year" name="birthday_year" class="data_designed">
                   <option value=""></option>
                 </select>
                 <p>年</p>
-                <select id="birth_month" name="birthday_month">
+                <select id="birth_month" name="birthday_month" class="data_designed">
                   <option value=""></option>
                 </select>
                 <p>月</p>
-                <select id="birth_day" name="birthday_day">
+                <select id="birth_day" name="birthday_day" class="data_designed">
                   <option value=""></option>
                 </select>
                 <p>日</p>
@@ -158,7 +158,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
               <tr class="cell">
                 <td class="cell_left">血液型</td>
                 <td class="cell_right">
-                  <select name="blood_type" id="blood_type" required>
+                  <select name="blood_type" id="blood_type" class="data_designed" required>
                     <option value="1"></option>
                     <option value="3">A型</option>
                     <option value="4">B型</option>
@@ -171,7 +171,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
               <tr class="cell">
                 <td class="cell_left">居住地</td>
                 <td class="cell_right">
-                  <select name="residence" id="address" required>
+                  <select name="residence" id="address" class="data_designed" required>
                     <option value=""></option>
                   </select>
                 </td>
@@ -179,7 +179,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
               <tr class="cell">
                 <td class="cell_left">出身地</td>
                 <td class="cell_right">
-                  <select name="birthplace" id="from" required>
+                  <select name="birthplace" id="from" class="data_designed" required>
                     <option value=""></option>
                   </select>
                 </td>
@@ -187,7 +187,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
               <tr class="cell">
                 <td class="cell_left">性格</td>
                 <td class="cell_right">
-                  <select name="personality" id="personality">
+                  <select name="personality" id="personality" class="data_designed">
                     <option value="1"></option>
                     <option value="3">熱血</option>
                     <option value="4">冷静</option>
@@ -239,10 +239,11 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
           <div class="other sns_link">
             <table>
               <tr class="cell2">
-                <td><a href="" class="link_tw"><i class="lab la-twitter"></i><a></td>
-                <td><a href="" class="link_fb"><i class="lab la-facebook"></i><a></td>
-                <td><a href="" class="link_insta"><i class="lab la-instagram"></i><a></td>
-                <td><a href="" class="link_linkedin"><i class="lab la-linkedin-in"></i><a></td>
+                <!-- <td><a href="" class="link_tw"><i class="lab la-twitter"></i><a></td> -->
+                <td><a href="" class="link_tw"><button class="ui circular facebook icon button"><i class="facebook icon"></i></button><a></td>
+                <td><a href="" class="link_fb"><button class="ui circular twitter icon button"><i class="twitter icon"></i></button><a></td>
+                <td><a href="" class="link_insta"><button class="ui circular instagram icon button"><i class="instagram icon"></i></button><a></td>
+                <td><a href="" class="link_linkedin"><button class="ui circular linkedin icon button"><i class="linkedin icon"></i></button><a></td>
               </tr>
             </table>
           </div>
@@ -262,6 +263,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
             <p class="portfolio_title">ポートフォリオ・作品（３点まで）</p>
             <!-- １つ目のポートフォリオ -->
             <div class="portfolio_area" id="portfolio_area_1">
+              <div class="ui pointing below label">　１つ目　</div>
               <a href="" id="portfolio_area_url1">
                 <p class="portfolio_area_title" id="portfolio_area_title1"></p>
               </a>
@@ -269,6 +271,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
             </div>
             <!-- ２つ目のポートフォリオ -->
             <div class="portfolio_area" id="portfolio_area_2">
+              <div class="ui pointing below label">　２つ目　</div>
               <a href="" id="portfolio_area_url2">
                 <p class="portfolio_area_title" id="portfolio_area_title2"></p>
               </a>
@@ -276,6 +279,7 @@ $userProf = json_encode($userProf, JSON_UNESCAPED_UNICODE);
             </div>
             <!-- ３つ目のポートフォリオ -->
             <div class="portfolio_area" id="portfolio_area_3">
+              <div class="ui pointing below label">　３つ目　</div>
               <a href="" id="portfolio_area_url3">
                 <p class="portfolio_area_title" id="portfolio_area_title3"></p>
               </a>
